@@ -1,0 +1,44 @@
+p {
+  display: inline;
+}
+em {
+  /*  display: block;*/
+  color: black;
+}
+book,
+maintitle,
+subtitle,
+author,
+isbn {
+  display: block;
+}
+publisher,
+pubdate {
+  display: inline;
+}
+
+@supports (display: grid) {
+  em {
+    color: red;
+  }
+  .wrapper {
+	display: grid;
+	grid-template-columns: 500px 2fr repeat(4, 1fr);
+	grid-template-rows: repeat(40, 1fr);
+  }
+  .wrapper > div {
+	border: 1px solid #ffa94d;
+  }
+  .box1 { 
+    grid-column-start: 1; 
+    grid-column-end: 4; 
+    grid-row-start: 1; 
+    grid-row-end: 3; 
+  } 
+  .box2 { 
+	grid-column-start: 4; 
+    grid-column-end: 7; 
+    grid-row-start: 1; 
+    grid-row-end: 3; 
+  }
+}

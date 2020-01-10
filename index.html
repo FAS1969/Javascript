@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Script try</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="favicon.ico" width="32px" />
+    <!--script-- src="script.js"></!--script-->
+    <script>
+      "use strict";
+
+      function loadScript(location) {
+        let js = document.getElementById("sandboxScript");
+        if (js) {
+          document.body.removeChild(js);
+        }
+        js = document.createElement("script");
+        js.src = location;
+        js.id = "sandboxScript";
+        document.body.appendChild(js);
+      }
+    </script>
+  </head>
+
+  <body>
+    <canvas hidden width="32" height="32"></canvas>
+    <h1>Test JS</h1>
+    <input id="fileJS" type="text" size="60" value="src/test1.js" />
+    <button
+      id="refreshButton"
+      onclick="loadScript(document.getElementById('fileJS').value)"
+    >
+      Run
+    </button>
+    <button id="animateButton">Animate</button>
+    <div><span val="124"></span></div>
+    <div val="123"></div>
+    <div val="124"></div>
+    <div val="125"></div>
+  </body>
+</html>

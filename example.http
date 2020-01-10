@@ -1,0 +1,61 @@
+@host = localhost:5000
+@token = Bearer e975b15aa477ee440417ea069e8ef728a22933f0
+
+
+get http://contentcdn.lingualeo.com/uploads/picture/326259.png HTTP/1.1
+
+###
+get http://contentcdn.lingualeo.com/uploads/picture/326059.png ###
+
+###
+
+get https://api.github.com/users/19919 HTTP/1.1
+###
+get https://audiocdn.lingualeo.com/v2/0/b2JmdXNjYXRvcg==.mp3 HTTP/1.1
+
+###
+get https://jsonplaceholder.typicode.com/photos HTTP/1.1
+
+###
+curl -u "octocat" https://support.insomnia.rest/article/61-graphql
+###
+
+
+POST https://example.com/comments HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+###
+POST https://api.github.com/graphql
+Content-Type: application/json
+Authorization: Bearer xxx
+X-REQUEST-TYPE: GraphQL
+X-GitHub-Request-Id: E8F0:1462F:918BDF5:B17330F:5D639FEB
+
+query ($name: String!, $owner: String!) {
+  repository(name: $name, owner: $owner) {
+    name
+    fullName: nameWithOwner
+    description
+    diskUsage
+    forkCount
+    stargazers(first: 5) {
+        totalCount
+        nodes {
+            login
+            name
+        }
+    }
+    watchers {
+        totalCount
+    }
+  }
+}
+
+{
+    "name": "vscode-restclient",
+    "owner": "Huachao"
+}
