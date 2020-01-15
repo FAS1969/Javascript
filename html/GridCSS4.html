@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<title>Example</title>
+<style>
+  #grid {
+    display: grid;
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 90vh;
+    background-color: beige;
+  }
+
+  #grid > div {
+    padding: 20px;
+    font-size: 4vw;
+    color: white;
+    text-align: center;
+  }
+
+  .red {
+    background: orangered;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .green {
+    background: yellowgreen;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .blue {
+    background: steelblue;
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .gray {
+    border: 16px solid black;
+    background: silver;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+</style>
+<div id="grid">
+  <div class="red">1</div>
+  <div class="green">2</div>
+  <div class="blue">3</div>
+  <div class="gray">4</div>
+</div>
