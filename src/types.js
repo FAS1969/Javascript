@@ -20,7 +20,7 @@
     }
   };
   obj.fn();
-  //**********  String  *******
+  // ! **********  String  *******
   console.group('String');
   const aa = 'AAA';
   console.log(`Это длинная строка с //\\ - вывод спецсимвола
@@ -39,12 +39,18 @@
   console.log(str.endsWith('hello'));       // false
   console.log(str.includes("world")); // true
   console.log(str.includes("test"));  // false
-  //************** Вывод Юникод, hex символа
+  //---- подстрока
+  const str1 = '012345678901234567890abc';
+  console.log(str1.substr(1, 3));    //123
+  console.log(str1.substring(1, 3)); //12
+  console.log(str1.slice(1, 3));     //12
+  console.log(str1.slice(-3, -1));   //ab
+  // ! ************ Вывод Юникод, hex символа 
   console.log("\u2764\uFE0F");
   console.log("\xAE");
   console.log('\u{1D306}'); //ECMAScript 6: Unicode code point escapes
   console.log("Ich \u2665 B\xFCcher");
-  //********** Literals ****************/
+  // ! ********** Literals ****************/
   const olives = 0b0001;
   const ham = 0b0010;
   const pineapple = 0b0100;
