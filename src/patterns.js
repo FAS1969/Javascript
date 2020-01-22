@@ -14,7 +14,7 @@
     first.toUpperCase() + (isRestLower ? rest.join('').toLowerCase() : rest.join(''));
   const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase());
 
-
+  //console.log(os.type());// ! os доступно в Node.js
   //---------------------  
   console.log(capitalizeEveryWord('hello world!')); // 'Hello World!'
   console.log(capitalize('fooBar')); // 'FooBar'
