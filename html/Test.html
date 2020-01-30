@@ -30,6 +30,34 @@
       li:nth-child(1):nth-last-child(7) ~ li {
         width: 25vw;
       }
+      a:link {
+        color: navy;
+      }
+      a:visited {
+        color: gray;
+      }
+      a:focus {
+        color: orange;
+      }
+      a:hover {
+        color: red;
+      }
+      a:active {
+        color: yellow;
+      }
+      /* Form */
+      input:invalid {
+        background: #fdd;
+      }
+      input:valid {
+        background: #dfd;
+      }
+      input[type='submit'] {
+        margin-top: 50px;
+      }
+      input[type='submit']:hover {
+        color: red;
+      }
     </style>
   </head>
 
@@ -45,14 +73,33 @@
         <li>поверните ключ <strong>пo часовой cтpeлкe</strong>;</li>
         <li>нажмите педаль газа.</li>
         <li>Chrome\Application\chrome.ex.</li>
-        <li>dsfsddfsd sdfsdfdsf.</li>
         <li>cvb ccvb kkkls.</li>
+        <li><a href="ok.ru">dsfsddfsd sdfsdfdsf.</a></li>
         <li>нdsa dsds.</li>
       </ul>
       <p>
         Ни в коем случае <em>не </em> нажимайте педали газа и тормоза
         одновременно.
+        <a href="#">ссылка на себя.</a>
       </p>
     </div>
+    <form>
+      <p>Адрес сайта</p>
+      <p><input type="url" required value="http://wwww.box1.net" /></p>
+      <p>Адрес электронной почты</p>
+      <p><input type="email" required value="peta@mail.ru" /></p>
+      <p>Число</p>
+      <p>
+        <input
+          type="number"
+          min="10"
+          max="100"
+          step="0.1"
+          placeholder="Целое число"
+          required
+        />
+      </p>
+      <p><input type="submit" value="Отправить" /></p>
+    </form>
   </body>
 </html>
