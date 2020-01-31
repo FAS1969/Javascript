@@ -4,13 +4,46 @@
     <title>Etalon html5</title>
     <meta charset="utf-8" />
     <meta name="description" content="Description of web page" />
-    <!--link rel="stylesheet" href="style.css" />
-    <script-- src="script.js"></script-->
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/resetFAS.css" />
+    <!--
+    <link rel="stylesheet" href="css/base.css" />
+    <script src="script.js"></script>
+    -->
     <style>
+      *:default {
+        background: lime;
+      }
+      *:target {
+        border-left: Spx solid gray;
+        background-color: yellow;
+      }
+      *:lang(ru) {
+        color: olive;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-style: oblique;
+        font-size: 10vm;
+      }
       p:last-child {
         font-weight: bold;
       }
-
+      #pageHeader > :first-child::first-letter {
+        color: red;
+      }
+      #target-pseudo::after {
+        content: ' dynamic';
+        color: peachpuff;
+      }
+      /* 
+body { 
+    background: #b3dced;
+    background: -moz-linear-gradient(-45deg, #b3dced 0%, #29b8e5 50%, #bce0ee 100%);
+    background: -webkit-linear-gradient(-45deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+    background: -o-linear-gradient(-45deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+    background: linear-gradient(-45deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+}
+*/
       li:last-child {
         text-transform: uppercase;
       }
@@ -21,10 +54,10 @@
         color: blue;
       }
       li:nth-child(odd) {
-        background: silver;
+        background-color: silver;
       }
       li:nth-child(4) ~ li:nth-child(odd) {
-        background: rgb(216, 233, 248);
+        background-color: rgb(216, 233, 248);
       }
       li:nth-child(1):nth-last-child(7),
       li:nth-child(1):nth-last-child(7) ~ li {
@@ -47,23 +80,36 @@
       }
       /* Form */
       input:invalid {
-        background: #fdd;
+        background-color: #fdd;
       }
-      input:valid {
-        background: #dfd;
+      input:valid:not([type='submit']) {
+        background-color: #dfd;
+        caret-color: rgb(209, 72, 106);
       }
       input[type='submit'] {
         margin-top: 50px;
       }
-      input[type='submit']:hover {
+      input[type='submit']:hover,
+      input[type='button']:hover {
         color: red;
+      }
+      input:required {
+        border-color: red;
+      }
+      input:default {
+        /* не понятно работает */
+        font-style: italic;
+        color: magenta;
+      }
+      .btn-rot {
+        transform: rotate(45deg);
       }
     </style>
   </head>
 
   <body>
     <header id="pageHeader">
-      <h1>Header</h1>
+      <h1 id="target-pseudo">Header</h1>
     </header>
     <!-- комментарий -->
     <div>
@@ -77,19 +123,22 @@
         <li><a href="ok.ru">dsfsddfsd sdfsdfdsf.</a></li>
         <li>нdsa dsds.</li>
       </ul>
-      <p>
+      <p lang="ru">
         Ни в коем случае <em>не </em> нажимайте педали газа и тормоза
         одновременно.
         <a href="#">ссылка на себя.</a>
       </p>
     </div>
     <form>
-      <p>Адрес сайта</p>
-      <p><input type="url" required value="http://wwww.box1.net" /></p>
-      <p>Адрес электронной почты</p>
-      <p><input type="email" required value="peta@mail.ru" /></p>
-      <p>Число</p>
       <p>
+        Адрес сайта <input type="url" required value="http://wwww.box1.net" />
+      </p>
+      <p>
+        Адрес электронной почты
+        <input type="email" value="peta@mail.ru" required />
+      </p>
+      <p>
+        Число
         <input
           type="number"
           min="10"
@@ -98,8 +147,13 @@
           placeholder="Целое число"
           required
         />
+        <input type="text" value="text" />
+        <input type="checkbox" value="true" checked />
       </p>
-      <p><input type="submit" value="Отправить" /></p>
+      <p>
+        <input type="submit" value="Отправить" />
+        <input type="button" value="Отменить" class="btn-rot" />
+      </p>
     </form>
   </body>
 </html>
