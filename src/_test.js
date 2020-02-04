@@ -16,4 +16,3 @@ let bb = 0.25;
 console.log(aa == ~bb ^ 0);
 console.log((aa == (~bb)) ^ 0);
 console.log(4 ^ 5);
-for let i in Range(3) console.log(i)
