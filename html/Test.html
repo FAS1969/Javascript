@@ -21,6 +21,9 @@
     <script src="script.js"></script>
     -->
     <style>
+      :root {
+        all: unset;
+      }
       *:default {
         background: lime;
       }
@@ -43,6 +46,7 @@
       #target-pseudo::after {
         content: ' dynamic';
         color: peachpuff;
+        font-size: 0.8em;
       }
       /* 
 body { 
@@ -83,6 +87,7 @@ body {
       }
       a:hover {
         color: red;
+        text-decoration: none;
       }
       a:active {
         color: yellow;
@@ -166,7 +171,7 @@ body {
 
   <body>
     <header id="pageHeader">
-      <h1 id="target-pseudo">Header</h1>
+      <h1 id="target-pseudo">Header &#8730; &#151;</h1>
     </header>
     <!-- комментарий -->
     <div>
