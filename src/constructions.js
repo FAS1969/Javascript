@@ -81,5 +81,5 @@
 
   }
   console.groupEnd();
-
+  console.table({ a: 5, b: 'sdff' })
 }
