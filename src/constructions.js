@@ -20,20 +20,20 @@
       })();
   */
   //------- возведение в степень
-  console.group("возведение в степень");
+  console.group("********возведение в степень********");
   console.log(2 ** 2); // 4
   console.log(3 ** 2); // 9
   console.log(3 ** 3); // 27
   console.groupEnd();
   //------- array
-  console.group("array");
+  console.group("********array********");
   //Array.prototype.includes : (match: any, offset?: Int) => boolean
   const arrr = [1, 2, 3, 4, 6, 8];
   console.log(arrr.includes(2));  //true
   console.log(arrr.includes(2, 3));  //false
   console.groupEnd();
   //------- function
-  console.group("function");
+  console.group("********function********");
   //logParams самовызываемая ф-ция не доступная нигде 
   var logParams = (function (...params) {
     params.forEach(element => {
@@ -42,7 +42,7 @@
   })('aa', 'bb', 'cc', 1, 2);
   console.groupEnd();
   //------- обход объекта
-  console.group("обход объекта");
+  console.group("********обход объекта********");
   const myMap = {
     uno: 1,
     dos: 2,
@@ -60,4 +60,26 @@
   function multiply(multiplier, ...theArgs) { return theArgs.map(x => multiplier * x); }
   let arr = multiply(10, 1, 2, 3); console.log(arr); // [2, 4, 6]
   console.groupEnd();
+  //-------Циклы
+  console.group("********do while********");
+  let i = 0;
+  do {
+    console.log(i);
+    i++;
+  } while (i < 3);
+  console.groupEnd();
+  i = 0;
+  console.group("********while do********");
+  while (i < 3) {
+    console.log(i);
+    i++;
+  }
+  console.groupEnd();
+  console.group("********for********");
+  for (let index = 0; index < 4; index++) {
+    console.log(index);
+
+  }
+  console.groupEnd();
+
 }
