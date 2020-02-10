@@ -23,6 +23,7 @@
     <style>
       :root {
         all: unset;
+        --primary: rgb(216, 233, 248);
       }
       *:default {
         background: lime;
@@ -70,7 +71,7 @@ body {
         background-color: silver;
       }
       li:nth-child(4) ~ li:nth-child(odd) {
-        background-color: rgb(216, 233, 248);
+        background-color: var(--primary);
       }
       li:nth-child(1):nth-last-child(7),
       li:nth-child(1):nth-last-child(7) ~ li {
@@ -97,7 +98,7 @@ body {
         background-color: #fdd;
       }
       input:valid:not([type='submit']) {
-        background-color: #dfd;
+        background-color: #deffdd;
         caret-color: rgb(209, 72, 106);
       }
       input[type='submit'] {

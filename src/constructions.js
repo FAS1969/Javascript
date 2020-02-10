@@ -25,6 +25,13 @@
   console.log(3 ** 2); // 9
   console.log(3 ** 3); // 27
   console.groupEnd();
+  //------- консольная таблица
+  console.group("********console.table********");
+  console.table({ a: 5, b: 'sdff' })
+  console.groupEnd();
+  //------- функции
+  const add = a => b => a + b;
+  console.log(add(3)(5));
   //------- array
   console.group("********array********");
   //Array.prototype.includes : (match: any, offset?: Int) => boolean
@@ -81,5 +88,4 @@
 
   }
   console.groupEnd();
-  console.table({ a: 5, b: 'sdff' })
 }
