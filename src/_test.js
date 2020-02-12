@@ -16,3 +16,7 @@ let bb = 0.25;
 console.log(aa == ~bb ^ 0);
 console.log((aa == (~bb)) ^ 0);
 console.log(4 ^ 5);
+
+const doNothing = (a) => { a += 5 };
+
+console.log(doNothing(4));
