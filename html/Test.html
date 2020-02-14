@@ -24,6 +24,9 @@
       :root {
         all: unset;
         --primary: rgb(216, 233, 248);
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 300;
+        font-size: 17px;
       }
       *:default {
         background: lime;
@@ -34,7 +37,7 @@
       }
       *:lang(ru) {
         color: olive;
-        font-family: Verdana, Arial, Helvetica, sans-serif;
+        /*font-family: Verdana, Arial, Helvetica, sans-serif;*/
         font-style: oblique;
         font-size: 10vm;
       }
@@ -174,6 +177,26 @@ body {
     <header id="pageHeader">
       <h1 id="target-pseudo">Header &#8730; &#151;</h1>
     </header>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="300"
+      height="150"
+      viewBox="0 0 300 150"
+    >
+      <rect fill="#ddd" width="300" height="150" />
+      <text
+        fill="rgba(0,0,0,0.5)"
+        font-family="sans-serif"
+        font-size="30"
+        dy="10.5"
+        font-weight="bold"
+        x="50%"
+        y="50%"
+        text-anchor="middle"
+      >
+        300×150
+      </text>
+    </svg>
     <!-- комментарий -->
     <div>
       <p><em>Выполните следующие действия:</em></p>

@@ -1,5 +1,14 @@
 {
-
+  /** 
+   * ! ключевое свойство, без него delete будет выдавать ошибку
+   * ? configurable: true  
+    'use strict'
+    const obj = {}  
+    Object.defineProperty(obj, 'best_site', { value: 'proghub', configurable: true });
+    console.log(obj.best_site);
+    delete obj.best_site;
+    console.log(obj.best_site);
+  */
   console.clear();
   let source =
   {
