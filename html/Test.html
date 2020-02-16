@@ -170,33 +170,35 @@ body {
         background-position: left 0.7em top 50%, 0 0;
         padding: 0.6em 0.8em 0.5em 1.4em;
       }
+      /* test */
+      .top {
+        width: 100%;
+        height: 20px;
+        background-color: aquamarine;
+      }
+      .middle {
+        width: 100%;
+        height: 50px;
+        background-color: burlywood;
+      }
+      .box {
+        width: 20px;
+        height: 20px;
+        margin-left: 150px;
+        background-color: crimson;
+        transform: translateY(-50%);
+      }
     </style>
   </head>
 
   <body>
+    <div class="top"></div>
+    <div class="middle">
+      <div class="box"></div>
+    </div>
     <header id="pageHeader">
       <h1 id="target-pseudo">Header &#8730; &#151;</h1>
     </header>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="300"
-      height="150"
-      viewBox="0 0 300 150"
-    >
-      <rect fill="#ddd" width="300" height="150" />
-      <text
-        fill="rgba(0,0,0,0.5)"
-        font-family="sans-serif"
-        font-size="30"
-        dy="10.5"
-        font-weight="bold"
-        x="50%"
-        y="50%"
-        text-anchor="middle"
-      >
-        300×150
-      </text>
-    </svg>
     <!-- комментарий -->
     <div>
       <p><em>Выполните следующие действия:</em></p>
@@ -250,5 +252,25 @@ body {
         <input type="button" value="Отменить" class="btn-rot" />
       </p>
     </form>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="300"
+      height="150"
+      viewBox="0 0 300 150"
+    >
+      <rect fill="#ddd" width="300" height="150" />
+      <text
+        fill="rgba(0,0,0,0.5)"
+        font-family="sans-serif"
+        font-size="30"
+        dy="10.5"
+        font-weight="bold"
+        x="50%"
+        y="50%"
+        text-anchor="middle"
+      >
+        300×150
+      </text>
+    </svg>
   </body>
 </html>
