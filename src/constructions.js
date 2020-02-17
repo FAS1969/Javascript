@@ -39,6 +39,23 @@
   console.log(arrr.includes(2));  //true
   console.log(arrr.includes(2, 3));  //false
   console.groupEnd();
+  //------- closures (замыкания)
+  console.group("********closures********");
+  var globalVar = 'global'
+  var outerVar = 'outer'
+
+  function outerFunc(outerParam) {
+    function innerFunc(innerParam) {
+      console.log("Closures - ", globalVar, outerParam, innerParam)
+    }
+    return innerFunc
+  }
+
+  const x = outerFunc(outerVar)
+  outerVar = 'outer-2'
+  globalVar = 'guess'
+  x('inner')
+  console.groupEnd();
   //------- function
   console.group("********function********");
   //logParams самовызываемая ф-ция не доступная нигде 
