@@ -16,14 +16,12 @@
 
   const numbers = [1, 2, 3, 4, 10];
   numbers.findIndex(x => x === 4); // returns 3
-  numbers.find(x => x === 15);     // returns -1
-  numbers.map(num => {
-    if (typeof num === "number")
-      return;
+  console.log(numbers.find(x => x === 10));     // returns -1
+  console.log('********* map - ', numbers.map(num => {
     return num * 2;
-  })
+  }))
 
-  const cars = ['BMW', 'Toyota', 'Tesla', 'Audi'];
+  const cars = ['BMW', 'Toyota', 'Tesla', 'Audi', 'Renault', 'Skoda'];
   console.log(cars.includes('Toyota'));  // true
   console.log(cars.includes('mercedes')); // false
 
@@ -34,6 +32,7 @@
   const array2 = [3, 5];
   const array3 = [...array1, ...array2];
   console.log(array3);// [ 1, 2, 4, 3, 5 ]
+  console.log('********* slice - ', cars.slice(2, 4)); //со 2-го по 4-й не включая
   //----------------------------------------------------------
   const dogs = [
     {
@@ -143,7 +142,64 @@
   arrNew.splice(1, 0, ["___"]);
   console.log(arrNew.join(''));
 
-  console.log([0, 1, 2, 3, 4, 10].reduce((prev, curr) => prev + curr)); //array summation
+  console.log('Reduce - ', [0, 1, 2, 3, 4, 10].reduce((prev, curr, index, array) => prev + curr)); //array summation
+  //------------------------ реализация array map
+  function map(arr, mapCallback) {
+    // проверяем переданные параметры
+    if (!Array.isArray(arr) || !arr.length || typeof mapCallback !== 'function') {
+      return []
+    } else {
+      let result = []
+      // мы создаем массив с результатами при каждом вызове функции
+      // поскольку мы не хотим менять оригинальный массив
+      for (let i = 0, len = arr.length; i < len; i++) {
+        result.push(mapCallback(arr[i], i, arr))
+        // помещаем результаты mapCallback в result
+      }
+      return result
+    }
+  }
+  console.log('********* реализация array map - ', map([true, 2, '4', 7, '3'], (e) => +e));
+  //------------------------ реализация array filter
+  function filter(arr, filterCallback) {
+    // проверяем передаваемые параметры
+    if (!Array.isArray(arr) || !arr.length || typeof filterCallback !== 'function') {
+      return []
+    } else {
+      let result = []
+      // ...
+      for (let i = 0, len = arr.length; i < len; i++) {
+        // определяем соответствие возвращаемого результата заданному условию
+        if (filterCallback(arr[i], i, arr)) {
+          // помещаем значение, прошедшее фильтр, в result
+          result.push(arr[i])
+        }
+      }
+      return result
+    }
+  }
+  console.log('********* реализация array filter - ', filter([true, 2, '4', 7, '3', 33], (e) => typeof e === 'number'));
+  //------------------------ реализация array reduce
+  function reduce(arr, reduceCallback, initialValue) {
+    // ..
+    if (!Array.isArray(arr) || !arr.length || typeof reduceCallback !== 'function') {
+      console.log('=========');
+      return []
+    } else {
+      // если в функцию не было передано значения initialValue, то
+      let hasInitialValue = initialValue !== undefined
+      let value = hasInitialValue ? initialValue : arr[0]
+      // мы будем использовать первый элемент initialValue
+      // затем мы перебираем массив, начиная с 1, если в функцию не передавалось значения initialValue, либо с 0, если значение было передано
+      for (let i = hasInitialValue ? 0 : 1, len = arr.length; i < len; i++) {
+        // затем на каждой итерации мы присваиваем результат вызова reduceCallback переменной
+        value = reduceCallback(value, arr[i], i, arr)
+      }
+      return value
+    }
+  }
+  let sum = 0;
+  console.log('********* реализация array reduce - ', reduce([1, 2, 4, 7, 3], (sum, e) => sum + e, 0));
   //------------------------ object in array and back
   let students = {
     amelia: 20,
@@ -161,32 +217,32 @@
   // преобразуем многомерный массив обратно в объект
   const drinkingAgeStudents = Object.fromEntries(overTwentyOne);
   console.log(drinkingAgeStudents);
-//************************ sort array ********************
-const rows = [
-    { 
-        name: 'Larry', 
-        website: 'google.com', 
-        topic: '42',
-        year: 1998
+  //************************ sort array ********************
+  const rows = [
+    {
+      name: 'Larry',
+      website: 'google.com',
+      topic: '42',
+      year: 1998
     },
-    { 
-        name: 'Zsolt', 
-        website: 'devcareermastery.com', 
-        topic: 'IT Career',
-        year: 2016
+    {
+      name: 'Zsolt',
+      website: 'devcareermastery.com',
+      topic: 'IT Career',
+      year: 2016
     },
-    { 
-        name: 'Zsolt', 
-        website: 'zsoltnagy.eu', 
-        topic: 'JavaScript',
-        year: 2015
+    {
+      name: 'Zsolt',
+      website: 'zsoltnagy.eu',
+      topic: 'JavaScript',
+      year: 2015
     }
-];
- 
-console.log(rows.sort( ({name: first}, {name: second}) => {
-    if ( first > second ) return 1;
-    if ( first < second ) return -1;
+  ];
+
+  console.log(rows.sort(({ name: first }, { name: second }) => {
+    if (first > second) return 1;
+    if (first < second) return -1;
     return 0;
-} )); 
-console.log(rows.sort( (x, y) => x.year - y.year ));
+  }));
+  console.log(rows.sort((x, y) => x.year - y.year));
 }
