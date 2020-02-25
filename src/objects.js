@@ -24,6 +24,13 @@
     },
     [Symbol("id")]: 123, // ignored
   };
+  console.group("*********************** for on object");
+  for (var i in source) {
+    console.log('key - ', i); // all keys
+    console.log('value - ', source[i]); // all values
+  }
+  console.groupEnd();
+  console.group("*********************** манипуляции с объектом");
   console.log(JSON.stringify(source));
   let destObj = JSON.parse(JSON.stringify(source, ["a", "b"])); // вложенный объект не копируется
   console.log(destObj);
@@ -223,5 +230,6 @@
 
   const { b: { x, ...rest1 }, ...rest2 } = obj11;    // no error
   //const { ...rest, ...rest2 } = obj11; // → SyntaxError: Rest element must be last element
+  console.groupEnd();
 
 }

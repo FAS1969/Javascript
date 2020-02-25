@@ -80,7 +80,8 @@
   console.log([1, 7, 11].map(parseInt));
   console.log([1, 7, 11].map((num) => parseInt(num)));
   [1, 7, 11].map(console.log); //parseInt() принимает только два аргумента: число и сист. исчисления
-  //------------------------ многомерный массив в одномерный
+  // !------------------------ многомерный массив в одномерный
+  console.group("********** многомерный массив в одномерный")
   let courses = [
     {
       subject: "math",
@@ -103,6 +104,7 @@
   console.log(courseStudents);
   let flattenOneLevel = courseStudents.flat(Infinity); //flat()==flat(1) 
   console.log(flattenOneLevel);
+  console.groupEnd();
   //---------------
   const matrix = Array.from(Array(5), () => Array(10).fill());
   const matrix1 = Array(...Array(5)).map(() => Array(...Array(10)));
@@ -115,7 +117,9 @@
   console.log(matrix2);
   console.log(matrix[0][7]);
   console.warn(matrix2[0][7] || 'FAS: matrix2[0][7]  не найден!');
-  //-------------------------- flatMap на малых объемах быстрее reduce
+
+  // !-------------------------- flatMap на малых объемах быстрее reduce
+  console.group("*********** flatMap на малых объемах быстрее reduce");
   const arr = Array(100).fill(0).map((v, i) => i);
   //console.log(arr);
   console.time('reduce');
@@ -132,7 +136,9 @@
   const arr3 = arr.map(current => current * current);
   console.timeEnd('map');
   //console.log(arr3);
-  //------------Объединение массивов и удаление дублей
+  // !------------Объединение массивов и удаление дублей
+  console.group("************* Объединение массивов и удаление дублей");
+  console.log('Простейшее удаление дублей - ', [...new Set([1, 2, 3, 3])]);
   let longest = function (s1, s2) {
     return Array.from(new Set([...s1, ...s2])).sort().join('').toString();
   };
@@ -143,7 +149,8 @@
   console.log(arrNew.join(''));
 
   console.log('Reduce - ', [0, 1, 2, 3, 4, 10].reduce((prev, curr, index, array) => prev + curr)); //array summation
-  //------------------------ реализация array map
+  console.groupEnd();
+  // !------------------------ реализация array map
   function map(arr, mapCallback) {
     // проверяем переданные параметры
     if (!Array.isArray(arr) || !arr.length || typeof mapCallback !== 'function') {
@@ -160,7 +167,7 @@
     }
   }
   console.log('********* реализация array map - ', map([true, 2, '4', 7, '3'], (e) => +e));
-  //------------------------ реализация array filter
+  // !------------------------ реализация array filter
   function filter(arr, filterCallback) {
     // проверяем передаваемые параметры
     if (!Array.isArray(arr) || !arr.length || typeof filterCallback !== 'function') {
@@ -179,7 +186,7 @@
     }
   }
   console.log('********* реализация array filter - ', filter([true, 2, '4', 7, '3', 33], (e) => typeof e === 'number'));
-  //------------------------ реализация array reduce
+  // !------------------------ реализация array reduce
   function reduce(arr, reduceCallback, initialValue) {
     // ..
     if (!Array.isArray(arr) || !arr.length || typeof reduceCallback !== 'function') {
@@ -200,7 +207,8 @@
   }
   let sum = 0;
   console.log('********* реализация array reduce - ', reduce([1, 2, 4, 7, 3], (sum, e) => sum + e, 0));
-  //------------------------ object in array and back
+  // !------------------------ object in array and back
+  console.group("********* object in array and back");
   let students = {
     amelia: 20,
     beatrice: 22,
@@ -217,7 +225,9 @@
   // преобразуем многомерный массив обратно в объект
   const drinkingAgeStudents = Object.fromEntries(overTwentyOne);
   console.log(drinkingAgeStudents);
-  //************************ sort array ********************
+  console.groupEnd();
+  // ! ************************ sort array ********************
+  console.group("********* sort array");
   const rows = [
     {
       name: 'Larry',
@@ -245,4 +255,6 @@
     return 0;
   }));
   console.log(rows.sort((x, y) => x.year - y.year));
+  console.groupEnd();
+
 }
