@@ -1,9 +1,10 @@
 {
   //-----------------------------
-  const tstArr = [1, 2, 3, 4];
+  const tstArr = [1, 2, 3, 4, false, ''];
   tstArr[10] = 25;
   console.log(tstArr); //[ 1, 2, 3, 4, <6 empty items>, 25 ]
   //-------------- функции работы с массивом -----------------
+  console.log('Фильтр только true values', tstArr.filter(Boolean));
   const people = [
     { name: 'test1', id: 1, email: 'test1@test.com' },
     { name: 'test2', id: 2, email: 'test2@test.com' },

@@ -24,6 +24,12 @@
     },
     [Symbol("id")]: 123, // ignored
   };
+  // ! *********** У объекта нет никаких свойств до тех пор, пока вы их в явном виде не добавите к нему
+  // !  dict.__proto__ === "undefined"
+  let dict = Object.create(null);
+  console.log(Object.getPrototypeOf(dict));
+  let dict1 = {};
+  console.log(Object.getPrototypeOf(dict1));
   console.group("*********************** for on object");
   for (var i in source) {
     console.log('key - ', i); // all keys
@@ -34,11 +40,12 @@
   console.log(JSON.stringify(source));
   let destObj = JSON.parse(JSON.stringify(source, ["a", "b"])); // вложенный объект не копируется
   console.log(destObj);
-  //копирование
+  // копирование объекта
   const original = { a: 1 };
   const copyObject = Object.assign({}, original);
-  console.log(copyObject); // { a: 1};
+  console.log('Копирование объекта - ', copyObject); // { a: 1};
   //слияние объектов
+  console.group("************ слияние объектов");
   const obj1 = {
     a: 'a from obj1',
     b: 'b from obj1',
@@ -47,6 +54,7 @@
       e: 'e from obj1',
       f: 'f from obj1',
     },
+    w: ['1 from obj1', '2 from obj1', '3 from obj1'],
   };
 
   const obj2 = {
@@ -54,15 +62,18 @@
     c: 'c from obj2',
     d: {
       g: 'g from obj2',
-      h: 'g from obj2',
+      h: { h1: 'h1 from obj2', h2: 'h2 from obj2' },
     },
     z: 'z from obj2',
   };
 
   let comObj = {};
   Object.assign(comObj, obj1, obj2);
+  console.log('Слияние через assign - ', comObj);
 
-  console.log(comObj);
+  const summary = { ...obj1, ...obj2 };
+  console.log('Слияние через ... - ', summary);
+  console.groupEnd();
   //----------------------------------------------
   let getCar = function (make, model, value) {
     return {
