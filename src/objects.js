@@ -242,5 +242,13 @@
   const { b: { x, ...rest1 }, ...rest2 } = obj11;    // no error
   //const { ...rest, ...rest2 } = obj11; // → SyntaxError: Rest element must be last element
   console.groupEnd();
-
+  // ! будет одно поле
+  let obj_1 = {
+    "0": 1,
+    0: 2,
+    false: 3,
+    null: 4
+  }
+  console.log(obj_1["0"] + obj_1[0] + obj_1[false]);
+  console.log(obj_1);
 }
