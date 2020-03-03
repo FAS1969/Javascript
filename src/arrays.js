@@ -74,7 +74,7 @@
   console.log(dogs.every(dog => dog.temperament.includes('Intelligent')));
   console.log(dogs.map(dog => dog.name));
   console.log(dogs.filter(dog => dog.temperament.includes('Faithful')));
-  console.log(dogs.reduce((allTemperaments, dog) => {
+  console.log('dogs.reduce - ', dogs.reduce((allTemperaments, dog) => {
     return [...allTemperaments, ...dog.temperament];
   }, []));
 
@@ -137,6 +137,7 @@
   const arr3 = arr.map(current => current * current);
   console.timeEnd('map');
   //console.log(arr3);
+  console.groupEnd();
   // !------------Объединение массивов и удаление дублей
   console.group("************* Объединение массивов и удаление дублей");
   console.log('Простейшее удаление дублей - ', [...new Set([1, 2, 3, 3])]);

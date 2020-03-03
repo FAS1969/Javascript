@@ -45,8 +45,10 @@ https://github.com/chrmarti/vscode-regex`;
   console.log('Empty strings -', reg);
   console.log('Url(domen) -', reg1);
   console.log('Email -', reg2);
-
-  //опоставление с предыдущими символами
+  console.log('убирает символы подряд > 2  - ', 'uuuuxxaaaaxuuu'.replace(/(\w)\1{2,}/g, '$1$1'));//uuxxaaxuu
+  console.log("John Smith".replace(/(\w+) (\w+)/i, `$2, $1`));//Smith, John
+  console.info("html and css".replace(/html|css/gi, str => str.toUpperCase()));
+  // ! опоставление с предыдущими символами
   console.log(testString.match(/(?<=\$)\d+/)[0]); //400
   //console.log(testString.match(/qua(?=i)/)[0] ?? 'NOT FOUND!!!');  //qu
   console.log(testString.match(/(?<=abc)\d+/)[0]); //500
