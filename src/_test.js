@@ -1,4 +1,4 @@
-'use strict'
+//'use strict'
 {
   console.clear();
   let a = [];
@@ -22,4 +22,10 @@
 
   const doNothing = (a) => { a += 5 };
   console.log(doNothing(4));
+
+  var ff1 = "wrong";
+  let s1 = function ff() { return "1st"; }
+  let s2 = function ff(val) { this.ff1 = "right"; return "2nd"; }
+  console.log(new s1().ff1);
+
 }
