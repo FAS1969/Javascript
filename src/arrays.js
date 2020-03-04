@@ -258,5 +258,8 @@
   }));
   console.log(rows.sort((x, y) => x.year - y.year));
   console.groupEnd();
+  const arrNum = [4, 6, 19, 34, 32];
+  console.log(arrNum.sort()); //[ 19, 32, 34, 4, 6 ] // ! сортирует как строки
+  //--------------
 
 }
