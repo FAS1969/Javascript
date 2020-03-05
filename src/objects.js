@@ -252,4 +252,11 @@
   }
   console.log(obj_1["0"] + obj_1[0] + obj_1['null']);
   console.log(obj_1);
+  //---------------
+  class Something { }
+  const someObj = new Something();
+  console.log(typeof someObj == typeof Something); //false
+  console.log(typeof someObj); //object
+  console.log(typeof Something); //function
+  console.log(typeof obj_1);
 }
