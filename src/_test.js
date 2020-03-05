@@ -1,31 +1,62 @@
 //'use strict'
 {
   console.clear();
-  let a = [];
-  let b = () => { };
-  console.log((a == a) + ' ' + (a == !a));
-  console.log(!a);
-  console.log(a == false);
-  console.log(Boolean(a) == false);
-  console.log(!b);
-  console.log(b == true);
-  if (a)
-    console.log('yes')
-  else
-    console.log('no')
+  const MORSE_TABLE = {
+    '.-': 'a',
+    '-...': 'b',
+    '-.-.': 'c',
+    '-..': 'd',
+    '.': 'e',
+    '..-.': 'f',
+    '--.': 'g',
+    '....': 'h',
+    '..': 'i',
+    '.---': 'j',
+    '-.-': 'k',
+    '.-..': 'l',
+    '--': 'm',
+    '-.': 'n',
+    '---': 'o',
+    '.--.': 'p',
+    '--.-': 'q',
+    '.-.': 'r',
+    '...': 's',
+    '-': 't',
+    '..-': 'u',
+    '...-': 'v',
+    '.--': 'w',
+    '-..-': 'x',
+    '-.--': 'y',
+    '--..': 'z',
+    '.----': '1',
+    '..---': '2',
+    '...--': '3',
+    '....-': '4',
+    '.....': '5',
+    '-....': '6',
+    '--...': '7',
+    '---..': '8',
+    '----.': '9',
+    '-----': '0',
+  };
 
-  let aa = -1;
-  let bb = 0.25;
-  console.log(aa == ~bb ^ 0);
-  console.log((aa == (~bb)) ^ 0);
-  console.log(4 ^ 5);
+  function decode(expr) {
+    replDigit = (couple) => {
+      switch (couple) {
+        case '00':
+          return '';
+          break;
+        case '10':
+          return '.';
+          break;
+        case '11':
+          return '-';
+          break;
+      }
+    }
+    return expr.match(/([01*]){10}/g).map((e) => e.startsWith('*') ? ' ' : replDigit(e.match(/([01]){2}/g).map(replDigit).toString));
+  }
 
-  const doNothing = (a) => { a += 5 };
-  console.log(doNothing(4));
-
-  var ff1 = "wrong";
-  let s1 = function ff() { return "1st"; }
-  let s2 = function ff(val) { this.ff1 = "right"; return "2nd"; }
-  console.log(new s1().ff1);
-
+  const expr = "00101010100000000010001011101000101110100000111111**********00001011110000111111000010111000101110100000111010";
+  console.log(decode(expr));
 }

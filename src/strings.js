@@ -1,7 +1,7 @@
 {
   console.clear();
   const testStr = 'MyTestingString';
-  console.log(testStr.slice(2, 8) + ' ' + testStr.substr(2, 8) + ' ' + testStr.substring(2, 8));
+  console.log(testStr.slice(2, 8) + ' ' + testStr.substr(2, 8) + ' ' + testStr.substring(2, 8));//Testin TestingS Testin
 
   console.group('String');
   const aa = 'AAA';

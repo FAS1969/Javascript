@@ -105,4 +105,17 @@
 
   }
   console.groupEnd();
+  //-------
+  let xX = 'value1';
+  switch (xX) {
+    case 'value1':
+      console.log('********switch - ', 'value1');
+      break;
+    case 'value2':
+      console.log('********switch - ', 'value2');
+      break;
+    default:
+      console.log('********switch - ', 'default');
+      break;
+  }
 }
