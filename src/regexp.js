@@ -1,3 +1,4 @@
+'use strict'
 /*jshint esversion: 9 */
 {
   //#region Исходные данные

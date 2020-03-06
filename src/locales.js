@@ -1,3 +1,4 @@
+'use strict'
 {
   const rtfEspanol = new Intl.RelativeTimeFormat('es', {
     numeric: 'auto'
@@ -31,30 +32,30 @@
   var options1 = { localeMatcher: 'lookup' };
   console.log(Intl.DateTimeFormat.supportedLocalesOf(locales, options1).join(', '));
 
-    /*  function squareDigits(num){
-      console.log(num.toString().split(''));
-      return parseInt(num.toString().split('').map((e) => Math.pow(e).toString()).join(''))
+  /*  function squareDigits(num){
+    console.log(num.toString().split(''));
+    return parseInt(num.toString().split('').map((e) => Math.pow(e).toString()).join(''))
+  }
+  console.log(squareDigits(9119));
+  
+  
+  y = false, true; 
+  console.log(y)
+  console.log((()=> {return false, true})()); 
+  
+  
+  function accum(s) {
+    return s.split('').map((c, i) => (c.toUpperCase() + c.toLowerCase().repeat(i))).join('-');
+  }
+  console.log(accum('abcd'));
+  
+  
+  function findOutlier(integers){
+      let arr = integers.map((elem) => elem % 2 == 0 ? 1 : 0)
+      if (arr.reduce((prev, curr) => prev+curr) === 1)
+        return integers[arr.indexOf(1)];
+      else
+        return integers[arr.indexOf(0)]
     }
-    console.log(squareDigits(9119));
-    
-    
-    y = false, true; 
-    console.log(y)
-    console.log((()=> {return false, true})()); 
-    
-    
-    function accum(s) {
-      return s.split('').map((c, i) => (c.toUpperCase() + c.toLowerCase().repeat(i))).join('-');
-    }
-    console.log(accum('abcd'));
-    
-    
-    function findOutlier(integers){
-        let arr = integers.map((elem) => elem % 2 == 0 ? 1 : 0)
-        if (arr.reduce((prev, curr) => prev+curr) === 1)
-          return integers[arr.indexOf(1)];
-        else
-          return integers[arr.indexOf(0)]
-      }
-      console.log(findOutlier([2,6,8,10,3]));*/
+    console.log(findOutlier([2,6,8,10,3]));*/
 }

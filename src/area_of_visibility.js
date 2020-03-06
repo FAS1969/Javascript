@@ -1,5 +1,5 @@
+'use strict'
 {
-  'use strict'
   var var1 = 12;
   (function SelfExecutedTestFun() {
     console.log("value of var1 is:" + var1);

@@ -1,3 +1,4 @@
+'use strict'
 {
   const promises = function () {
     const successfulPromise = timeout(1000).then(result => `success: ${result}`);

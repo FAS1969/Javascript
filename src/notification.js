@@ -1,3 +1,4 @@
+'use strict'
 {
   console.clear();
   let str = document.location.toString();

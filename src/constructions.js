@@ -1,3 +1,4 @@
+'use strict'
 {
   //import * as fs from 'fs';
   /*  const read = async function (fname) {

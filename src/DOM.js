@@ -1,5 +1,6 @@
+'use strict'
 {
-    //------------------------ поиск по аттрибуту   
+  //------------------------ поиск по аттрибуту   
   console.log(Object.entries(document.getElementsByTagName('*')).filter((elem) => elem[1].getAttribute('val') == 124));
   console.log(document.querySelectorAll('*[val="124"]'));
   //------------------------ быстрое добавление в дом

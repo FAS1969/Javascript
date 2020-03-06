@@ -1,3 +1,4 @@
+'use strict'
 {
   function squareDigits(num) {
     return (num.toString().split('').map((e) => Math.pow(e, 2).toString()).join(''))
@@ -5,8 +6,8 @@
   console.log(squareDigits(9119));
 
 
-  y = false, true; //???
-  console.log(y)
+  //y = false, true; //???
+  //console.log(y)
   console.log((() => { return false, true })());
 
   //--------------------- повторяет символ столько раз какой его индекс в строке +1
@@ -15,7 +16,7 @@
   }
   console.log(accum('abcd'));//A-Bb-Ccc-Dddd
 
-//--- ищет нечетный элемент массива
+  //--- ищет нечетный элемент массива
   function findOutlier(integers) {
     let arr = integers.map((elem) => elem % 2 == 0 ? 1 : 0)
     if (arr.reduce((prev, curr) => prev + curr) === 1)
