@@ -260,4 +260,15 @@
   console.log(typeof someObj); //object
   console.log(typeof Something); //function
   console.log(typeof obj_1);
+  //--------------------
+  let objTest = {
+    name: "Джон",
+    hi() { console.log(this); }
+  }
+
+  // разделим получение метода объекта и его вызов в разных строках
+  let hi = objTest.hi;
+  objTest.hi();
+  hi(); //this = undefine
+  hi.bind(objTest)(); //нормально
 }
