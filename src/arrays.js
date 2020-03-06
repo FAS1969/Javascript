@@ -109,13 +109,14 @@
   //---------------
   const matrix = Array.from(Array(5), () => Array(10).fill());
   const matrix1 = Array(...Array(5)).map(() => Array(...Array(10)));
+  const matrix1 = Array(...Array(5)).map(() => '');
   const matrix2 = new Array(5, new Array(10));
   matrix[1][1] = 44;
   matrix1[1][1] = 33;
   matrix2[1][1] = 33;
-  console.log(matrix);
-  console.log(matrix1);
-  console.log(matrix2);
+  console.log('matrix - ', matrix);
+  console.log('matrix1 - ', matrix1);
+  console.log('matrix2 - ', matrix2);
   console.log(matrix[0][7]);
   console.warn(matrix2[0][7] || 'FAS: matrix2[0][7]  не найден!');
 

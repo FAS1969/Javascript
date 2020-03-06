@@ -1,4 +1,14 @@
 {
+  // !----- случайное число
+  console.log(Math.floor(Math.random() * (10 + 1)));
+  console.log(Math.floor(Math.random() * 10) + 1);
+  function getRndInteger(min, max) { // оба включительно
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  console.log(getRndInteger(4, 7));
+  // ? вызывает 50 раз рандом
+  console.log(Array(...Array(50)).map(() => Math.floor(Math.random() * 10) + 1).join(','));
+
   const all = (arr, fn = Boolean) => arr.every(fn);
   const allEqual = arr => arr.every(val => val === arr[0]);
   const approximatelyEqual = (v1, v2, epsilon = 0.001) => Math.abs(v1 - v2) < epsilon;
