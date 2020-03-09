@@ -21,7 +21,7 @@
     d: 'comment',
     courses: ['html', 'css', 'js'],
     sayHi() { // ignored
-      alert("Hello");
+      console.log("Hello");
     },
     [Symbol("id")]: 123, // ignored
   };
@@ -185,12 +185,12 @@
   console.log(obj.foo);
 
   let objGet = { get foo() { return 17; } };
-  objGet.foo = 2;
+  //objGet.foo = 2; //! ошибка TypeError: Cannot set property foo of #<Object> which has only a getter
   console.log(objGet.foo);
 
   let fixedObj = {};
   Object.preventExtensions(fixedObj);
-  fixedObj.bar = 1;
+  //fixedObj.bar = 1; // ! TypeError: Cannot add property bar, object is not extensible
   console.log(fixedObj.bar);
   // ------------Объединение объектов
   const part1 = { id: 312, name: 'Пётр Иванов', arr: { key: 1, title: 'ddd', ind: [1, 2, 3] } }
@@ -271,4 +271,34 @@
   objTest.hi();
   hi(); //this = undefine
   hi.bind(objTest)(); //нормально
+
+  // ! объект к примитиву 
+  console.group("************* объект к примитиву")
+  let user11 = {
+    name: "John",
+    money: 1000,
+
+    [Symbol.toPrimitive](hint) {
+      console.log(`hint: ${hint}`);
+      return hint == "string" ? `{name: "${this.name}"}` : this.money;
+    },
+    // ! если не определена Symbol.toPrimitive будут работать нижние
+    // для хинта равного "string" 
+    toString() {
+      return `{name(toString): "${this.name}"}`;
+    },
+    // для хинта равного "number" или "default" 
+    valueOf() {
+      return this.money;
+    }
+
+  };
+
+  // демонстрация результатов преобразований:
+  alert(user11); // hint не вызывается
+  console.log(String(user11)); // hint: string -> {name: "John"}
+  console.log(+user11); // hint: number -> 1000
+  console.log(user11 + 500); // hint: default -> 1500
+  console.groupEnd();
+
 }

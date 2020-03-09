@@ -190,6 +190,13 @@ body {
         background-color: crimson;
         transform: translateY(-50%);
       }
+	   p.clip {
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    background: #fc0; /* Цвет фона */
+    padding: 5px; /* Поля вокруг текста */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+   }
     </style>
   </head>
 
@@ -254,6 +261,8 @@ body {
         <input type="button" value="Отменить" class="btn-rot" />
       </p>
     </form>
+	<p class="clip">Магнитное поле ничтожно гасит большой круг небесной сферы, в таком случае эксцентриситеты и наклоны орбит возрастают.</p>
+ </body>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="300"
