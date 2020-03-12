@@ -1,7 +1,7 @@
 'use strict'
 /* jshint esversion: 9 */
 {
-  //**********  BigInt  *******
+  // ! **********  BigInt  *******
   const a = {};
   const b = { key: "b" };
   const c = { key: "c" };
@@ -21,8 +21,9 @@
     }
   };
   obj.fn();
+  // ! **********  Number  *******
   //--------------- все выражения истина
-  console.group('Number.isNaN');
+  console.group('--- Number.isNaN');
   console.log('Number.isNaN(NaN)', Number.isNaN(NaN) === true);
   console.log('Number.isNaN(null)', Number.isNaN(null) === false);
   console.log('Number.isNaN(undefined)', Number.isNaN(undefined) === false);
@@ -30,13 +31,23 @@
   console.log('Number.isNaN(\'0 / 0\')', Number.isNaN('0/0') === false);
   console.log('Number.isNaN(\'hello\')', Number.isNaN('hello') === false);
   console.groupEnd();
-  console.group('window.isNaN');
-  console.log('window.isNaN(NaN)', window.isNaN(NaN) === true);
-  console.log('window.isNaN(null)', window.isNaN(null) === false);
-  console.log('window.isNaN(undefined)', window.isNaN(undefined) === true);
-  console.log('window.isNaN({})', window.isNaN({}) === true);
-  console.log('window.isNaN(\'0 / 0\')', window.isNaN('0/0') === true);
-  console.log('window.isNaN(\'hello\')', window.isNaN('hello') === true);
+  /* //  ! браузер
+    console.group('--- window.isNaN');
+    console.log('window.isNaN(NaN)', window.isNaN(NaN) === true);
+    console.log('window.isNaN(null)', window.isNaN(null) === false);
+    console.log('window.isNaN(undefined)', window.isNaN(undefined) === true);
+    console.log('window.isNaN({})', window.isNaN({}) === true);
+    console.log('window.isNaN(\'0 / 0\')', window.isNaN('0/0') === true);
+    console.log('window.isNaN(\'hello\')', window.isNaN('hello') === true);
+    console.groupEnd();
+  */
+  console.group('--- функции');
+  console.log(isFinite("15")); // true только если число
+  console.log(isFinite(0xFE)); //true
+  console.log(isFinite("\u00A9"));//false
+  console.log('\u{20331} - ', isFinite('\u{20331}')); //false
+  console.log(isFinite(Infinity)); //false
+  console.log(Object.is(NaN, NaN)); //true
+  console.log(Object.is(0, -0)); //false
   console.groupEnd();
-
 }

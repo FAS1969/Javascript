@@ -3,6 +3,12 @@
   console.clear();
   const testStr = 'MyTestingString';
   console.log(testStr.slice(2, 8) + ' ' + testStr.substr(2, 8) + ' ' + testStr.substring(2, 8));//Testin TestingS Testin
+  /*
+    !     метод            |         выбирает…                       |            отрицательные значения
+    slice(start, end)      |  от  start  до  end(не включая  end)    |    можно передавать отрицательные значения
+    substring(start, end)  |  между  start  и  end                   |    отрицательные значения равнозначны  0
+    substr(start, length)  |  length  символов, начиная от  start    |    значение  start  может быть отрицательным
+  */
 
   console.group('String');
   const aa = 'AAA';
