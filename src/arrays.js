@@ -1,10 +1,25 @@
 'use strict'
 {
   //-----------------------------
+  //#region //!-------------- функции работы с массивом -----------------
+  let fruits = [];
+
+  console.group("********* стэк");
+  // TODO Методы  push/pop  выполняются быстро, а методы  shift/unshift  – медленно.
+  fruits = ["Яблоко", "Апельсин", "Груша"];
+  console.log(fruits.pop()); // удаляем "Груша" и выводим его 
+  console.log(fruits.push('Лимон'));
+  console.log(fruits); // 'Яблоко', 'Апельсин', 'Лимон'
+
+  console.log(fruits.shift()); // удаляем "Яблоко" и выводим его 
+  console.log(fruits.unshift('Киви'));
+  console.log(fruits); // 'Киви', 'Апельсин', 'Лимон' 
+  console.groupEnd();
+
   const tstArr = [1, 2, 3, 4, false, ''];
   tstArr[10] = 25;
-  console.log(tstArr); //[ 1, 2, 3, 4, <6 empty items>, 25 ]
-  //-------------- функции работы с массивом -----------------
+  console.log(tstArr); // [ 1, 2, 3, 4, false, '', <4 empty items>, 25 ]
+  console.log(tstArr.length); // 11
   console.log('Фильтр только true values', tstArr.filter(Boolean));
   const people = [
     { name: 'test1', id: 1, email: 'test1@test.com' },
@@ -35,6 +50,11 @@
   const array3 = [...array1, ...array2];
   console.log(array3);// [ 1, 2, 4, 3, 5 ]
   console.log('********* slice - ', cars.slice(2, 4)); //со 2-го по 4-й не включая
+
+  for (const iterator of array2) {
+    console.log(iterator])
+  }
+
   //----------------------------------------------------------
   const dogs = [
     {
@@ -82,7 +102,9 @@
   console.log([1, 7, 11].map(parseInt));
   console.log([1, 7, 11].map((num) => parseInt(num)));
   [1, 7, 11].map(console.log); //parseInt() принимает только два аргумента: число и сист. исчисления
-  // !------------------------ многомерный массив в одномерный
+  //#endregion
+
+  //#region //!------------------------ многомерный массив в одномерный
   console.group("********** многомерный массив в одномерный")
   let courses = [
     {
@@ -107,21 +129,23 @@
   let flattenOneLevel = courseStudents.flat(Infinity); //flat()==flat(1) 
   console.log(flattenOneLevel);
   console.groupEnd();
+  //#endregion
   //---------------
   const matrix = Array.from(Array(5), () => Array(10).fill());
   const matrix1 = Array(...Array(5)).map(() => Array(...Array(10)));
-  const matrix1 = Array(...Array(5)).map(() => '');
   const matrix2 = new Array(5, new Array(10));
+  const matrix3 = Array(...Array(5)).map(() => '');
   matrix[1][1] = 44;
   matrix1[1][1] = 33;
   matrix2[1][1] = 33;
   console.log('matrix - ', matrix);
   console.log('matrix1 - ', matrix1);
   console.log('matrix2 - ', matrix2);
+  console.log('matrix3 - ', matrix3);
   console.log(matrix[0][7]);
   console.warn(matrix2[0][7] || 'FAS: matrix2[0][7]  не найден!');
 
-  // !-------------------------- flatMap на малых объемах быстрее reduce
+  //#region // !-------------------------- flatMap на малых объемах быстрее reduce
   console.group("*********** flatMap на малых объемах быстрее reduce");
   const arr = Array(100).fill(0).map((v, i) => i);
   //console.log(arr);
@@ -140,7 +164,9 @@
   console.timeEnd('map');
   //console.log(arr3);
   console.groupEnd();
-  // !------------Объединение массивов и удаление дублей
+  //#endregion
+
+  //#region // !------------Объединение массивов и удаление дублей
   console.group("************* Объединение массивов и удаление дублей");
   console.log('Простейшее удаление дублей - ', [...new Set([1, 2, 3, 3])]);
   let longest = function (s1, s2) {
@@ -154,6 +180,8 @@
 
   console.log('Reduce - ', [0, 1, 2, 3, 4, 10].reduce((prev, curr, index, array) => prev + curr)); //array summation
   console.groupEnd();
+  //#endregion
+
   // !------------------------ реализация array map
   function map(arr, mapCallback) {
     // проверяем переданные параметры
