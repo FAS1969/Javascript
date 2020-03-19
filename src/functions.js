@@ -50,4 +50,28 @@
   );
   console.log(slugify(bookTitles)); // ["javascript-the-good-parts", "you-don’t-know-js", "eloquent-javascript"]
   console.groupEnd();
+
+  /* //! Задержка при наступлении события 
+  * (обычно используется в серии однотипных событий - mousemove, dragover и т.д.)
+  * Примерно посмотреть что это можно здесь - http://demo.nimius.net/debounce_throttle/
+  */
+  function holdBeforeFired(funcToFire, holdTime) {
+
+    let hold = false, _this, _arguments;
+
+    return function action() {
+      if (hold) { _this = this; _arguments = arguments; return; }
+
+      hold = true;
+      funcToFire.apply(this, arguments);
+
+      setTimeout(() => {
+        hold = false;
+        if (_arguments) {
+          action.apply(_this, _arguments);
+          _this = _arguments = null;
+        }
+      }, holdTime);
+    }
+  }
 }
