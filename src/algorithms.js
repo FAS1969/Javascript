@@ -73,6 +73,40 @@
   //31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679n
 
   // ! **********************************************************
+  // ! ******************** Тасование Фишера — Йетса (метода Дуршенфельда)
+  console.group("************** Тасование Фишера — Йетса");
+  let arrShuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1)); // случайный индекс от 0 до i 
+      // поменять элементы местами 
+      // мы используем для этого синтаксис "деструктурирующее присваивание" 
+      // let t = array[i]; array[i] = array[j]; array[j] = t 
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  console.log(shuffle(arrShuffle));
+  // ! подсчёт вероятности для всех возможных вариантов
+  let count = {
+    '123': 0,
+    '132': 0,
+    '213': 0,
+    '231': 0,
+    '321': 0,
+    '312': 0
+  };
+  for (let i = 0; i < 1000000; i++) {
+    let array = [1, 2, 3];
+    shuffle(array);
+    count[array.join('')]++;
+  }
+  // показать количество всех возможных вариантов
+  for (let key in count) {
+    console.log(`${key}: ${count[key]}`);
+  }
+  console.groupEnd();
+  // ! **********************************************************
   // ! ******************** поменять местами значение переменных
   let a = 1;
   let b = 2;
@@ -138,12 +172,12 @@
     let sums = {};
 
     arr.forEach(num => {
-      sum = String(num).split('').reduce((a, b) => Number(a) + Number(b));
+      let sum = String(num).split('').reduce((a, b) => Number(a) + Number(b));
 
       sums[sum] ? sums[sum].push(num) : sums[sum] = [num];
     });
 
-    result = Object.values(sums)
+    let result = Object.values(sums)
       .filter(nums => nums.length >= 2)
       .map(nums => nums.sort((a, b) => b - a).slice(0, 2))
       .map(nums => nums.reduce((a, b) => a + b))
