@@ -1,14 +1,20 @@
 'use strict'
 {
   console.clear();
-  //-------Итераторы
+  //! -------Итераторы
+  console.group("*********** Итераторы")
   var arr = [11, 12, 13];
   var itr = arr[Symbol.iterator]();
   console.log(itr.next()); // { value: 11, done: false }
   console.log(itr.next()); // { value: 12, done: false }
   console.log(itr.next()); // { value: 13, done: false }
   console.log(itr.next()); // { value: undefined, done: true }
-  // ---еще
+  // --- итератор сам объект 
+  /* 
+  не можем использовать этот объект в двух
+  параллельных циклах  for..of : у них будет общее текущее состояние итерации, потому
+  что теперь существует лишь один итератор – сам объект
+  */
   const collection = {
     a: 10,
     b: 20,
@@ -26,15 +32,44 @@
       };
     }
   };
-
   const iterator11 = collection[Symbol.iterator]();
-
   console.log(iterator11.next());    // → {value: 10, done: false}
   console.log(iterator11.next());    // → {value: 20, done: false}
   console.log(iterator11.next());    // → {value: 30, done: false}
   console.log(iterator11.next());    // → {value: undefined, done: true}
+  //------------- итератор вне объекта
+  let range1 = {
+    from: 1,
+    to: 5
+  };
 
-  //-------Генераторы
+  range1[Symbol.iterator] = function () {
+
+    // ...она возвращает объект итератора: 
+    // 2. Далее, for..of работает только с этим итератором, запрашивая у него новые значения 
+    return {
+      current: this.from,
+      last: this.to,
+
+      // 3. next() вызывается на каждой итерации цикла for..of 
+      next() {
+        // 4. он должен вернуть значение в виде объекта {done:.., value :...} 
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  };
+
+  // теперь работает!
+  for (let num of range1) {
+    console.log(num); // 1, затем 2, 3, 4, 5
+  }
+  console.groupEnd();
+  //! -------Генераторы
+  console.group("*********** Генераторы")
   const generatorFunction = function* () {
     yield;
   };
@@ -128,6 +163,7 @@
     console.log(value.value);
     value = generator.next();
   }
+  console.groupEnd();
   //-------Запуск последовательности callback-ов
   const foo = (name, callback) => {
     setTimeout(() => {
