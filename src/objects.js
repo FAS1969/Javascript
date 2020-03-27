@@ -38,13 +38,15 @@
   }
   console.groupEnd();
   console.group("*********************** манипуляции с объектом");
-  console.log(JSON.stringify(source));
+  console.log('JSON.parse стандарт -', JSON.stringify(source));
   let destObj = JSON.parse(JSON.stringify(source, ["a", "b"])); // вложенный объект не копируется
-  console.log(destObj);
+  console.log('JSON.parse с параметрами - ', destObj);
+  console.log('JSON.parse с функцией - ', JSON.parse(JSON.stringify(source, (key, value) => key === 'courses' ? 'массив' : value)));
   // копирование объекта
   const original = { a: 1 };
   const copyObject = Object.assign({}, original);
   console.log('Копирование объекта - ', copyObject); // { a: 1};
+  console.groupEnd();
   //слияние объектов
   console.group("************ слияние объектов");
   const obj1 = {
@@ -295,7 +297,7 @@
   };
 
   // демонстрация результатов преобразований:
-  alert(user11); // hint не вызывается
+  console.log(user11); // hint не вызывается
   console.log(String(user11)); // hint: string -> {name: "John"}
   console.log(+user11); // hint: number -> 1000
   console.log(user11 + 500); // hint: default -> 1500
