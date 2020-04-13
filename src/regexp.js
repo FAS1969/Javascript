@@ -26,13 +26,18 @@ https://github.com/chrmarti/vscode-regex`;
 
   console.clear();
   //[a-z]+(?:([^a-z]+)[a-z]+(?:\1)?[a-z]+)([^a-z]+)[a-z]+(?:\2)?[a-z]+    
+  console.group(`****************  ^.*?(?=[\+\^#%&$\*:<>\?/\{\|\}\[\]\\\)\(]).*$`);
   const regHttp = new RegExp(/^.*?(?=[\+\^#%&$\*:<>\?/\{\|\}\[\]\\\)\(]).*$/gm);
+  let m;
   do {
     m = regHttp.exec(testString);
     if (m) {
-      console.log(m[0]);
+      console.log(m[0], '\t\t\t\t\t\tв позиции ', regHttp.lastIndex);
     }
   } while (m);
+  console.groupEnd();
+  console.group(`****************  /http(s:|:)\/\/(www.|ww2.|)([0-9a-z.A-Z-]*\.\w{2,3})/g`);
+
   const reg1 = new RegExp(/http(s:|:)\/\/(www.|ww2.|)([0-9a-z.A-Z-]*\.\w{2,3})/g);
   do {
     m = reg1.exec(testString);
@@ -41,14 +46,32 @@ https://github.com/chrmarti/vscode-regex`;
     }
   } while (m);
   // console.log(reg1.exec(testString));
+  console.groupEnd();
+  console.group("************* функции RegExp")
   const reg = /^\s*$\n/g;
   const reg2 = /([\w0-9-._]+@[\w0-9-.]+[\w0-9]{2,3})/g;
   console.log('Empty strings -', reg);
   console.log('Url(domen) -', reg1);
   console.log('Email -', reg2);
+  console.log('12-34-56'.replace(/-/g, ":")); //заменяет все вхождения,  replace("-", ":") - только первое
+  /*
+    $$ 	вставляет "$"
+    $& 	вставляет всё найденное совпадение
+    $` 	вставляет часть строки до совпадения
+    $' 	вставляет часть строки после совпадения
+    $n 	если n это 1-2 значное число, то вставляет содержимое n-й скобки
+    $<имя> 	вставляет содержимое скобки с указанным именем
+  */
   console.log('убирает символы подряд > 2  - ', 'uuuuxxaaaaxuuu'.replace(/(\w)\1{2,}/g, '$1$1'));//uuxxaaxuu
   console.log("John Smith".replace(/(\w+) (\w+)/i, `$2, $1`));//Smith, John
   console.info("html and css".replace(/html|css/gi, str => str.toUpperCase()));
+  let strTest = "Я люблю JavaScript";
+  // эти два теста делают одно и же
+  console.log(/ЛЮБЛЮ/i.test(strTest)); // true
+  console.log(strTest.search(/люБлю/i) != -1);
+
+
+  console.groupEnd();
   // ! опоставление с предыдущими символами
   console.log(testString.match(/(?<=\$)\d+/)[0]); //400
   //console.log(testString.match(/qua(?=i)/)[0] ?? 'NOT FOUND!!!');  //qu
@@ -58,7 +81,16 @@ https://github.com/chrmarti/vscode-regex`;
   console.log(matches); // ["Mango", "Grape"]
   const re = new RegExp(/ullamco (\d+)\.\d*/);
   console.log(re.exec(testString)[0]);
+  // ! Опережающие и ретроспективные проверки — (?=) and (?<=)
+  console.group(`**************** Опережающие и ретроспективные проверки`);
 
+  const found = testString.match(/la(?!m)/g);
+  console.log(found, found.length);
+  console.log('search - ', testString.search(/(?<=l)la(?=m)/))
+  const mAll = testString.matchAll(/la(?=m)/g);
+  Array.from(mAll).map(element => console.log(element[0], element.index));
+  console.groupEnd();
+  //---------------
   const getNameParts = /(?<first>\w+)\s(?<last>\w+)/g;
   const subMatches = getNameParts.exec(testString);
 

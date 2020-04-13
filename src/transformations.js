@@ -1,9 +1,14 @@
 'use strict'
 {
+  // ! Побитовое NOT любого числа x вернет -(x + 1)
+  let a = 2;
+  console.log('~2  = ', parseInt(~a.toString, 2));
+  // ! каждую цифру числа в квадрат
   function squareDigits(num) {
-    return (num.toString().split('').map((e) => Math.pow(e, 2).toString()).join(''))
+    return (num.toString().split('').map((e) => (e ** 2).toString()).join(''));
+    //return (num.toString().split('').map((e) => Math.pow(e, 2).toString()).join(''));
   }
-  console.log(squareDigits(9119));
+  console.log(squareDigits(9219));
 
 
   //y = false, true; //???

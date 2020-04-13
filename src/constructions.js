@@ -106,7 +106,7 @@
 
   }
   console.groupEnd();
-  //-------
+  //------- множественный 
   let xX = 'value1';
   switch (xX) {
     case 'value1':
@@ -119,4 +119,16 @@
       console.log('********switch - ', 'default');
       break;
   }
+  // ! Map, Set, WeakMap, WeakSet
+  function slice(str, start, end) {
+    return Array.from(str).slice(start, end).join('');
+  }
+
+  let str = '➸➸➸';
+
+  alert(slice(str, 1, 3)); // ➸➸ 
+
+  // а вот встроенный метод не поддерживает суррогатные пары
+  alert(str.slice(1, 3)); // мусор (две части различных суррогатных пар)
+
 }

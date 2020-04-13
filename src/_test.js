@@ -1,8 +1,8 @@
 'use strict'
 {
   console.clear();
-const o = {}
+  const o = {}
 
-console.log("prop" in o === o.hasOwnProperty("prop"))
-console.log("toString" in o === o.hasOwnProperty("toString"))
+  console.log("prop" in o === o.hasOwnProperty("prop"));
+  console.log("toString" in o === o.hasOwnProperty("toString"));
 }

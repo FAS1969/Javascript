@@ -6,16 +6,16 @@
     <link rel="icon" type="image/png" href="favicon.ico" width="32px" />
     <!--script-- src="script.js"></!--script-->
     <script>
-      "use strict";
+      'use strict';
 
       function loadScript(location) {
-        let js = document.getElementById("sandboxScript");
+        let js = document.getElementById('sandboxScript');
         if (js) {
           document.body.removeChild(js);
         }
-        js = document.createElement("script");
+        js = document.createElement('script');
         js.src = location;
-        js.id = "sandboxScript";
+        js.id = 'sandboxScript';
         document.body.appendChild(js);
       }
     </script>
@@ -24,7 +24,7 @@
   <body>
     <canvas hidden width="32" height="32"></canvas>
     <h1>Test JS</h1>
-    <input id="fileJS" type="text" size="60" value="src/test1.js" />
+    <input id="fileJS" type="text" size="60" value="src/_test.js" />
     <button
       id="refreshButton"
       onclick="loadScript(document.getElementById('fileJS').value)"
