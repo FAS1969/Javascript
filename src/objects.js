@@ -41,7 +41,8 @@
   console.log('JSON.parse стандарт -', JSON.stringify(source));
   let destObj = JSON.parse(JSON.stringify(source, ["a", "b"])); // вложенный объект не копируется
   console.log('JSON.parse с параметрами - ', destObj);
-  console.log('JSON.parse с функцией - ', JSON.parse(JSON.stringify(source, (key, value) => key === 'courses' ? 'массив' : value)));
+  console.log('JSON.parse с функцией - ', JSON.stringify(source, (key, value) => key === 'courses' ? 'массив' : value));
+  console.log('JSON.parse с форматированием - ', JSON.stringify(source, null, 2));
   // копирование объекта
   const original = { a: 1 };
   const copyObject = Object.assign({}, original);
