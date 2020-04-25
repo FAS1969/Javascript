@@ -1,4 +1,4 @@
-'use strict'
+//'use strict'
 {
   var var1 = 12;
   (function SelfExecutedTestFun() {

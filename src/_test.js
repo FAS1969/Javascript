@@ -1,5 +1,4 @@
 'use strict'
-// @ts-check
 {
   console.clear();
   const o = {};
@@ -20,6 +19,4 @@
   console.log(1 / 0); //Infinity
   console.log(parseInt(1 / 0, 19)); // 18==i
 
-  let itsAsEasyAs = 'abc';
-  itsAsEasyAs = 123;
-}
+} 
