@@ -19,4 +19,6 @@
   console.log(1 / 0); //Infinity
   console.log(parseInt(1 / 0, 19)); // 18==i
 
+  let newList = [1, 2, 3].push(4);
+  console.log(newList);
 } 
