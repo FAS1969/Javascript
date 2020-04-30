@@ -70,7 +70,7 @@ https://github.com/chrmarti/vscode-regex`;
   console.log(/ЛЮБЛЮ/i.test(strTest)); // true
   console.log(strTest.search(/люБлю/i) != -1);
 
-
+  console.log('adda abc bcc'.match(/([abc])([de])\2\1/g));
   console.groupEnd();
   // ! опоставление с предыдущими символами
   console.log(testString.match(/(?<=\$)\d+/)[0]); //400
