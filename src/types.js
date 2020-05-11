@@ -31,6 +31,15 @@
   console.log('Number.isNaN(\'0 / 0\')', Number.isNaN('0/0') === false);
   console.log('Number.isNaN(\'hello\')', Number.isNaN('hello') === false);
   console.groupEnd();
+  let numTest = 1.005;
+  console.log(Math.round(numTest * 100) / 100); // ? неправильно
+  console.log(Number(Math.round(numTest + 'e' + 2) + 'e-' + 2)); // ! правильно
+  console.log(numTest.toFixed(2)); // ? неправильно
+  const x = 0.2;
+  const y = 0.3;
+  const z = 0.1;
+  console.log(Math.abs(x - y + z) == 0);
+  console.log(Math.abs(x - y + z) < Number.EPSILON);
   /* //  ! браузер
     console.group('--- window.isNaN');
     console.log('window.isNaN(NaN)', window.isNaN(NaN) === true);

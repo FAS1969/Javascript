@@ -9,8 +9,7 @@ function loadScript(src) {
     document.head.appendChild(script)
   })
 }
-
-; (async () => {
+(async () => {
   try {
     // ссылка на скрипт
     const url = 'https://unpkg.com/react@16/umd/react.production.min.js'

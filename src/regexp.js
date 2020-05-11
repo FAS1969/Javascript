@@ -36,6 +36,15 @@ https://github.com/chrmarti/vscode-regex`;
     }
   } while (m);
   console.groupEnd();
+  console.group(`****************  Проверка простое ли число`);
+  function isPrime(n) {
+    // return !(Array(n + 1).join(1).match(/^1?$|^(11+?)\1+$/));
+    return !('1'.repeat(n).match(/^1?$|^(11+?)\1+$/));
+  }
+  console.log(isPrime(28));
+  console.log(isPrime(21));
+  console.log(isPrime(23));
+  console.groupEnd();
   console.group(`****************  /http(s:|:)\/\/(www.|ww2.|)([0-9a-z.A-Z-]*\.\w{2,3})/g`);
 
   const reg1 = new RegExp(/http(s:|:)\/\/(www.|ww2.|)([0-9a-z.A-Z-]*\.\w{2,3})/g);

@@ -69,9 +69,60 @@
     pi += x / (i + 2n);
     i += 2n;
   }
-  console.log(pi / (10n ** 20n));
+  console.log(Number(pi / (10n ** 20n)));
   //31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679n
 
+  // ! **********************************************************
+  // ! ******************** Простые числа
+  console.group("************* Простые числа")
+  function isPrime(n) {
+    if (n % 2n == 0) return n == 2n;
+    let d = 3n;
+    while (d * d <= n && n % d != 0n)
+      d += 2n
+    return d * d > n
+  }
+  console.log(isPrime(27644437n)); //true 18014398241046527n
+
+  //*----------------------------
+  function isPrimeReg(n) { // ! долгий алгоритм 
+    return !('1'.repeat(n).match(/^1?$|^(11+?)\1+$/));
+  }
+  console.log(isPrimeReg(3571));
+
+  //? Разложение числа на простые множители называется факторизацией.
+  function factorize(n) {
+    let dividers = [];
+    let divisor = 2;
+    while (divisor ** 2 <= n) {
+      if (n % divisor == 0) {
+        n = Math.trunc(n / divisor);
+        dividers.push(divisor);
+      }
+      else divisor += 1;
+    }
+    if (n != 1)
+      dividers.push(n);
+    return dividers
+  }
+  console.log('70 = ', factorize(70)); // [ 2, 5, 7 ]
+  console.log('120 = ', factorize(120)); // [ 2, 2, 2, 3, 5 ]
+
+  console.groupEnd();
+
+  // ! **********************************************************
+  // ! ********************  Наибольший общий делител
+  // ! ********************  алгоритм Евклида => НОД(a, b) = НОД(a - b, b)
+  function gcd(a, b) {
+    while (b != 0 && a != 0) {
+      if (a > b)
+        a = a % b;
+      else
+        b = b % a;
+    }
+    return Math.max(a, b);
+  }
+  console.log('НОД(72, 80) = ', gcd(72, 80));
   // ! **********************************************************
   // ! ******************** Тасование Фишера — Йетса (метода Дуршенфельда)
   console.group("************** Тасование Фишера — Йетса");

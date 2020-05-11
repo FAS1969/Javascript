@@ -55,6 +55,31 @@ func  для каждого элемента и передавая промеж�
   console.log(fruits.unshift('Киви'));
   console.log(fruits); // 'Киви', 'Апельсин', 'Лимон' 
   console.groupEnd();
+  console.group("********* Создает и заполняет массив (инициализирует) - ");
+  console.log('1 - ', Array(100).join().split('').map(() => 0)[22]);
+  console.log('2 - ', Array(100).join('0').split('')[22]);
+  console.log('3 - ', Array(100).fill(0)[22]);
+  console.log(Array.apply(null, { length: 100 }).map(() => -1)[11]);
+  var bestArr = Array(1000);
+  for (var i = 0; i < bestArr.length; bestArr[i++] = 77);
+  console.log(bestArr[77]);
+  //---------------
+  const matrix = Array.from(Array(5), () => Array(10).fill(0));
+  const matrix1 = Array(...Array(5)).map(() => Array(...Array(10)));
+  const matrix2 = new Array(5, new Array(10));
+  const matrix3 = Array(...Array(5)).map(() => '');
+  matrix[1][1] = 44;
+  matrix1[1][1] = 33;
+  matrix2[1][1] = 33;
+  console.log('matrix - ', matrix);
+  console.log('matrix1 - ', matrix1);
+  console.log('matrix2 - ', matrix2);
+  console.log('matrix3 - ', matrix3);
+  console.log(matrix[0][7]);
+  console.warn(matrix2[0][7] || 'FAS: matrix2[0][7]  не найден!');
+
+  console.groupEnd();
+
   console.log('--------------------');
   const tstArr = [1, 2, 3, 4, false, ''];
   tstArr[10] = 25;
@@ -70,7 +95,7 @@ func  для каждого элемента и передавая промеж�
   ];
 
   const person2 = people.find(person => person.id === 2);
-  //console.log(person2); // { name: "test2", id: 2, email: "test2@test.com"}
+  console.log('Метод find - ', person2); // { name: "test2", id: 2, email: "test2@test.com"}
 
   const numbers = [1, 2, 3, 4, 10];
   numbers.findIndex(x => x === 4); // returns 3
@@ -171,20 +196,6 @@ func  для каждого элемента и передавая промеж�
   console.log(flattenOneLevel);
   console.groupEnd();
   //#endregion
-  //---------------
-  const matrix = Array.from(Array(5), () => Array(10).fill());
-  const matrix1 = Array(...Array(5)).map(() => Array(...Array(10)));
-  const matrix2 = new Array(5, new Array(10));
-  const matrix3 = Array(...Array(5)).map(() => '');
-  matrix[1][1] = 44;
-  matrix1[1][1] = 33;
-  matrix2[1][1] = 33;
-  console.log('matrix - ', matrix);
-  console.log('matrix1 - ', matrix1);
-  console.log('matrix2 - ', matrix2);
-  console.log('matrix3 - ', matrix3);
-  console.log(matrix[0][7]);
-  console.warn(matrix2[0][7] || 'FAS: matrix2[0][7]  не найден!');
 
   //#region // !-------------------------- flatMap на малых объемах быстрее reduce
   console.group("*********** flatMap на малых объемах быстрее reduce");
