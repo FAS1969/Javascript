@@ -114,4 +114,13 @@
   console.log(latex`Первый 
    \unicode  yes`); // { cooked: undefined, raw: "\unicode" }
   console.groupEnd();
+
+  function tag(strings) {
+    return strings.raw[0];
+  }
+
+  console.log('********** Сырая строка — ', tag`string text line 1 \\n string text line 2`);
+  // выводит "string text line 1 \\n string text line 2",
+  // включая 'n' и два символа '\'
+
 }
