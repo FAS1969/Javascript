@@ -27,6 +27,9 @@
   console.log(str.endsWith('hello'));       // false
   console.log(str.includes("world")); // true
   console.log(str.includes("test"));  // false
+  console.log('myteststring'.split('', 6));  //[ 'm', 'y', 't', 'e', 's', 't' ]
+  console.log('myteststring'.split(',', 6)); //[ 'myteststring' ]
+
 
   console.group("------ str.localeCompare(compareString[, locales[, options]])")
   console.log('Österreich' > 'Zealand'); // true
