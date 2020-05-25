@@ -21,4 +21,31 @@
 
   let newList = [1, 2, 3].push(4);
   console.log(newList);
+
+  function testForEach(x) {
+    console.time('test-forEach');
+    const res = [];
+    x.forEach((value, index) => {
+      res.push(value / 1.2 * 0.1);
+    });
+
+    console.timeEnd('test-forEach')
+    return res;
+  }
+
+  function testFor(x) {
+    console.time('test-for');
+    const res = [];
+    for (let i = 0; i < x.length; i++) {
+      res.push(x[i] / 1.2 * 0.1);
+    }
+
+    console.timeEnd('test-for')
+    return res;
+  }
+  const x = new Array(100000).fill(Math.random());
+  testForEach(x);
+  testForEach(x);
+  testFor(x);
+  testFor(x);
 } 
