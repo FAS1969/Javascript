@@ -44,6 +44,7 @@
       console.log(`Inherited: ${prop}`);
     }
   }
-
-
+  let clone = Object.create(Object.getPrototypeOf(admin), Object.getOwnPropertyDescriptors(admin));
+  console.dir(clone);
+  console.log(clone.fullName);
 }

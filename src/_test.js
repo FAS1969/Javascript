@@ -48,4 +48,5 @@
   testForEach(x);
   testFor(x);
   testFor(x);
+  console.log([15, 8, 4].map(parseInt));
 } 
