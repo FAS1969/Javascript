@@ -24,6 +24,8 @@
       console.log("Hello");
     },
     [Symbol("id")]: 123, // ignored
+    //Computed property names
+    ["someString" + 10]: 'Computed property names',
   };
   // ! *********** У объекта нет никаких свойств до тех пор, пока вы их в явном виде не добавите к нему
   // !  dict.__proto__ === "undefined"
@@ -47,6 +49,8 @@
   const original = { a: 1 };
   const copyObject = Object.assign({}, original);
   console.log('Копирование объекта - ', copyObject); // { a: 1};
+  let clone = Object.create(Object.getPrototypeOf(source), Object.getOwnPropertyDescriptors(source));
+  console.log('Универсальное клонирование объекта - ', clone);
   console.groupEnd();
   //слияние объектов
   console.group("************ слияние объектов");
@@ -304,4 +308,63 @@
   console.log(user11 + 500); // hint: default -> 1500
   console.groupEnd();
 
+  // ! Флаги и дескрипторы свойств
+  console.group("************* Флаги и дескрипторы свойств")
+  let guest = {
+    name: "John",
+    surname: "Smith",
+  };
+  let descriptor = Object.getOwnPropertyDescriptor(guest, 'name');
+  console.log(JSON.stringify(descriptor, null, 2));
+  Object.defineProperty(guest, "admin", {
+    value: false
+  });
+  console.log(JSON.stringify(Object.getOwnPropertyDescriptor(guest, 'admin'), null, 2));
+  Object.defineProperty(guest, 'fullName', {
+    get() {
+      return `${this.name} ${this.surname}`;
+    },
+    set(value) {
+      [this.name, this.surname] = value.split(" ");
+    }
+  });
+
+  {//!дополнительные функции
+    //Object.defineProperties(obj, descriptors)
+    //console.log(Object.getOwnPropertyDescriptors(guest));
+    /**
+      * !Object.preventExtensions(obj) 
+      * Запрещает добавлять новые свойства в объект.
+      *!Object.seal(obj) 
+      *Запрещает добавлять/удалять свойства. Устанавливает  configurable: false  для
+      *всех существующих свойств.
+      *!Object.freeze(obj) 
+      *Запрещает добавлять/удалять/изменять свойства. Устанавливает  configurable:
+      *false, writable: false  для всех существующих свойств. А также есть методы для их
+      *проверки:
+      *!Object.isExtensible(obj) 
+      *Возвращает  false , если добавление свойств запрещено, иначе  true .
+      *!Object.isSealed(obj) 
+      *Возвращает  true , если добавление/удаление свойств запрещено и для всех
+      *существующих свойств установлено  configurable: false .
+      *!Object.getOwnPropertyDescriptors
+      *let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
+      *for (let key in user) {
+      *  clone[key] = user[key]
+      *}
+      *Глобальное запечатывание объекта
+      *!Object.isFrozen(obj) 
+      *Возвращает  true , если добавление/удаление/изменение свойств запрещено, и для всех
+      *текущих свойств установлено  configurable: false, writable: false .
+    */
+  }
+  let person = {
+    name: "Leonardo",
+    age: 30
+  };
+  Object.freeze(person.age);
+  // person.name = "Lima"; // !Uncaught TypeError: Cannot assign to read only property 'name' of object
+  person.age = 55;
+  console.log(person.age);
+  console.groupEnd();
 }

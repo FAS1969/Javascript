@@ -19,6 +19,23 @@
         document.body.appendChild(js);
       }
     </script>
+    <style>
+      ol {
+        list-style: none;
+        counter-reset: cupcake;
+        padding-left: 32px;
+      }
+      ol li {
+        counter-increment: cupcake;
+      }
+      ol li:before {
+        content: counters(cupcake, '.') ' ';
+        /* Whatever custom styles you want here */
+        color: hotpink;
+        font-weight: bold;
+        font-family: cursive;
+      }
+    </style>
   </head>
 
   <body>
@@ -36,5 +53,27 @@
     <div val="123"></div>
     <div val="124"></div>
     <div val="125"></div>
+    <ol>
+      <li>
+        Stop
+        <ol>
+          <li>Second level</li>
+          <li>atd.</li>
+        </ol>
+      </li>
+      <li>
+        Drop
+        <ol>
+          <li>Text</li>
+          <li>
+            Text
+            <ol>
+              <li>Text</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>Roll</li>
+    </ol>
   </body>
 </html>

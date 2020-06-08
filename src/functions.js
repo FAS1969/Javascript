@@ -27,8 +27,8 @@
   console.log(urlParams.toString()); // "?post=1234&action=edit"
   console.log(urlParams.append('active', '1')); // "?post=1234&action=edit&active=1"
   console.groupEnd();
-  // ! Комрозиция
-  console.group("************* Комрозиция");
+  // ! Композиция
+  console.group("************* Композиция");
   const compose = (...fns) => x => fns.reduceRight((acc, fn) => (console.log(fn.toString(), acc), fn(acc)), x);
   const lowerCase = str => str.toLowerCase();
   const join = separator => xs => xs.join(separator);
