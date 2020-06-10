@@ -111,15 +111,24 @@ func  для каждого элемента и передавая промеж�
   let newCarsArray = [...cars];
   console.log(newCarsArray);// ['BMW', 'Toyota', 'Tesla', 'Audi']
 
-  const array1 = [1, 2, 4];
+  const array1 = [1, 2, 4, 5];
   const array2 = [3, 5];
-  const array3 = [...array1, ...array2];
-  console.log(array3);// [ 1, 2, 4, 3, 5 ]
+  console.log('********* объединить массивы', [...array1, ...array2]);// [  1, 2, 4, 5, 3, 5 ]
   console.log('********* slice - ', cars.slice(2, 4)); //со 2-го по 4-й не включая
 
   for (const iterator of array2) {
     console.log(iterator);
   }
+  let array = [1, 5, 2, 6, 3, 5, 2, 3, 6, 5, 2, 7];
+  //заменить элементы по индексам
+  array.splice(10, 2, 'new value 1', 'new value 2');
+  console.log('********* заменить элементы по индексам', array);
+  //найти пересечения массивов
+  console.log('********* найти пересечения массивов', array1.filter(item => array2.includes(item)));
+  console.log('********* найти разность массивов (без повторений)',
+    [...new Set([...array.filter(item => !array2.includes(item)), ...array2.filter(item => !array.includes(item))])]);
+  console.log('********* найти разность массивов',
+    [...array.filter(item => !array2.includes(item)), ...array2.filter(item => !array.includes(item))]);
 
   //----------------------------------------------------------
   const dogs = [

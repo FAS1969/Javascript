@@ -17,11 +17,18 @@
     sleep() {
       this.isSleeping = true;
     },
+    growl() {
+      console.log('user growl');
+    }
   };
 
   let admin = {
     __proto__: user,
-    isAdmin: true
+    isAdmin: true,
+    // growl() {
+    //   console.log('admin growl');
+    //   super.growl();
+    // }
   };
 
   console.log(admin.fullName); // John Smith (*) 
@@ -47,4 +54,12 @@
   let clone = Object.create(Object.getPrototypeOf(admin), Object.getOwnPropertyDescriptors(admin));
   console.dir(clone);
   console.log(clone.fullName);
+
+  admin.growl();
+  admin.growl = function () {
+    console.log('admin growl');
+    //this.super.growl();
+  };
+  admin.growl.bind(admin);
+  admin.growl();
 }
