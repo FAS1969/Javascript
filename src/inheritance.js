@@ -30,6 +30,13 @@
     //   super.growl();
     // }
   };
+  admin.growl();
+  admin.prototype.growl = function () {
+    console.log('admin growl');
+    this.super.growl();
+  };
+  admin.growl.bind(admin);
+  admin.growl();
 
   console.log(admin.fullName); // John Smith (*) 
 
@@ -55,11 +62,4 @@
   console.dir(clone);
   console.log(clone.fullName);
 
-  admin.growl();
-  admin.growl = function () {
-    console.log('admin growl');
-    //this.super.growl();
-  };
-  admin.growl.bind(admin);
-  admin.growl();
 }

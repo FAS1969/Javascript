@@ -360,11 +360,44 @@
   }
   let person = {
     name: "Leonardo",
-    age: 30
+    age: 30,
+    profession: {
+      name: "developer"
+    }
   };
-  Object.freeze(person.age);
+  let person1 = {
+    city: "Donetsk",
+    coordinates: {
+      x: 300, y: 125
+    }
+  };
+  let person2 = Object.create(Object.getPrototypeOf(person), Object.getOwnPropertyDescriptors(person));;
+  Object.setPrototypeOf(person2, person1);
+  Object.freeze(person);
+  person.profession.name = "doctor";
   // person.name = "Lima"; // !Uncaught TypeError: Cannot assign to read only property 'name' of object
-  person.age = 55;
-  console.log(person.age);
+  // ! ------функция глубокой заморозки объекта “deep-freeze”
+  function deepFreeze(object) {
+    let propNames = Object.getOwnPropertyNames(object);
+    console.log(propNames);
+    for (let name of propNames) {
+      let value = object[name];
+      object[name] = value && typeof value === "object" ?
+        deepFreeze(value) : value;
+    }
+    return Object.freeze(object);
+  }
+  console.log(person2);
+  deepFreeze(person2);
+  person2.coordinates.x = 75; // родительский объект тоже нужно запечатывать
+  console.log(person2.coordinates.x);
+  person2.profession.name = "junior"; //!ERROR
   console.groupEnd();
+  //------------------------
+  var Employee = {
+    company: 'xyz'
+  }
+  var emp1 = Object.create(Employee);
+  delete emp1.company //не удаляет из прототипа
+  console.log(emp1.company); //xyz
 }

@@ -79,6 +79,7 @@
   console.log("\xAE");
   console.log('\u{1D306}'); //ECMAScript 6: Unicode code point escapes
   console.log("Ich \u2665 B\xFCcher");
+  console.log('\u{1F334}') //🌴
   console.groupEnd();
   // ! ********** Literals ********** /
   console.group('********** Literals');
