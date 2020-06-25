@@ -47,13 +47,13 @@ func  для каждого элемента и передавая промеж�
   console.group("********* стэк");
   // TODO Методы  push/pop  выполняются быстро, а методы  shift/unshift  – медленно.
   fruits = ["Яблоко", "Апельсин", "Груша"];
-  console.log(fruits.pop()); // удаляем "Груша" и выводим его 
+  console.log(fruits.pop()); // удаляем "Груша" и выводим его
   console.log(fruits.push('Лимон'));
   console.log(fruits); // 'Яблоко', 'Апельсин', 'Лимон'
 
-  console.log(fruits.shift()); // удаляем "Яблоко" и выводим его 
+  console.log(fruits.shift()); // удаляем "Яблоко" и выводим его
   console.log(fruits.unshift('Киви'));
-  console.log(fruits); // 'Киви', 'Апельсин', 'Лимон' 
+  console.log(fruits); // 'Киви', 'Апельсин', 'Лимон'
   console.groupEnd();
   console.group("********* Создает и заполняет массив (инициализирует) - ");
   console.log('1 - ', Array(100).join().split('').map(() => 0)[22]);
@@ -201,7 +201,7 @@ func  для каждого элемента и передавая промеж�
   ];
   let courseStudents = courses.map(course => course.students);
   console.log(courseStudents);
-  let flattenOneLevel = courseStudents.flat(Infinity); //flat()==flat(1) 
+  let flattenOneLevel = courseStudents.flat(Infinity); //flat()==flat(1)
   console.log(flattenOneLevel);
   console.groupEnd();
   //#endregion
@@ -352,5 +352,18 @@ func  для каждого элемента и передавая промеж�
   const arrNum = [4, 6, 19, 34, 32];
   console.log(arrNum.sort()); //[ 19, 32, 34, 4, 6 ] // ! сортирует как строки
   //--------------
+  console.group("label");
+  class PowerArray extends Array {
+    isEmpty() {
+      return this.length === 0;
+    }
 
+    // встроенные методы массива будут использовать этот метод как конструктор
+    static get [Symbol.species]() {
+      return Array(3);
+    }
+  }
+  let myArr = new PowerArray(1, 2, 5, 10, 50);
+  console.log(myArr.filter(() => true));
+  console.groupEnd()
 }

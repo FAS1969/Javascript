@@ -1,22 +1,77 @@
 'use strict'
 {
   class MyClass {
-    prop = 125; // свойство 
-    constructor(value) { // конструктор 
+    #privVar = 'приватное поле';
+    prop = 125; // свойство
+    constructor(value) { // конструктор
       this.name = value;
     }
-    method(arg) { } // метод 
-    get something() { } // геттер 
-    set something(value) { } // сеттер 
-    [Symbol.iterator]() { } // метод с вычисляемым именем (здесь - символом) 
-    // ...
+    static ping() { return 'ping'; } //статический метод
+    method(arg) { console.log(this.#privVar) } // метод
+    get something() { } // геттер
+    set something(value) { } // сеттер
+
+    // итератор - метод с вычисляемым именем (здесь - символом)
+    [Symbol.iterator]() {
+      let i = 0;
+      return {
+        next: () => {
+          return {
+            value: i++,
+            done: i > 5
+          }
+        }
+      };
+    }
+    // генератор два вида объявления
+    g1 = function* () {
+      let index = 0
+      while (true) {
+        yield index++
+      }
+    }
+    //   * g() {
+    // let index = 0
+    // while (true) {
+    //   yield index++
+    // }
+    // }
+    qux() { return 1; }
   }
-  const myClass = new MyClass('Petr');
+  class MyChildClass extends MyClass {
+    #privVar = 555;
+    static pingpong() {
+      return super.ping() + ' pong';
+    }
+    method(arg) { console.log(this.#privVar) } // метод
+    qux() { console.log('super.qux() - ', super.qux()); }
+  }
+  console.log(MyChildClass.pingpong()); //вызов статического метода класса
+  const myChildClass = new MyChildClass()
+  myChildClass.qux();
+  //myChildClass.#privVar = 222; //!ERROR SyntaxError: Private field '#privVar' must be declared in an enclosing class
+  myChildClass.method(null);
+  Object.defineProperty(myChildClass, 'dynamicProperty', {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value: 'мое динамическое свойство'
+  });
+  console.log(myChildClass.dynamicProperty);
+  Object.defineProperty(myChildClass, 'dynamicFunc', {
+    get: function () { this.qux(); },
+  });
+  console.log(myChildClass.dynamicFunc);
+  //! *******************
+  const myClass = new MyClass('Petr'); // создание объекта
   console.log(myClass);
   console.log(MyClass);
   console.log(MyClass.prototype.constructor === MyClass);
-  //! **************************** 
-  // ES5 Function Constructor
+  let gen = myClass.g1();
+  console.log(gen.next());
+  console.log(gen.next());
+  //! ****************************
+  //! ES5 Function Constructor
   function Person(name) {
     this.name = name;
   }
@@ -28,7 +83,7 @@
   }
   Student.prototype = Object.create(Person.prototype);
   Student.prototype.constructor = Student;
-  // ES6 Class
+  //! ES6 Class
   class PersonC {
     constructor(name) {
       this.name = name;

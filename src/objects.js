@@ -1,10 +1,10 @@
 'use strict'
 {
-  /** 
+  /**
    * ! ключевое свойство, без него delete будет выдавать ошибку
-   * ? configurable: true  
+   * ? configurable: true
     'use strict'
-    const obj = {}  
+    const obj = {}
     Object.defineProperty(obj, 'best_site', { value: 'proghub', configurable: true });
     console.log(obj.best_site);
     delete obj.best_site;
@@ -126,20 +126,27 @@
   //
   var parent = {
     foo() {
-      console.log("Привет от Родителя!");
+      console.log("Привет от Родителя foo()!");
+    },
+    go() {
+      console.log("Привет от Родителя go()!");
     }
   };
 
   var child = {
     foo() {
       super.foo();
-      console.log("Привет от Ребёнка!");
+      console.log("Привет от Ребёнка foo()!");
     }
   };
-
   Object.setPrototypeOf(child, parent);
+  child.go = function () {
+    parent.go.call(this);
+    console.log('Привет от Ребёнка go()');
+  }
   child.foo(); // Привет от Родителя!
   // Привет от Ребёнка!
+  child.go();
 
   let user = "Кевин";
   console.log(`Привет, ${user}!`); // Привет, Кевин!
@@ -185,7 +192,7 @@
       return this; // <--
     }
   };
-  ladder.up().up().down().up().down().showStep(); // 1 
+  ladder.up().up().down().up().down().showStep(); // 1
   //-----------------------
   let obj = {};
   Object.defineProperty(obj, 'foo', { value: 1, writable: false });
@@ -279,7 +286,7 @@
   hi(); //this = undefine
   hi.bind(objTest)(); //нормально
 
-  // ! объект к примитиву 
+  // ! объект к примитиву
   console.group("************* объект к примитиву")
   let user11 = {
     name: "John",
@@ -290,11 +297,11 @@
       return hint == "string" ? `{name: "${this.name}"}` : this.money;
     },
     // ! если не определена Symbol.toPrimitive будут работать нижние
-    // для хинта равного "string" 
+    // для хинта равного "string"
     toString() {
       return `{name(toString): "${this.name}"}`;
     },
-    // для хинта равного "number" или "default" 
+    // для хинта равного "number" или "default"
     valueOf() {
       return this.money;
     }
@@ -391,7 +398,7 @@
   deepFreeze(person2);
   person2.coordinates.x = 75; // родительский объект тоже нужно запечатывать
   console.log(person2.coordinates.x);
-  person2.profession.name = "junior"; //!ERROR
+  //person2.profession.name = "junior"; //!ERROR TypeError: Cannot assign to read only property 'name' of object '#<Object>'
   console.groupEnd();
   //------------------------
   var Employee = {

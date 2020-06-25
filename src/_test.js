@@ -3,8 +3,8 @@
   console.clear();
   const o = {};
 
-  console.log("prop" in o === o.hasOwnProperty("prop"));
-  console.log("toString" in o === o.hasOwnProperty("toString"));
+  console.log("prop" in o === o.hasOwnProperty("prop")); //true
+  console.log("toString" in o === o.hasOwnProperty("toString")); //false
 
   var obj = { a: 2 };
   function f(aobj) {
@@ -21,5 +21,39 @@
 
   let newList = [1, 2, 3].push(4);
   console.log(newList);
+  let x = 5
 
-} 
+  x = ++x, x = addFive(x), x *= 2, x -= 5
+
+  function addFive(num) {
+    return num + 5
+  }
+  console.log(x)
+  console.log('******** 1 ***************************');
+  (function () {
+    console.log(this)
+  })() // window
+
+  function iHateThis() {
+    console.log(this)
+  }
+  iHateThis() // window
+
+  const myFavouriteObj = {
+    guessThis() {
+      function getName() {
+        console.log(this.name)
+      }
+      getName.bind(this)();
+    },
+    name: 'Marko Polo',
+    thisIsAnnoying(callback) {
+      callback()
+    }
+  }
+
+  myFavouriteObj.guessThis() // window
+  myFavouriteObj.thisIsAnnoying(function () {
+    console.log(this) // window
+  })
+}

@@ -25,22 +25,25 @@
   let admin = {
     __proto__: user,
     isAdmin: true,
-    // growl() {
-    //   console.log('admin growl');
-    //   super.growl();
-    // }
+    growl() {
+      console.log('admin growl');
+      super.growl();
+    }
   };
+  let superAdmin = {
+    __proto__: admin,
+  }
   admin.growl();
-  admin.prototype.growl = function () {
-    console.log('admin growl');
-    this.super.growl();
+  console.log('************************');
+  superAdmin.growl = function () {
+    console.log('superAdmin growl');
+    admin.growl.call(this);
   };
-  admin.growl.bind(admin);
-  admin.growl();
+  superAdmin.growl();
+  console.log('************************');
+  console.log(admin.fullName); // John Smith (*)
 
-  console.log(admin.fullName); // John Smith (*) 
-
-  // срабатывает сеттер! 
+  // срабатывает сеттер!
   admin.fullName = "Alice Cooper"; // (**)
 
   console.log(user.name);
