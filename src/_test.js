@@ -56,4 +56,5 @@
   myFavouriteObj.thisIsAnnoying(function () {
     console.log(this) // window
   })
+
 }

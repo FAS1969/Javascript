@@ -1,8 +1,8 @@
 'use strict'
 {
   /**
-   * Вам предлагается создать функцию, которая принимает два параметра. Первый параметр, nums, представляет собой массив чисел. 
-   * Второй параметр, total – это одно число. Выходные данные функции должны быть двухэлементным массивом, который представляет 
+   * Вам предлагается создать функцию, которая принимает два параметра. Первый параметр, nums, представляет собой массив чисел.
+   * Второй параметр, total – это одно число. Выходные данные функции должны быть двухэлементным массивом, который представляет
    * собой пару чисел в nums, которые при суммирование равны total.
    */
   const len = 100_000;
@@ -85,7 +85,7 @@
   console.log(isPrime(27644437n)); //true 18014398241046527n
 
   //*----------------------------
-  function isPrimeReg(n) { // ! долгий алгоритм 
+  function isPrimeReg(n) { // ! долгий алгоритм
     return !('1'.repeat(n).match(/^1?$|^(11+?)\1+$/));
   }
   console.log(isPrimeReg(3571));
@@ -129,10 +129,10 @@
   let arrShuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1)); // случайный индекс от 0 до i 
-      // поменять элементы местами 
-      // мы используем для этого синтаксис "деструктурирующее присваивание" 
-      // let t = array[i]; array[i] = array[j]; array[j] = t 
+      let j = Math.floor(Math.random() * (i + 1)); // случайный индекс от 0 до i
+      // поменять элементы местами
+      // мы используем для этого синтаксис "деструктурирующее присваивание"
+      // let t = array[i]; array[i] = array[j]; array[j] = t
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
@@ -166,14 +166,14 @@
 
   console.log(a); // => 2
   console.log(b); // => 1
-  /* 
+  /*
   1. a = a ^ b
-  2. b = a ^ b, На основании 1 aзаменяется на a ^ b. 
-  Таким образом b = (a ^ b) ^ b = a ^ (b ^ b) = a ^ 0 = a. 
+  2. b = a ^ b, На основании 1 aзаменяется на a ^ b.
+  Таким образом b = (a ^ b) ^ b = a ^ (b ^ b) = a ^ 0 = a.
   Помни чем b сейчас a.
   3. a = a ^ b, На основании 1 aзамещен a ^ bи на основе 2 bзамещен a. Таким образом a = (a ^ b) ^ a = b ^ (a ^ a) = b ^ 0 = b. Переменная aстановится b.
   */
-  a = a ^ b; //XOR  
+  a = a ^ b; //XOR
   b = a ^ b;
   a = a ^ b;
 
@@ -291,4 +291,36 @@
   solution2('baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'); // 1
   solution2('baaabbaabbba'); // 2
   solution2('baabab'); // 0
+  //! ******************* Получаем массив чисел и находим минимальное неотрицательное число,
+  //! ******************* которого нет в этом массиве.  *********************
+  console.group("***********находим минимальное неотрицательное число");
+  function nextId(ids) {
+    /*
+    const used = new Set(ids);
+    for (let i = 0; i <= ids.length; i++) {
+      if (!used.has(i)) return i;
+    }
+    */
+    /*    let x = 0;
+        while (ids.includes(x)) x++;
+        return x;
+     */   // @ мое решение
+    if (!ids.length) return 0;
+    ids = [...new Set(ids.filter(a => a > -1).sort((a, b) => a - b))];
+    let minVal = -1;
+    for (let i = 0; i < ids.length; i++) {
+      minVal++;
+      if (minVal < ids[i]) return minVal;
+    }
+    return ids[ids.length - 1] + 1;
+
+  }
+  //
+  let nextId1 = (ids) => ids.sort((a, b) => a - b).reduce((a, b) => a + (a === b), 0)
+  console.log(nextId([0, 2, 1, 3, 5]));
+  console.log(nextId([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
+  console.log(nextId1([0, 1, 1, 2, 3, 5, -2, 7]));
+  console.log(nextId([]));
+  console.log(nextId([-1, 3, 0, 1]));
+  console.groupEnd();
 }
