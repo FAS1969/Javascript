@@ -1,5 +1,18 @@
 'use strict'
 {
+  //! This is the mothership of all things asynchronous
+  const timeout = function (duration = 0, shouldReject = false) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (shouldReject) {
+          reject(`rejected after ${duration}ms`);
+        } else {
+          resolve(`resolved after ${duration}ms`);
+        }
+      }, duration);
+    });
+  };
+  //! **************************
   const promises = function () {
     const successfulPromise = timeout(1000).then(result => `success: ${result}`);
     const failingPromise = timeout(200, true).then(null, error =>
@@ -45,20 +58,40 @@
     recoveredAsyncAwait().then(log, logError)
   }
 
-  // This is the mothership of all things asynchronous
-  const timeout = function (duration = 0, shouldReject = false) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (shouldReject) {
-          reject(`rejected after ${duration}ms`);
-        } else {
-          resolve(`resolved after ${duration}ms`);
-        }
-      }, duration);
-    });
-  };
-
   promises();
   asyncAwaits();
 
+  //! ****************** */
+  let promise = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      resolve('HURA!')
+    }, 1000);
+  });
+  let promiseErr = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      reject(new Error('SMULA!'))
+    }, 1000);
+  });
+  promise.finally(() => { console.group("Test Promise"); console.log('finally1') })
+    .then(result => { console.log(result); throw new Error('Ошибка в then') }).catch(console.log).finally(() => console.log('finally2'));
+  promiseErr.finally(() => console.log('finally3')).then(
+    result => console.log(result), // не будет запущена
+    error => console.log(error))
+    .catch(() => { console.log('не работает') })
+    .finally(() => { console.log('finally4'); console.groupEnd(); });
+  async function aaa(val) {
+    await setTimeout(() => {
+      console.log('timeout 3000');
+    }, 3000);
+    console.log('aaa', val);
+  }
+  (async function bbb() { await aaa(); console.log('bbb') })();
+  aaa().then(console.log('then'));
+  const someArray = [1, 2, 3, 4, 5, 6];
+  (async function foo() {
+    for (let item of someArray) {
+      await aaa(item);
+    }
+  })();
+  console.log('-------------End main process');
 }

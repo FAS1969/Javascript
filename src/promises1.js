@@ -84,7 +84,12 @@
   }
   //makeSoup();
   //makeSoup1();
-
+  async function makeSoup3() {
+    console.group("Варим суп")
+    await letPotKeepBoiling(10);
+    console.log("Your vegetable soup is ready!");
+  }
+  makeSoup3().then(console.log('then makeSoup3'));
   //------------------------------------------
   const generateTypeableChars = async function* (chars) {
     for (let i = 0; i < chars.length; i++) {
@@ -97,5 +102,8 @@
       console.log(char);
     }
   }
-  typeChars(['c', 'h', 'a', 'r', 's'])
+  typeChars(['c', 'h', 'a', 'r', 's']).then(console.log('then typeChars'));
+  //------------------------------------------
+
+  console.log('end of main flow');
 }

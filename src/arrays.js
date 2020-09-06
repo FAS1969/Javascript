@@ -103,6 +103,15 @@ func  для каждого элемента и передавая промеж�
   console.log('********* map - ', numbers.map(num => {
     return num * 2;
   }))
+  //! ('********* forEach change array
+  numbers.forEach(function (part, index) {
+    this[index] = "hello world";
+  }, numbers); //второй аргумент, используется в качестве значения this в каждом вызове обратного вызова:
+  console.log('********* forEach change - ', numbers)
+  numbers.forEach(function (part, index, arr) {
+    arr[index] = "Hi";
+  });
+  console.log('********* forEach change - ', numbers)
 
   const cars = ['BMW', 'Toyota', 'Tesla', 'Audi', 'Renault', 'Skoda'];
   console.log(cars.includes('Toyota'));  // true
@@ -121,8 +130,8 @@ func  для каждого элемента и передавая промеж�
   }
   let array = [1, 5, 2, 6, 3, 5, 2, 3, 6, 5, 2, 7];
   //заменить элементы по индексам
-  array.splice(10, 2, 'new value 1', 'new value 2');
-  console.log('********* заменить элементы по индексам', array);
+  console.log('********* заменить элементы по индексам(вернуло что заменило)', array.splice(9, 2, 'new value 1', 'new value 2'));
+  console.log('********* заменить элементы по индексам(каким стал)', array);
   //найти пересечения массивов
   console.log('********* найти пересечения массивов', array1.filter(item => array2.includes(item)));
   console.log('********* найти разность массивов (без повторений)',
@@ -354,6 +363,7 @@ func  для каждого элемента и передавая промеж�
   console.log('----сортирует как числа - ', arrNum.sort((a, b) => a - b)); //[ 4, 6, 19, 32, 34 ] // ! сортирует как числа
   //--------------
   console.group("label");
+  /*
   class PowerArray extends Array {
     isEmpty() {
       return this.length === 0;
@@ -366,5 +376,6 @@ func  для каждого элемента и передавая промеж�
   }
   let myArr = new PowerArray(1, 2, 5, 10, 50);
   console.log(myArr.filter(() => true));
+  */
   console.groupEnd()
 }

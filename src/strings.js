@@ -3,23 +3,28 @@
   console.clear();
   const testStr = 'MyTestingString';
   console.log(testStr.slice(2, 8) + ' ' + testStr.substr(2, 8) + ' ' + testStr.substring(2, 8));//Testin TestingS Testin
+  console.log(testStr.substr(-6, 3)); // Str
+  console.log(testStr.substr(2));     // TestingString
+  console.log(testStr.substring(2));  // TestingString
+  console.log(testStr.slice(-6, -3)); // Str
+  console.log(testStr.slice(9, -3));  // Str
   /*
     !     метод            |         выбирает…                       |            отрицательные значения
-    slice(start, end)      |  от  start  до  end(не включая  end)    |    можно передавать отрицательные значения
-    substring(start, end)  |  между  start  и  end                   |    отрицательные значения равнозначны  0
-    substr(start, length)  |  length  символов, начиная от  start    |    значение  start  может быть отрицательным
+    slice(start, end)      |  от  start  до  end(не включая  end)    |    можно передавать отрицательные значения   // ! по скорости 2 место
+    substring(start, end)  |  между  start  и  end                   |    отрицательные значения равнозначны  0     // ! по скорости 3 место
+    substr(start, length)  |  length  символов, начиная от  start    |    значение  start  может быть отрицательным // ! по скорости 1 место
   */
   console.group("********** работа со строкой");
   const aa = 'AAA';
-  console.log(`Это длинная строка с //\\ - вывод спецсимвола
+  console.log(`Это длинная строка с //\\\$ - вывод спецсимвола
   ""  ' с разными символами!@ — ŤŽĆ и переводом строки. \${dffd}`);
   console.log(`\t\tdfsdkfsfl fjsdlfsl ${aa} sdf`);
   let className = 0.1 + 0.2;  // 0.30000000000000004
   var num = 8;
   var num = 10;
   console.log(`box ${className.toFixed(1)}
-  dddd ${num}`);
-
+  dddd ${num}`);// box 0.3
+  //   dddd 10
   const str = 'Hello world, welcome to the javascript.';
   console.log(str.startsWith('Hello')); // true
   console.log(str.startsWith('Help'));  // false
@@ -33,7 +38,7 @@
 
   console.group("------ str.localeCompare(compareString[, locales[, options]])")
   console.log('Österreich' > 'Zealand'); // true
-  console.log('Österreich'.localeCompare('Zealand')); // -1 (false) 
+  console.log('Österreich'.localeCompare('Zealand')); // -1 (false)
   console.log('ř > r - ', 'ř'.localeCompare('r', 'en', { sensitivity: 'base' })); //0
   console.log('ř > r - ', 'ř'.localeCompare('r', 'cs', { sensitivity: 'base' })); //1
   console.log('ä > z - ', 'ä'.localeCompare('z', 'de')); // отрицательное значение: в немецком буква ä идёт рядом с буквой a
@@ -63,7 +68,10 @@
       str.slice(0, maxlength - 1) + '…' : str; // '…' один символ
   }
   console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 30));
-
+  let n = 6;
+  for (let i = 1; i <= n; i++) {
+    console.log('вывод строки - ', ' '.repeat(n - i) + '#'.repeat(i));
+  }
   console.groupEnd();
   //---- подстрока
   console.group("********** подстрока");
@@ -73,13 +81,44 @@
   console.log(str1.slice(1, 3));     //12
   console.log(str1.slice(-3, -1));   //ab
   console.groupEnd();
-  // ! ************ Вывод Юникод, hex символа 
+  // ! ************ Вывод Юникод, hex символа
   console.group('************ Вывод Юникод, hex символа');
   console.log("\u2764\uFE0F");
   console.log("\xAE");
   console.log('\u{1D306}'); //ECMAScript 6: Unicode code point escapes
   console.log("Ich \u2665 B\xFCcher");
   console.log('\u{1F334}') //🌴
+  console.log('\u{1F1E8}\u{1F1FF}'); //🇨🇿
+  console.log('\u{1F1FA}\u{1F1E6}'); //🇺🇦
+  var country_emoji_ranges = ['\\u{1F1E6}[\\u{1F1E9}-\\u{1F1EC}\\u{1F1EE}\\u{1F1F1}\\u{1F1F2}\\u{1F1F4}\\u{1F1F6}-\\u{1F1FA}\\u{1F1FC}\\u{1F1FD}\\u{1F1FF}]',
+    '\\u{1F1E7}[\\u{1F1E6}\\u{1F1E7}\\u{1F1E9}-\\u{1F1EF}\\u{1F1F1}-\\u{1F1F4}\\u{1F1F6}-\\u{1F1F9}\\u{1F1FB}\\u{1F1FC}\\u{1F1FE}\\u{1F1FF}]',
+    '\\u{1F1E8}[\\u{1F1E6}\\u{1F1E8}\\u{1F1E9}\\u{1F1EB}-\\u{1F1EE}\\u{1F1F0}-\\u{1F1F4}\\u{1F1F7}\\u{1F1FA}-\\u{1F1FF}]',
+    '\\u{1F1E9}[\\u{1F1EA}\\u{1F1EF}\\u{1F1F0}\\u{1F1F2}\\u{1F1F4}\\u{1F1FF}]',
+    '\\u{1F1EA}[\\u{1F1E8}\\u{1F1EA}\\u{1F1EC}\\u{1F1ED}\\u{1F1F7}-\\u{1F1F9}]',
+    '\\u{1F1EB}[\\u{1F1EE}\\u{1F1EF}\\u{1F1F0}\\u{1F1F2}\\u{1F1F4}\\u{1F1F7}]',
+    '\\u{1F1EC}[\\u{1F1E6}\\u{1F1E7}\\u{1F1E9}-\\u{1F1EE}\\u{1F1F1}-\\u{1F1F3}\\u{1F1F5}-\\u{1F1FA}\\u{1F1FC}\\u{1F1FE}]',
+    '\\u{1F1ED}[\\u{1F1F0}\\u{1F1F2}\\u{1F1F3}\\u{1F1F7}\\u{1F1F9}\\u{1F1FA}]',
+    '\\u{1F1EE}[\\u{1F1E9}-\\u{1F1F4}\\u{1F1F6}-\\u{1F1F9}]',
+    '\\u{1F1EF}[\\u{1F1EA}\\u{1F1F2}\\u{1F1F4}\\u{1F1F5}]',
+    '\\u{1F1F0}[\\u{1F1EA}\\u{1F1EC}-\\u{1F1EE}\\u{1F1F2}\\u{1F1F3}\\u{1F1F5}\\u{1F1F7}\\u{1F1FC}\\u{1F1FE}\\u{1F1FF}]',
+    '\\u{1F1F1}[\\u{1F1E6}-\\u{1F1E8}\\u{1F1EE}\\u{1F1F0}\\u{1F1F8}-\\u{1F1FB}\\u{1F1FE}]',
+    '\\u{1F1F2}[\\u{1F1E6}\\u{1F1E8}-\\u{1F1ED}\\u{1F1F0}-\\u{1F1FF}]',
+    '\\u{1F1F3}[\\u{1F1E6}\\u{1F1E8}\\u{1F1EA}-\\u{1F1EC}\\u{1F1EE}\\u{1F1F1}\\u{1F1F4}\\u{1F1F5}\\u{1F1F7}\\u{1F1FA}\\u{1F1FF}]',
+    '\\u{1F1F4}\\u{1F1F2}',
+    '\\u{1F1F5}[\\u{1F1E6}\\u{1F1EA}-\\u{1F1ED}\\u{1F1F0}-\\u{1F1F3}\\u{1F1F7}-\\u{1F1F9}\\u{1F1FC}\\u{1F1FE}]',
+    '\\u{1F1F6}\\u{1F1E6}',
+    '\\u{1F1F7}[\\u{1F1EA}\\u{1F1F4}\\u{1F1F8}\\u{1F1FA}\\u{1F1FC}]',
+    '\\u{1F1F8}[\\u{1F1E6}-\\u{1F1EA}\\u{1F1EC}-\\u{1F1F4}\\u{1F1F7}-\\u{1F1F9}\\u{1F1FB}\\u{1F1FD}-\\u{1F1FF}]',
+    '\\u{1F1F9}[\\u{1F1E8}\\u{1F1E9}\\u{1F1EB}-\\u{1F1ED}\\u{1F1EF}-\\u{1F1F4}\\u{1F1F7}\\u{1F1F9}\\u{1F1FB}\\u{1F1FC}\\u{1F1FF}]',
+    '\\u{1F1FA}[\\u{1F1E6}\\u{1F1EC}\\u{1F1F2}\\u{1F1F8}\\u{1F1FE}\\u{1F1FF}]',
+    '\\u{1F1FB}[\\u{1F1E6}\\u{1F1E8}\\u{1F1EA}\\u{1F1EC}\\u{1F1EE}\\u{1F1F3}\\u{1F1FA}]',
+    '\\u{1F1FC}[\\u{1F1EB}\\u{1F1F8}]',
+    '\\u{1F1FE}[\\u{1F1EA}\\u{1F1F9}]',
+    '\\u{1F1FF}[\\u{1F1E6}\\u{1F1F2}\\u{1F1FC}]'
+  ];
+  var country_emoji_rx = new RegExp(country_emoji_ranges.join('|'), 'ug');
+  var text = "\u{1F1E6}\u{1F1E9}, \u{1F1E6}\u{1F1EA}, \u{1F1E6}\u{1F1EB}, \u{1F1E6}\u{1F1EC}, \u{1F1E6}\u{1F1EE}, \u{1F1E6}\u{1F1F1}, \u{1F1E6}\u{1F1F2}, \u{1F1E6}\u{1F1F4}, \u{1F1E6}\u{1F1F6}, \u{1F1E6}\u{1F1F7}, \u{1F1E6}\u{1F1F8}, \u{1F1E6}\u{1F1F9}, \u{1F1E6}\u{1F1FA}, \u{1F1E6}\u{1F1FC}, \u{1F1E6}\u{1F1FD}, \u{1F1E6}\u{1F1FF}, \u{1F1E7}\u{1F1E6}, \u{1F1E7}\u{1F1E7}, \u{1F1E7}\u{1F1E9}, \u{1F1E7}\u{1F1EA}, \u{1F1E7}\u{1F1EB}, \u{1F1E7}\u{1F1EC}, \u{1F1E7}\u{1F1ED}, \u{1F1E7}\u{1F1EE}, \u{1F1E7}\u{1F1EF}, \u{1F1E7}\u{1F1F1}, \u{1F1E7}\u{1F1F2}, \u{1F1E7}\u{1F1F3}, \u{1F1E7}\u{1F1F4}, \u{1F1E7}\u{1F1F6}, \u{1F1E7}\u{1F1F7}, \u{1F1E7}\u{1F1F8}, \u{1F1E7}\u{1F1F9}, \u{1F1E7}\u{1F1FB}, \u{1F1E7}\u{1F1FC}, \u{1F1E7}\u{1F1FE}, \u{1F1E7}\u{1F1FF}, \u{1F1E8}\u{1F1E6}, \u{1F1E8}\u{1F1E8}, \u{1F1E8}\u{1F1E9}, \u{1F1E8}\u{1F1EB}, \u{1F1E8}\u{1F1EC}, \u{1F1E8}\u{1F1ED}, \u{1F1E8}\u{1F1EE}, \u{1F1E8}\u{1F1F0}, \u{1F1E8}\u{1F1F1}, \u{1F1E8}\u{1F1F2}, \u{1F1E8}\u{1F1F3}, \u{1F1E8}\u{1F1F4}, \u{1F1E8}\u{1F1F7}, \u{1F1E8}\u{1F1FA}, \u{1F1E8}\u{1F1FB}, \u{1F1E8}\u{1F1FC}, \u{1F1E8}\u{1F1FD}, \u{1F1E8}\u{1F1FE}, \u{1F1E8}\u{1F1FF}, \u{1F1E9}\u{1F1EA}, \u{1F1E9}\u{1F1EF}, \u{1F1E9}\u{1F1F0}, \u{1F1E9}\u{1F1F2}, \u{1F1E9}\u{1F1F4}, \u{1F1E9}\u{1F1FF}, \u{1F1EA}\u{1F1E8}, \u{1F1EA}\u{1F1EA}, \u{1F1EA}\u{1F1EC}, \u{1F1EA}\u{1F1ED}, \u{1F1EA}\u{1F1F7}, \u{1F1EA}\u{1F1F8}, \u{1F1EA}\u{1F1F9}, \u{1F1EB}\u{1F1EE}, \u{1F1EB}\u{1F1EF}, \u{1F1EB}\u{1F1F0}, \u{1F1EB}\u{1F1F2}, \u{1F1EB}\u{1F1F4}, \u{1F1EB}\u{1F1F7}, \u{1F1EC}\u{1F1E6}, \u{1F1EC}\u{1F1E7}, \u{1F1EC}\u{1F1E9}, \u{1F1EC}\u{1F1EA}, \u{1F1EC}\u{1F1EB}, \u{1F1EC}\u{1F1EC}, \u{1F1EC}\u{1F1ED}, \u{1F1EC}\u{1F1EE}, \u{1F1EC}\u{1F1F1}, \u{1F1EC}\u{1F1F2}, \u{1F1EC}\u{1F1F3}, \u{1F1EC}\u{1F1F5}, \u{1F1EC}\u{1F1F6}, \u{1F1EC}\u{1F1F7}, \u{1F1EC}\u{1F1F8}, \u{1F1EC}\u{1F1F9}, \u{1F1EC}\u{1F1FA}, \u{1F1EC}\u{1F1FC}, \u{1F1EC}\u{1F1FE}, \u{1F1ED}\u{1F1F0}, \u{1F1ED}\u{1F1F2}, \u{1F1ED}\u{1F1F3}, \u{1F1ED}\u{1F1F7}, \u{1F1ED}\u{1F1F9}, \u{1F1ED}\u{1F1FA}, \u{1F1EE}\u{1F1E9}, \u{1F1EE}\u{1F1EA}, \u{1F1EE}\u{1F1F1}, \u{1F1EE}\u{1F1F2}, \u{1F1EE}\u{1F1F3}, \u{1F1EE}\u{1F1F4}, \u{1F1EE}\u{1F1F6}, \u{1F1EE}\u{1F1F7}, \u{1F1EE}\u{1F1F8}, \u{1F1EE}\u{1F1F9}, \u{1F1EF}\u{1F1EA}, \u{1F1EF}\u{1F1F2}, \u{1F1EF}\u{1F1F4}, \u{1F1EF}\u{1F1F5}, \u{1F1F0}\u{1F1EA}, \u{1F1F0}\u{1F1EC}, \u{1F1F0}\u{1F1ED}, \u{1F1F0}\u{1F1EE}, \u{1F1F0}\u{1F1F2}, \u{1F1F0}\u{1F1F3}, \u{1F1F0}\u{1F1F5}, \u{1F1F0}\u{1F1F7}, \u{1F1F0}\u{1F1FC}, \u{1F1F0}\u{1F1FE}, \u{1F1F0}\u{1F1FF}, \u{1F1F1}\u{1F1E6}, \u{1F1F1}\u{1F1E7}, \u{1F1F1}\u{1F1E8}, \u{1F1F1}\u{1F1EE}, \u{1F1F1}\u{1F1F0}, \u{1F1F1}\u{1F1F7}, \u{1F1F1}\u{1F1F8}, \u{1F1F1}\u{1F1F9}, \u{1F1F1}\u{1F1FA}, \u{1F1F1}\u{1F1FB}, \u{1F1F1}\u{1F1FE}, \u{1F1F2}\u{1F1E6}, \u{1F1F2}\u{1F1E8}, \u{1F1F2}\u{1F1E9}, \u{1F1F2}\u{1F1EA}, \u{1F1F2}\u{1F1EB}, \u{1F1F2}\u{1F1EC}, \u{1F1F2}\u{1F1ED}, \u{1F1F2}\u{1F1F0}, \u{1F1F2}\u{1F1F1}, \u{1F1F2}\u{1F1F2}, \u{1F1F2}\u{1F1F3}, \u{1F1F2}\u{1F1F4}, \u{1F1F2}\u{1F1F5}, \u{1F1F2}\u{1F1F6}, \u{1F1F2}\u{1F1F7}, \u{1F1F2}\u{1F1F8}, \u{1F1F2}\u{1F1F9}, \u{1F1F2}\u{1F1FA}, \u{1F1F2}\u{1F1FB}, \u{1F1F2}\u{1F1FC}, \u{1F1F2}\u{1F1FD}, \u{1F1F2}\u{1F1FE}, \u{1F1F2}\u{1F1FF}, \u{1F1F3}\u{1F1E6}, \u{1F1F3}\u{1F1E8}, \u{1F1F3}\u{1F1EA}, \u{1F1F3}\u{1F1EB}, \u{1F1F3}\u{1F1EC}, \u{1F1F3}\u{1F1EE}, \u{1F1F3}\u{1F1F1}, \u{1F1F3}\u{1F1F4}, \u{1F1F3}\u{1F1F5}, \u{1F1F3}\u{1F1F7}, \u{1F1F3}\u{1F1FA}, \u{1F1F3}\u{1F1FF}, \u{1F1F4}\u{1F1F2}, \u{1F1F5}\u{1F1E6}, \u{1F1F5}\u{1F1EA}, \u{1F1F5}\u{1F1EB}, \u{1F1F5}\u{1F1EC}, \u{1F1F5}\u{1F1ED}, \u{1F1F5}\u{1F1F0}, \u{1F1F5}\u{1F1F1}, \u{1F1F5}\u{1F1F2}, \u{1F1F5}\u{1F1F3}, \u{1F1F5}\u{1F1F7}, \u{1F1F5}\u{1F1F8}, \u{1F1F5}\u{1F1F9}, \u{1F1F5}\u{1F1FC}, \u{1F1F5}\u{1F1FE}, \u{1F1F6}\u{1F1E6}, \u{1F1F7}\u{1F1EA}, \u{1F1F7}\u{1F1F4}, \u{1F1F7}\u{1F1F8}, \u{1F1F7}\u{1F1FA}, \u{1F1F7}\u{1F1FC}, \u{1F1F8}\u{1F1E6}, \u{1F1F8}\u{1F1E7}, \u{1F1F8}\u{1F1E8}, \u{1F1F8}\u{1F1E9}, \u{1F1F8}\u{1F1EA}, \u{1F1F8}\u{1F1EC}, \u{1F1F8}\u{1F1ED}, \u{1F1F8}\u{1F1EE}, \u{1F1F8}\u{1F1EF}, \u{1F1F8}\u{1F1F0}, \u{1F1F8}\u{1F1F1}, \u{1F1F8}\u{1F1F2}, \u{1F1F8}\u{1F1F3}, \u{1F1F8}\u{1F1F4}, \u{1F1F8}\u{1F1F7}, \u{1F1F8}\u{1F1F8}, \u{1F1F8}\u{1F1F9}, \u{1F1F8}\u{1F1FB}, \u{1F1F8}\u{1F1FD}, \u{1F1F8}\u{1F1FE}, \u{1F1F8}\u{1F1FF}, \u{1F1F9}\u{1F1E8}, \u{1F1F9}\u{1F1E9}, \u{1F1F9}\u{1F1EB}, \u{1F1F9}\u{1F1EC}, \u{1F1F9}\u{1F1ED}, \u{1F1F9}\u{1F1EF}, \u{1F1F9}\u{1F1F0}, \u{1F1F9}\u{1F1F1}, \u{1F1F9}\u{1F1F2}, \u{1F1F9}\u{1F1F3}, \u{1F1F9}\u{1F1F4}, \u{1F1F9}\u{1F1F7}, \u{1F1F9}\u{1F1F9}, \u{1F1F9}\u{1F1FB}, \u{1F1F9}\u{1F1FC}, \u{1F1F9}\u{1F1FF}, \u{1F1FA}\u{1F1E6}, \u{1F1FA}\u{1F1EC}, \u{1F1FA}\u{1F1F2}, \u{1F1FA}\u{1F1F8}, \u{1F1FA}\u{1F1FE}, \u{1F1FA}\u{1F1FF}, \u{1F1FB}\u{1F1E6}, \u{1F1FB}\u{1F1E8}, \u{1F1FB}\u{1F1EA}, \u{1F1FB}\u{1F1EC}, \u{1F1FB}\u{1F1EE}, \u{1F1FB}\u{1F1F3}, \u{1F1FB}\u{1F1FA}, \u{1F1FC}\u{1F1EB}, \u{1F1FC}\u{1F1F8}, \u{1F1FE}\u{1F1EA}, \u{1F1FE}\u{1F1F9}, \u{1F1FF}\u{1F1E6}, \u{1F1FF}\u{1F1F2}, \u{1F1FF}\u{1F1FC}";
+  console.log(text);
   console.groupEnd();
   // ! ********** Literals ********** /
   console.group('********** Literals');
@@ -115,7 +154,7 @@
     return { "cooked": str[0], "raw": str.raw[0] }
   }
 
-  console.log(latex`Первый 
+  console.log(latex`Первый
    \unicode  yes`); // { cooked: undefined, raw: "\unicode" }
   console.groupEnd();
 

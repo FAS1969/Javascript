@@ -378,7 +378,7 @@
       x: 300, y: 125
     }
   };
-  let person2 = Object.create(Object.getPrototypeOf(person), Object.getOwnPropertyDescriptors(person));;
+  let person2 = Object.create(Object.getPrototypeOf(person), Object.getOwnPropertyDescriptors(person));
   Object.setPrototypeOf(person2, person1);
   Object.freeze(person);
   person.profession.name = "doctor";
@@ -407,4 +407,40 @@
   var emp1 = Object.create(Employee);
   delete emp1.company //не удаляет из прототипа
   console.log(emp1.company); //xyz
+  //! ***** Приватные и Паблик свойства и методы
+  function CoffeeMachine(power) {
+    //паблик свойство
+    this.waterAmount = 0;
+
+    let WATER_HEAT_CAPACITY = 4200;
+    //приват свойства
+    let self = this;
+    let timeoutID;
+    //Приват методы
+    function getBoilTime() {
+      timeoutID = self.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
+      return timeoutID;
+    }
+    function onReady() {
+      console.log('Кофе готово!', timeoutID);
+    }
+    //Паблик методы
+    this.run = function () {
+      getBoilTime = setTimeout(onReady, getBoilTime());
+    };
+    this.stop = function () {
+      clearTimeout(timeoutID);
+      console.log('Машина остановлена');
+    }
+
+  }
+
+  const coffeeMachine = new CoffeeMachine(100000);
+  coffeeMachine.waterAmount = 20;
+  console.log(coffeeMachine.timeoutID);   //undefined
+  console.log(coffeeMachine.getBoilTime); //undefined
+  console.log(coffeeMachine.waterAmount); //20
+  coffeeMachine.run();
+  //Останавливает машину рашьше времени
+  //coffeeMachine.stop();
 }

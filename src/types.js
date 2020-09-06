@@ -1,6 +1,11 @@
 'use strict'
 /* jshint esversion: 9 */
 {
+  (() => {
+    const undefined = "foo"; //! можно переопределить void 0 вернет всегда undefined
+    console.log(undefined, typeof undefined); // "foo", "string"
+    console.log(void 0, typeof void 0); // undefined, "undefined"
+  })();
   // ! **********  BigInt  *******
   const a = {};
   const b = { key: "b" };
@@ -8,7 +13,7 @@
   a[b] = 123;
   a[c] = 456;
   console.log('' || 0, '-----');
-  //  console.log( 1_000_000_000.1_012 );   
+  //  console.log( 1_000_000_000.1_012 );
 
   const large = BigInt(9007199254740991);
   const ad = BigInt(10);// можно и так 10n;

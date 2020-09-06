@@ -25,7 +25,7 @@ https://github.com/chrmarti/vscode-regex`;
   //#endregion
 
   console.clear();
-  //[a-z]+(?:([^a-z]+)[a-z]+(?:\1)?[a-z]+)([^a-z]+)[a-z]+(?:\2)?[a-z]+    
+  //[a-z]+(?:([^a-z]+)[a-z]+(?:\1)?[a-z]+)([^a-z]+)[a-z]+(?:\2)?[a-z]+
   console.group(`****************  ^.*?(?=[\+\^#%&$\*:<>\?/\{\|\}\[\]\\\)\(]).*$`);
   const regHttp = new RegExp(/^.*?(?=[\+\^#%&$\*:<>\?/\{\|\}\[\]\\\)\(]).*$/gm);
   let m;
@@ -122,8 +122,21 @@ https://github.com/chrmarti/vscode-regex`;
   const str1 = 'ض';
   console.log(/\d/u.test(str));    // → false
   console.log(/\p{Number}/u.test(str));     // → true
-  console.log(/\p{Alphabetic}/u.test(str1)); // → true 
+  console.log(/\p{Alphabetic}/u.test(str1)); // → true
   console.log(/\P{Number}/u.test(str));
-
+  //------------------------------
+  console.group("****** начинается и заканчивается отной и той же гласной *****")
+  let re0 = new RegExp(/^([aeiou]{1})([a-z]+)(\1)$/)
+  console.log('aewxyzae', re0.test('aewxyzae'));
+  console.log('awxyz', re0.test('awxyz'));
+  console.log('aewxyza', re0.test('aewxyza'));
+  console.log(re0.test(''));
+  console.groupEnd();
+  console.group("****** начинается и заканчивается fas *****")
+  let re1 = new RegExp(/(fas{1})([a-z]+)\1/)
+  console.log(re1.test('aewfasxyzfasae'));
+  let fas = re1.exec('aewfasxyzfasae');
+  fas.forEach(e => console.log(e));
+  console.groupEnd();
 
 }

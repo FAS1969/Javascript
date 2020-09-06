@@ -61,6 +61,7 @@
   foo();
 
   //************** Число Пи
+  const startDate = new Date();
   let i = 1n;
   let x = 3n * (10n ** 120n);
   let pi = x;
@@ -71,6 +72,8 @@
   }
   console.log(Number(pi / (10n ** 20n)));
   //31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679n
+  console.log(Math.PI);
+  console.log(`Time: ${new Date() - startDate} ms`);
 
   // ! **********************************************************
   // ! ******************** Простые числа
@@ -109,6 +112,56 @@
   console.log('120 = ', factorize(120)); // [ 2, 2, 2, 3, 5 ]
 
   console.groupEnd();
+  // ! **********************************************************
+  // ! ********************  Обход дерева и суммирование без рекурсии
+  // ! ********************  ОЧЕРЕДЬ
+  function getSum(obj) {
+    var arr = [obj],
+      sum = 0,
+      current;
+
+    while (arr.length > 0) {
+      current = arr.shift();
+      sum += current.valueNode;
+
+      if (current.next != null) {
+        for (var i = 0; i < current.next.length; i++) {
+          arr.push(current.next[i]);
+        }
+      }
+    }
+
+    return sum;
+  }
+  var tree = {
+    valueNode: 3,
+    next: [{
+      valueNode: 1,
+      next: null
+    },
+    {
+      valueNode: 3,
+      next: null
+    },
+    {
+      valueNode: 2,
+      next: null
+    },
+    {
+      valueNode: 2,
+      next: [
+        {
+          valueNode: 1,
+          next: null
+        },
+        {
+          valueNode: 5,
+          next: null
+        }
+      ]
+    }]
+  };
+  console.log('************* Сумма всех valueNode - ', getSum(tree));
 
   // ! **********************************************************
   // ! ********************  Наибольший общий делител
@@ -122,7 +175,7 @@
     }
     return Math.max(a, b);
   }
-  console.log('НОД(72, 80) = ', gcd(72, 80));
+  console.log('************* НОД(72, 80) = ', gcd(72, 80));
   // ! **********************************************************
   // ! ******************** Тасование Фишера — Йетса (метода Дуршенфельда)
   console.group("************** Тасование Фишера — Йетса");
@@ -322,5 +375,22 @@
   console.log(nextId1([0, 1, 1, 2, 3, 5, -2, 7]));
   console.log(nextId([]));
   console.log(nextId([-1, 3, 0, 1]));
+  console.groupEnd();
+  //! ******************* Какое самое маленькое число делится нацело на все числа от 1 до 20  *********************
+  console.group("***********находим Наименьшее кратное для 1-20");
+  console.time('time')
+  let start = 2520; // 2520 - самое маленькое число, которое делится без остатка на все числа от 1 до 10.
+  let isFound = false;
+  while (!isFound) {
+    start++;
+    isFound = true;
+    for (let i = 2; i <= 20; i++) {
+      if (start % i != 0) {
+        isFound = false;
+        break;
+      }
+    }
+  }
+  console.timeLog('time', 'Число - ' + start);
   console.groupEnd();
 }
