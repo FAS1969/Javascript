@@ -57,5 +57,45 @@
   });
 
   console.log(res);
+  let dt_tm = new Date();
+  console.log(dt_tm.toDateString())
+  console.log(dt_tm.toLocaleDateString('cs-CZ'))
+  console.log(dt_tm.toLocaleTimeString('cs-CZ'))
 
+  String.prototype.toDate = function (format) {
+    var normalized = this.replace(/[^a-zA-Z0-9]/g, '-');
+    var normalizedFormat = format.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
+    var formatItems = normalizedFormat.split('-');
+    var dateItems = normalized.split('-');
+
+    var monthIndex = formatItems.indexOf("mm");
+    var dayIndex = formatItems.indexOf("dd");
+    var yearIndex = formatItems.indexOf("yyyy");
+    var hourIndex = formatItems.indexOf("hh");
+    var minutesIndex = formatItems.indexOf("ii");
+    var secondsIndex = formatItems.indexOf("ss");
+
+    var today = new Date();
+
+    var year = yearIndex > -1 ? dateItems[yearIndex] : today.getFullYear();
+    var month = monthIndex > -1 ? dateItems[monthIndex] - 1 : today.getMonth() - 1;
+    var day = dayIndex > -1 ? dateItems[dayIndex] : today.getDate();
+
+    var hour = hourIndex > -1 ? dateItems[hourIndex] : today.getHours();
+    var minute = minutesIndex > -1 ? dateItems[minutesIndex] : today.getMinutes();
+    var second = secondsIndex > -1 ? dateItems[secondsIndex] : today.getSeconds();
+
+    return new Date(year, month, day, hour, minute, second);
+  };
+  let strDateTime = '28. 4. 2020 8:03:46'.replace(/(\W)*\.\W/g, '.');
+  let strDateTime1 = '28.4.2020 8:03:46';
+  let dtDate = new Date(strDateTime1);
+  console.log(dtDate);
+  console.log('***********', strDateTime);
+  console.log(strDateTime.toDate("dd/mm/yyyy hh:ii:ss").toLocaleDateString('cs-CZ'));
+  console.log(strDateTime.toDate("dd/mm/yyyy hh:ii:ss").toLocaleTimeString('cs-CZ'));
+  //Date str
+  console.log(strDateTime.substr(0, strDateTime.indexOf(' ')));
+  //Time str
+  console.log(strDateTime.substr(strDateTime.indexOf(' ') + 1));
 }

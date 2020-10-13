@@ -1,5 +1,29 @@
 'use strict'
 {
+  //самое длинное члово - длина
+  function findLongestWordLength(str) {
+    const arrOfWords = str.split(' ');
+    const arrOfLengths = arrOfWords.map(item => item.length);
+
+    return Math.max(...arrOfLengths);
+  }
+  console.log(findLongestWordLength('Найти длину самого длинного члова в предложении'));
+  //самое длинное члово
+  function findLongestWord(str) {
+    let maxVal = 0;
+    let maxWord = '';
+
+    const wordArr = str.split(' ');
+
+    wordArr.forEach(word => {
+      if (word.length > maxVal) {
+        maxVal = word.length;
+        maxWord = word;
+      }
+    });
+    return maxWord;
+  }
+  console.log(findLongestWord('Найти длину самого длинного члова в предложении'));
   /**
    * Вам предлагается создать функцию, которая принимает два параметра. Первый параметр, nums, представляет собой массив чисел.
    * Второй параметр, total – это одно число. Выходные данные функции должны быть двухэлементным массивом, который представляет

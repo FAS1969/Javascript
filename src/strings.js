@@ -73,6 +73,13 @@
     console.log('вывод строки - ', ' '.repeat(n - i) + '#'.repeat(i));
   }
   console.groupEnd();
+  //код символа
+  console.group("********** код символа");
+  const col = 'abcABCDEFG';
+  for (let i = 0; i < col.length; i++) {
+    console.log(col.toUpperCase().charCodeAt(i) - 64);
+  }
+  console.groupEnd();
   //---- подстрока
   console.group("********** подстрока");
   const str1 = '012345678901234567890abc';
@@ -165,5 +172,10 @@
   console.log('********** Сырая строка — ', tag`string text line 1 \\n string text line 2`);
   // выводит "string text line 1 \\n string text line 2",
   // включая 'n' и два символа '\'
+  // ! ************* Получив строку, необходимо развернуть её.
+  function reverseString(str) {
+    return str.split('').reverse().join('');
+  }
+  console.log('********** reverseString', reverseString('asdfgh')); //hgfdsa
 
 }
