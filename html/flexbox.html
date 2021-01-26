@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Etalon html5</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Description of web page" />
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--link rel="stylesheet" href="style.css" />
+    <script-- src="script.js"></script-->
+    <style>
+      html,
+      body {
+        font-family: sans-serif;
+        font-size: 1.1em;
+        margin: 0;
+      }
+      .parent {
+        display: flex;
+        height: 100px; /* Или любое другое значение */
+        background-color: antiquewhite;
+      }
+      .child {
+        width: 100px; /* Или любое другое значение */
+        height: 50px; /* Или любое другое значение */
+        margin: auto; /* Волшебство! */
+      }
+
+      .navigation {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+
+        list-style: none;
+        margin: 0;
+        background: deepskyblue;
+      }
+      .navigation a {
+        text-decoration: none;
+        display: block;
+        padding: 1em;
+        color: white;
+      }
+      .navigation a:hover {
+        background: #1565c0;
+      }
+      @media all and (max-width: 800px) {
+        .navigation {
+          justify-content: space-around;
+        }
+      }
+      @media all and (max-width: 600px) {
+        .navigation {
+          flex-flow: column wrap;
+          padding: 0;
+        }
+        .navigation a {
+          text-align: center;
+          padding: 10px;
+          border-top: 1px solid rgba(255, 255, 255, 0.3);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .navigation li:last-of-type a {
+          border-bottom: none;
+        }
+      }
+
+      .flex-container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      .flex-item {
+        background: tomato;
+        padding: 5px;
+        width: 200px;
+        height: 150px;
+        margin-top: 10px;
+        line-height: 150px;
+        color: white;
+        font-weight: bold;
+        font-size: 3em;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <ul class="navigation">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </header>
+      <main>
+        <ul class="flex-container">
+          <li class="flex-item">1</li>
+          <li class="flex-item">2</li>
+          <li class="flex-item">3</li>
+          <li class="flex-item">4</li>
+          <li class="flex-item">5</li>
+          <li class="flex-item">6</li>
+        </ul>
+      </main>
+      <footer class="parent"><h3 class="child">footer</h3></footer>
+    </div>
+  </body>
+</html>

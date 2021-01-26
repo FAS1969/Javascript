@@ -41,4 +41,20 @@
    } finally {
      console.log('finally'); // этот код будет выполнен в любом случае
    }*/
+   
+   //------------------------- параметры get запроса
+   function getSearchParams(k) {
+    var p = {};
+    location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (s, k, v) {
+      p[k] = v;
+    });
+    return k ? p[k] : p;
+  }
+
+  function getQueryParam(param) {
+    const search = window.location.search;
+    //const search = '?ticket=%5B000033%5D&qualcomm=Testing';
+    const params = new URLSearchParams(search.substring(1));
+    return params.get(param);
+  }
 }

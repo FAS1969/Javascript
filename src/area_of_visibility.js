@@ -25,4 +25,14 @@
     console.log(a);
   }
   console.log(a);
+  //------------
+  const func = (obj) => {
+    obj.name = 'Oleg';
+    obj = null;
+  }
+  const obj = {
+    name: "Alex",
+  }
+  func(obj);
+  console.log(obj.name);
 }

@@ -1,5 +1,10 @@
 'use strict'
 {
+  async function getData() {
+    return await Promise.resolve("I made it!");
+  }
+
+  console.log(getData());
   //! This is the mothership of all things asynchronous
   const timeout = function (duration = 0, shouldReject = false) {
     return new Promise((resolve, reject) => {

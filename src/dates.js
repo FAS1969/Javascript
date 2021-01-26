@@ -19,6 +19,17 @@
   console.log((new Date(newDate).getTime())); //will alert 1330210800000
   console.log(new Date("2012-03-08").getTime() == new Date("2012-03-08").getTime());
 
+  console.group("****** Добавить к дате часы")
+  let endDate = new Date();
+  console.log(endDate);
+  endDate.setHours(endDate.getHours() + 6);
+  console.log('add 6 hours - ', endDate);
+  endDate.setMinutes(endDate.getMinutes() + 10);
+  console.log('add 10 minutes - ', endDate);
+  endDate.setMonth(endDate.getMonth() - 2);
+  console.log('sub 2 month - ', endDate);
+  console.groupEnd();
+
   //! Замер временных промежутков
   //первый вариант
   const { performance } = require('perf_hooks'); //для node.js

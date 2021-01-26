@@ -1,5 +1,6 @@
 'use strict'
 {
+
   const str = `<html><head><title></title></head><body><SPAN style="FONT-FAMILY: arial"><SPAN style="FONT-SIZE: 13px">&nbsp;</SPAN></SPAN>
   <DIV style="TEXT-ALIGN: center"></DIV>
   <DIV style="TEXT-ALIGN: left">Odběratel:&nbsp;&nbsp;&nbsp;&nbsp;AWP&nbsp;Solutions ČR a SR, s.r.o.<BR>
@@ -103,4 +104,10 @@
         setTimeout(() => img.remove(), 3000); // (*)
       });
       */
+  let res = 0;
+  for (let i = 0; i < 5; i++) {
+    if (i % 2) res += i;
+
+  }
+  console.log(res)
 }

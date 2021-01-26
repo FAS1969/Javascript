@@ -65,6 +65,12 @@
   outerVar = 'outer-2'
   globalVar = 'guess'
   x('inner')
+
+  const counter = (() => {
+    let i = 0;
+    return () => ++i;
+  })();
+  console.log(counter(), counter(), counter());
   console.groupEnd();
   //------- function
   console.group("********function********");

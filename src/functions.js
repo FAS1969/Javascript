@@ -1,5 +1,15 @@
 'use strict';
 {
+  // ! параметры по умолчанию
+  const value = { num: 10 };
+  const mult = (x = { ...value }) => {
+    return (x.num *= 2);
+  }
+  console.log(mult());
+  console.log(value.num);
+  console.log(mult());
+  console.log(mult(value));
+  console.log(mult(value));
   // ! параметры всегда передаются по значению
   function changeStuff(a, b, c) {
     a = a * 10;
@@ -64,7 +74,7 @@
   console.log(slugify(bookTitles)); // ["javascript-the-good-parts", "you-don’t-know-js", "eloquent-javascript"]
   console.groupEnd();
 
-  /* //! Задержка при наступлении события 
+  /* //! Задержка при наступлении события
   * (обычно используется в серии однотипных событий - mousemove, dragover и т.д.)
   * Примерно посмотреть что это можно здесь - http://demo.nimius.net/debounce_throttle/
   */
@@ -87,7 +97,7 @@
       }, holdTime);
     }
   }
-  // ! Перегрузка функций 
+  // ! Перегрузка функций
   // ? подход под воросом!!!
   function addMethod(object, name, fn) {
     var old = object[name];

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Etalon html5</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Description of web page" />
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--link rel="stylesheet" href="style.css" />
+    <script-- src="script.js"></script-->
+    <style>
+      a[href$='.pdf' i] {
+        color: red;
+      }
+      #pageHeader {
+        height: 50px;
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+          0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+          0 22.3px 17.9px rgba(0, 0, 0, 0.042),
+          0 41.8px 33.4px rgba(0, 0, 0, 0.05), 0 100px 80px rgba(0, 0, 0, 0.07);
+      }
+      :root {
+        background-color: blue;
+        color: white;
+      }
+
+      html {
+        background-color: red;
+        color: white;
+      }
+      h4 {
+        word-spacing: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="pageHeader"><h1>Header</h1></header>
+    <menu type="toolbar">
+      <li class="new">New</li>
+      <li class="open">Open</li>
+      <li class="save">Save</li>
+      <li class="quit">Quit</li>
+    </menu>
+    <!-- комментарий -->
+    <nav id="mainNav">Nav</nav>
+    <main id="content">
+      <section>
+        <h4>Объекты с общим смыслом:</h4>
+        <br />
+        <em>&lt;em&gt; предназначен для акцентирования текста</em><br />
+        <strong>&lt;strong&gt; предназначен для акцентирования текста</strong
+        ><br />
+        <abbr title="I don't know">idk</abbr
+        ><em> - &lt;abbr&gt; используется для сокращений</em><br />
+        <time datetime="2013-10-05">10/05/13</time>
+        <p>
+          Three hundred pages of boring, useless text.
+          <mark
+            >The one thing you need to know and will never be able to find again
+            if you don't highlight it.</mark
+          >
+          More boring stuff…
+        </p>
+        <p>
+          В HTML5 &lt;input&gt; может использовать с целой кучей типов: - email
+          -tel - number - range - date - time - search - color
+        </p>
+        <textarea resize="both">Ваш техт</textarea>
+      </section>
+
+      <q>&lt;q&gt;используется для обозначения цитирования.</q>
+    </main>
+    <aside id="siteAds">Ads</aside>
+    <footer id="pageFooter">Footer</footer>
+  </body>
+</html>

@@ -206,6 +206,28 @@
   Object.preventExtensions(fixedObj);
   //fixedObj.bar = 1; // ! TypeError: Cannot add property bar, object is not extensible
   console.log(fixedObj.bar);
+  console.group("*******************работа с объектом")
+  // ------------ Динамическое свойство
+  let dynamic = "dynamicValue";
+  let user0 = {
+    id: 1,
+    [dynamic]: "other value"
+  };
+  console.log(user0);
+  // ------------ array to object
+  let arr = ["value1", "value2", "value3"];
+  let arrObject = { ...arr };
+  console.log("array to object ", arrObject);
+  // ------------ object to array
+  console.group("--------object to array");
+  let numbers = {
+    one: 1,
+    two: 2,
+  };
+  console.log(Object.keys(numbers)); // key = [ 'one', 'two' ]
+  console.log(Object.values(numbers));  // value = [ 1, 2 ]
+  console.log(Object.entries(numbers)); // entry = [['one' : 1], ['two' : 2]]
+  console.groupEnd();
   // ------------Объединение объектов
   const part1 = { id: 312, name: 'Пётр Иванов', arr: { key: 1, title: 'ddd', ind: [1, 2, 3] } }
   const part2 = { id: 313, password: 'Пароль!' }
@@ -213,6 +235,7 @@
   const user1 = { ...part1, ...part2 }
   part2.password = 'dsdsds'
   console.log(user1)
+
   // ------------Исключаем свойства объекта
   const noPassword = ({ password, ...rest }) => rest
   console.log(noPassword(user1)); //=> { id: 312, name: 'Пётр Иванов' }
@@ -244,6 +267,7 @@
     ...(false && { password })
   }
   console.log(userWithPassword)
+  console.groupEnd();
   // ------------- rest
   const obj11 = {
     a: 10,

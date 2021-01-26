@@ -31,9 +31,12 @@
    */
   const len = 100_000;
   const bigArr = new Array(len).fill(1);
-  bigArr[len - 2] = 9;
+  bigArr[len - 1004] = 9;
+  bigArr[len - 1003] = 9;
+  bigArr[len - 1002] = 9;
+  bigArr[len - 2] = 8;
   bigArr[len - 1] = 10;
-  const total = 19;
+  const total = 18;
   //перебор сложность O(n2)
   /*
   const twoSum = (nums, total) => {
@@ -58,6 +61,7 @@
     let iterations = 0;
     const startTime = new Date();
     const previousValues = {};
+    const resArray = [];
     for (let i = 0; i < nums.length; i++) {
       iterations++;
       const complement = total - nums[i];
@@ -66,23 +70,15 @@
           `Iterations: ${iterations}`,
           `Time: ${new Date() - startTime}ms`
         );
-        return [complement, nums[i]];
+        resArray.push([complement, nums[i]]);
       }
       previousValues[nums[i]] = true;
     }
+    return resArray;
   };
 
   console.log(twoSum(bigArr, total));
   // Iterations: 4999950000 Time: 20032ms
-  const bar = () => console.log('bar');
-  const baz = () => console.log('baz');
-  const foo = () => {
-    console.log("foo");
-    setTimeout(bar, 0);
-    new Promise((resolve, reject) => resolve('should be right after baz, before bar')).then(console.log);
-    baz();
-  }
-  foo();
 
   //************** Число Пи
   const startDate = new Date();
@@ -201,7 +197,7 @@
   }
   console.log('************* НОД(72, 80) = ', gcd(72, 80));
   // ! **********************************************************
-  // ! ******************** Тасование Фишера — Йетса (метода Дуршенфельда)
+  // ! *******************  Тасование Фишера — Йетса (метода Дуршенфельда)
   console.group("************** Тасование Фишера — Йетса");
   let arrShuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   function shuffle(array) {
@@ -417,4 +413,14 @@
   }
   console.timeLog('time', 'Число - ' + start);
   console.groupEnd();
+  //---------------------
+  const bar = () => console.log('bar');
+  const baz = () => console.log('baz');
+  const foo = () => {
+    console.log("foo");
+    setTimeout(bar, 0);
+    new Promise((resolve, reject) => resolve('should be right after baz, before bar')).then(console.log);
+    baz();
+  }
+  foo();
 }

@@ -6,7 +6,10 @@
     console.log(undefined, typeof undefined); // "foo", "string"
     console.log(void 0, typeof void 0); // undefined, "undefined"
   })();
+  console.log(Number.MIN_VALUE); //5e-324  больше 0
+  console.log(Number.MAX_VALUE); //1.7976931348623157e+308
   // ! **********  BigInt  *******
+  console.group('**********  BigInt');
   const a = {};
   const b = { key: "b" };
   const c = { key: "c" };
@@ -19,6 +22,7 @@
   const ad = BigInt(10);// можно и так 10n;
   console.log(large + ad);
   console.log(typeof large); // bigint
+  console.groupEnd();
   var obj = {
     fn: function () {
       console.log('this', this === obj); // true
