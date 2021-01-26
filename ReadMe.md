@@ -3,6 +3,7 @@
 запуск <font style="color:green">**_index.html_**</font>
 и выбор в input нужного js файла - результат в консоле
 
+
 ```diff
 - text in red
 + text in green
