@@ -20,7 +20,6 @@
   ""  ' с разными символами!@ — ŤŽĆ и переводом строки. \${dffd}`);
   console.log(`\t\tdfsdkfsfl fjsdlfsl ${aa} sdf`);
   let className = 0.1 + 0.2;  // 0.30000000000000004
-  var num = 8;
   var num = 10;
   console.log(`box ${className.toFixed(1)}
   dddd ${num}`);// box 0.3

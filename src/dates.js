@@ -1,6 +1,7 @@
 'use strict'
 {
   console.clear();
+  console.log((new Date()).toDateString())
   //! Угол между стрелками часов
   console.group("****** Угол между стрелками часов 24:05")
   const hour = 24;
@@ -69,9 +70,13 @@
 
   console.log(res);
   let dt_tm = new Date();
-  console.log(dt_tm.toDateString())
-  console.log(dt_tm.toLocaleDateString('cs-CZ'))
-  console.log(dt_tm.toLocaleTimeString('cs-CZ'))
+  console.log(JSON.stringify(dt_tm));
+  console.log(dt_tm.toISOString());
+  console.log('Дата без времени -', new Date(dt_tm.toJSON().substring(0, 9))); // Дата без времени
+  console.log('toDateString -', dt_tm.toDateString())
+  console.log('toLocaleDateString -', dt_tm.toLocaleDateString('cs-CZ'))
+  console.log('toLocaleString -', dt_tm.toLocaleString('cs-CZ'))
+  console.log('toLocaleTimeString -', dt_tm.toLocaleTimeString('cs-CZ'))
 
   String.prototype.toDate = function (format) {
     var normalized = this.replace(/[^a-zA-Z0-9]/g, '-');
@@ -101,12 +106,13 @@
   let strDateTime = '28. 4. 2020 8:03:46'.replace(/(\W)*\.\W/g, '.');
   let strDateTime1 = '28.4.2020 8:03:46';
   let dtDate = new Date(strDateTime1);
-  console.log(dtDate);
   console.log('***********', strDateTime);
+  console.log(dtDate);
   console.log(strDateTime.toDate("dd/mm/yyyy hh:ii:ss").toLocaleDateString('cs-CZ'));
   console.log(strDateTime.toDate("dd/mm/yyyy hh:ii:ss").toLocaleTimeString('cs-CZ'));
   //Date str
   console.log(strDateTime.substr(0, strDateTime.indexOf(' ')));
   //Time str
   console.log(strDateTime.substr(strDateTime.indexOf(' ') + 1));
+
 }

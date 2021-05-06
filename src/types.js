@@ -1,4 +1,13 @@
 'use strict'
+var getTypeString = function (obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1); //с 8 до конца не включая последний
+};
+console.log(getTypeString(111)); // Number
+console.log(getTypeString({})); // Object
+console.log(getTypeString([])); // Array
+console.log(getTypeString('')); // String
+console.log(getTypeString(getTypeString)); // Function
+console.log('-----------------------------')
 /* jshint esversion: 9 */
 {
   (() => {

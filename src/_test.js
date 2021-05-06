@@ -1,6 +1,19 @@
 'use strict'
 {
   console.clear();
+  function bind (context, method) {
+    var prefix = Array.prototype.slice.call(arguments,2);
+    return function(){
+      return method.apply(context, prefix.concat(Array.prototype.slice.call(arguments)));
+    }
+  }
+  let obj = {
+      foo: 'foo',
+      add: functiom(){
+          return this.foo + arg;
+      },
+  } 
+  console.log(bind(obj, 'fas'))
   const o = {};
 
   console.log("prop" in o === o.hasOwnProperty("prop")); //true

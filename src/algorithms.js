@@ -1,5 +1,13 @@
 'use strict'
 {
+  //факториал
+  function factorial(n) {
+    let x = 1;
+    for (let i = 2; i <= n; i++)
+      x = x * i;
+    return x;
+  }
+  console.log('факториал 20 - ', factorial(20));
   //самое длинное члово - длина
   function findLongestWordLength(str) {
     const arrOfWords = str.split(' ');
