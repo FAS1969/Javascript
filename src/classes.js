@@ -10,6 +10,9 @@
     method(arg) { console.log(this.#privVar) } // метод
     get something() { } // геттер
     set something(value) { } // сеттер
+    get name() { return "My name" }
+    set name(value) { }
+    getName() { return this.name }
 
     // итератор - метод с вычисляемым именем (здесь - символом)
     [Symbol.iterator]() {
@@ -64,6 +67,7 @@
   console.log(myChildClass.dynamicFunc);
   //! *******************
   const myClass = new MyClass('Petr'); // создание объекта
+  console.log(myClass.getName());
   console.log(myClass);
   console.log(MyClass);
   console.log(MyClass.prototype.constructor === MyClass);

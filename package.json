@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "my-command.js",
+  "type": "module",
   "dependencies": {
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
