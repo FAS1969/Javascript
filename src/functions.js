@@ -23,6 +23,12 @@
   console.log(num);
   console.log(obj1.item);
   console.log(obj2.item);
+  //
+  function func(a, b = 2009) {
+    b = 462;
+    return arguments[1];
+  }
+  console.log('************** Параметр по-умолчанию выпадает из arguments -', func(95)); // undefined
   // ! обязательные параметры функции
   console.group("************** обязательные параметры функции");
 
