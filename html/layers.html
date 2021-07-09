@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>Erkado</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="Description of web page" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+		<div id="stage">
+			<canvas id="ui-layer" width="300" height="665"></canvas>
+			<canvas id="game-layer" width="300" height="665"></canvas>
+			<canvas id="background-layer" width="300" height="665"></canvas>
+		</div>
+
+		<style>
+			#stage {
+				width: 1480px;
+				height: 820px;
+				position: relative;
+				border: 2px solid black;
+				/* background: url('./images/miestnost1.png') center/cover no-repeat; */
+				background: url('./images/miestnost1.png') center/cover no-repeat,
+					url('./images/stena1.png') 200px 50px/300px no-repeat;
+
+				background-color: #ffb062;
+			}
+
+			canvas {
+				position: absolute;
+			}
+			#ui-layer {
+				z-index: 42;
+				left: 200px;
+				top: 50px;
+				background: url('./images/kovani.png') center/cover no-repeat;
+			}
+			#game-layer {
+				z-index: 3;
+				left: 200px;
+				top: 50px;
+				background: url('./images/front.png') center/cover no-repeat,
+				url('./images/p10.png') center/cover no-repeat,
+				url('./images/premium_dub_hallifax.png') center/cover no-repeat;
+				/* url('./images/wenge.png') center/cover no-repeat; */
+				background-color: #ceac89e0;
+				opacity: 1;
+			}
+			#background-layer {
+				z-index: 1;
+				left: 200px;
+				top: 50px;
+				background-color: #834e19;
+			}
+		</style>
+	</body>
+</html>

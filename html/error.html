@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script type="text/javascript">
+			window.onerror = function (errorMsg, url, lineNo, columnNo, error) {
+				alert(errorMsg + ' ' + lineNo + ' / ' + columnNo);
+				alert(error.stack);
+				return false;
+			};
+			function getStackTrace(cnt, error) {
+				let stack = error ? error.stack : new Error().stack || '';
+				stack = stack.split('\n').map(function (line) {
+					return line.trim();
+				});
+				return stack.splice(stack[0] == 'Error' ? 2 : 1, cnt);
+			}
+		</script>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			'use strict';
+			var x = document.getElementById('demo').value; //uncomment and run to see
+			//document.write('careless to close the parentheses?'; // ')' is not given
+		</script>
+	</body>
+</html>

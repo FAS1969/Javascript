@@ -73,6 +73,7 @@ https://github.com/chrmarti/vscode-regex`;
   */
   console.log('убирает символы подряд > 2  - ', 'uuuuxxaaaaxuuu'.replace(/(\w)\1{2,}/g, '$1$1'));//uuxxaaxuu
   console.log("John Smith".replace(/(\w+) (\w+)/i, `$2, $1`));//Smith, John
+  console.log(Array.from('../../site/select-typzbozi?typ_zbozi_id=7&_=1623225702210'.matchAll(/\/([^.]*)\?/g))[0][1]);
   console.info("html and css".replace(/html|css/gi, str => str.toUpperCase()));
   let strTest = "Я люблю JavaScript";
   // эти два теста делают одно и же
