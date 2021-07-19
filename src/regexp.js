@@ -1,9 +1,8 @@
-'use strict'
+'use strict';
 /*jshint esversion: 9 */
 {
   //#region Исходные данные
-  const testString =
-    `sed do eiusmod tempor incididunt
+  const testString = `sed do eiusmod tempor incididunt
 MangoJuice, JuiceVanillaShake, GrapeJuice, ullamco 221.58 sdfsdfsf
 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore abc500 et dolore magna
@@ -39,7 +38,7 @@ https://github.com/chrmarti/vscode-regex`;
   console.group(`****************  Проверка простое ли число`);
   function isPrime(n) {
     // return !(Array(n + 1).join(1).match(/^1?$|^(11+?)\1+$/));
-    return !('1'.repeat(n).match(/^1?$|^(11+?)\1+$/));
+    return !'1'.repeat(n).match(/^1?$|^(11+?)\1+$/);
   }
   console.log(isPrime(28));
   console.log(isPrime(21));
@@ -56,13 +55,13 @@ https://github.com/chrmarti/vscode-regex`;
   } while (m);
   // console.log(reg1.exec(testString));
   console.groupEnd();
-  console.group("************* функции RegExp")
+  console.group('************* функции RegExp');
   const reg = /^\s*$\n/g;
   const reg2 = /([\w0-9-._]+@[\w0-9-.]+[\w0-9]{2,3})/g;
   console.log('Empty strings -', reg);
   console.log('Url(domen) -', reg1);
   console.log('Email -', reg2);
-  console.log('12-34-56'.replace(/-/g, ":")); //заменяет все вхождения,  replace("-", ":") - только первое
+  console.log('12-34-56'.replace(/-/g, ':')); //заменяет все вхождения,  replace("-", ":") - только первое
   /*
     $$ 	вставляет "$"
     $& 	вставляет всё найденное совпадение
@@ -71,11 +70,15 @@ https://github.com/chrmarti/vscode-regex`;
     $n 	если n это 1-2 значное число, то вставляет содержимое n-й скобки
     $<имя> 	вставляет содержимое скобки с указанным именем
   */
-  console.log('убирает символы подряд > 2  - ', 'uuuuxxaaaaxuuu'.replace(/(\w)\1{2,}/g, '$1$1'));//uuxxaaxuu
-  console.log("John Smith".replace(/(\w+) (\w+)/i, `$2, $1`));//Smith, John
-  console.log(Array.from('../../site/select-typzbozi?typ_zbozi_id=7&_=1623225702210'.matchAll(/\/([^.]*)\?/g))[0][1]);
-  console.info("html and css".replace(/html|css/gi, str => str.toUpperCase()));
-  let strTest = "Я люблю JavaScript";
+  console.log('убирает символы подряд > 2  - ', 'uuuuxxaaaaxuuu'.replace(/(\w)\1{2,}/g, '$1$1')); //uuxxaaxuu
+  console.log('John Smith'.replace(/(\w+) (\w+)/i, `$2, $1`)); //Smith, John
+  console.log(
+    Array.from(
+      '../../site/select-typzbozi?typ_zbozi_id=7&_=1623225702210'.matchAll(/\/([^.]*)\?/g),
+    )[0][1],
+  );
+  console.info('html and css'.replace(/html|css/gi, (str) => str.toUpperCase()));
+  let strTest = 'Я люблю JavaScript';
   // эти два теста делают одно и же
   console.log(/ЛЮБЛЮ/i.test(strTest)); // true
   console.log(strTest.search(/люБлю/i) != -1);
@@ -96,48 +99,69 @@ https://github.com/chrmarti/vscode-regex`;
 
   const found = testString.match(/la(?!m)/g);
   console.log(found, found.length);
-  console.log('search - ', testString.search(/(?<=l)la(?=m)/))
+  console.log('search - ', testString.search(/(?<=l)la(?=m)/));
   const mAll = testString.matchAll(/la(?=m)/g);
-  Array.from(mAll).map(element => console.log(element[0], element.index));
+  Array.from(mAll).map((element) => console.log(element[0], element.index));
   console.groupEnd();
   //---------------
   const getNameParts = /(?<first>\w+)\s(?<last>\w+)/g;
   const subMatches = getNameParts.exec(testString);
 
-  const { first, last } = subMatches.groups
-  console.log(first);  // 'Weyland'
-  console.log(last);   //'Smithers'
+  const { first, last } = subMatches.groups;
+  console.log(first); // 'Weyland'
+  console.log(last); //'Smithers'
   // -------------------- поиск разделителей
   const findSepar = function (str) {
-    let [, mod, elem] = str.match(/[a-z]+(?:([^a-z]+)[a-z]+(?:\1)?[a-z]+)([^a-z]+)[a-z]+(?:\2)?[a-z]+/);
-    const substringCount = (source, substr) => (source.match(new RegExp('[a-z]' + substr + '[a-z]', 'g')) || []).length;
+    let [, mod, elem] = str.match(
+      /[a-z]+(?:([^a-z]+)[a-z]+(?:\1)?[a-z]+)([^a-z]+)[a-z]+(?:\2)?[a-z]+/,
+    );
+    const substringCount = (source, substr) =>
+      (source.match(new RegExp('[a-z]' + substr + '[a-z]', 'g')) || []).length;
 
     if (substringCount(str, elem) === 2 && substringCount(str, mod) === 1) {
       [mod, elem] = [elem, mod];
     }
     return { mod, elem };
-  }
-  console.log(findSepar('block_mod_mod__elem'))
+  };
+  console.log(findSepar('block_mod_mod__elem'));
   // --------------Unicode Property Escapes
   const str = '㉛';
   const str1 = 'ض';
-  console.log(/\d/u.test(str));    // → false
-  console.log(/\p{Number}/u.test(str));     // → true
+  console.log(/\d/u.test(str)); // → false
+  console.log(/\p{Number}/u.test(str)); // → true
   console.log(/\p{Alphabetic}/u.test(str1)); // → true
   console.log(/\P{Number}/u.test(str));
   //------------------------------
-  console.group("****** начинается и заканчивается отной и той же гласной *****")
-  let re0 = new RegExp(/^([aeiou]{1})([a-z]+)(\1)$/)
+  console.group('****** начинается и заканчивается отной и той же гласной *****');
+  let re0 = new RegExp(/^([aeiou]{1})([a-z]+)(\1)$/);
   console.log('aewxyzae', re0.test('aewxyzae'));
   console.log('awxyz', re0.test('awxyz'));
   console.log('aewxyza', re0.test('aewxyza'));
   console.log(re0.test(''));
   console.groupEnd();
-  console.group("****** начинается и заканчивается fas *****")
-  let re1 = new RegExp(/(fas{1})([a-z]+)\1/)
+  console.group('****** начинается и заканчивается fas *****');
+  let re1 = new RegExp(/(fas{1})([a-z]+)\1/);
   console.log(re1.test('aewfasxyzfasae'));
   let fas = re1.exec('aewfasxyzfasae');
-  fas.forEach(e => console.log(e));
+  fas.forEach((e) => console.log(e));
   console.groupEnd();
-
+  //------------------------------
+  console.group('****** поиск только CPL *****');
+  let options = [
+    '--- Prosím vyberte ---',
+    'FINISH',
+    `GREKO
+                                (+182Kč)`,
+    `CPL
+                                (+484Kč)`,
+    `CPL 0,2
+                                (+847Kč)`,
+    `PREMIUM
+                                (+484Kč)`,
+  ];
+  options.forEach((el) => {
+    const reg = el.toLowerCase().match(/(cpl+)\s(?!0,)/g);
+    if (reg !== null) console.log(reg[0]);
+  });
+  console.groupEnd();
 }

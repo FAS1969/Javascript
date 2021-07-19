@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 {
   //-------------------------------------------------
   let value = 10;
@@ -8,10 +8,16 @@
       resolve(value + 30); //50
     }, 1000);
     value = 20;
-  })
+  });
   console.log(value); // 20
   promise.then((res) => {
     console.log(value); //20
     console.log(res); // то что resolve выдает
   });
+  //-------------------------------------------------
+  async function getData() {
+    return await Promise.resolve('I made it!');
+  }
+  const data = getData();
+  console.log(data);
 }

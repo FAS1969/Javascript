@@ -1,1 +1,1 @@
-console.log('../../site/select-typzbozi?typ_zbozi_id=7&_=1623225702210'.replace(/\/([^.]*)\?/, '$1'));
+reg !== null
