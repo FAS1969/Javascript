@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Etalon html5</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Description of web page" />
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--link rel="stylesheet" href="style.css" />
+    <script-- src="script.js"></script-->
+    <style>
+      html,
+      body {
+        font-family: sans-serif;
+        font-size: 1.1em;
+        margin: 0;
+        --main-spacing: 15px 5px 10px 5px;
+        --header-footer-spacing: 10px 5px;
+      }
+
+      #app {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 'header' 'main' 'footer';
+      }
+
+      #app > header,
+      #app > footer {
+        padding: var(--header-footer-spacing);
+        background-color: lightblue;
+      }
+
+      #app > header {
+        grid-area: header;
+      }
+
+      #app > header a {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      #app > header a.disabled {
+        cursor: default;
+        opacity: 0.5;
+      }
+
+      #app > main {
+        grid-area: main;
+        padding: var(--main-spacing);
+        overflow: auto;
+        display: grid;
+        grid-template-rows: 200px 1fr;
+        grid-template-columns: 1fr minmax(0, 600px) 1fr;
+      }
+
+      #app > main > section {
+        grid-area: 1 / 2 / 1 / 3;
+        margin-bottom: 5px;
+      }
+
+      #app > main > section.full {
+        grid-area: 1 / 1 / 0 / 2;
+      }
+
+      #app > footer {
+        grid-area: footer;
+      }
+
+      table th {
+        text-align: left;
+      }
+
+      table th,
+      table td {
+        padding: 5px;
+      }
+
+      input {
+        display: block;
+        height: 25px;
+        width: calc(100% - 6px);
+        border: 1px solid gray;
+        padding: 3px;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: lightskyblue;
+        border: 1px solid lightskyblue;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 5px 10px;
+      }
+      /*********************/
+		.contact-nav__web {
+      position: fixed;
+      top: 40%;
+      left: -105px;
+      padding: 0 15px;
+			z-index: 999;
+    }
+    svg use {
+      pointer-events: none;
+    }
+    .contact-link .icon-mail {
+      fill: #fff;
+      pointer-events: none;
+      vertical-align: -15%;
+      width: 24px;
+      height: 24px;
+    }
+    .contact-link {
+      background-image: linear-gradient(to bottom, #ff9600, #cc7800);
+      border-radius: 3px 3px 0 0;
+      color: #fff;
+      float: left;
+      font-size: 15px;
+      display: block;
+      height: 40px;
+      width: 200px;
+      line-height: 40px;
+      padding: 0 10px;
+      pointer-events: auto;
+      text-decoration: none;
+      transform: rotate(90deg);
+    }
+    .contact-text {
+      pointer-events: none;
+			font-size: 10pt;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>header</header>
+      <div class="contact-nav__web">
+        <a href="javascript:;" class="contact-link">
+             <svg width="24" height="24" class="icon-mail" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg"><path d=" M 501 191C 626 191 690 275 690 375C 690 475 639 483 595 513C 573 525 558 553 559 575C 559 591 554 602 541 601C 541 601 460 601 460 601C 446 601 436 581 436 570C 436 503 441 488 476 454C 512 421 566 408 567 373C 566 344 549 308 495 306C 463 303 445 314 411 361C 400 373 384 382 372 373C 372 373 318 333 318 333C 309 323 303 307 312 293C 362 218 401 191 501 191C 501 191 501 191 501 191M 500 625C 541 625 575 659 575 700C 576 742 540 776 500 775C 457 775 426 739 425 700C 425 659 459 625 500 625C 500 625 500 625 500 625"/></svg> <label class="contact-text">Vyplnit krátký dotazník</label>
+        </a>
+      </div>
+      <main>
+        <section className="full">
+          Мы хотим, чтобы элемент main либо занимал всю ширину области
+          просмотра, либо располагался по центру в пространстве 600 пикселей. Вы
+          можете подумать, что мы могли бы просто задать main фиксированную
+          ширину 600 пикселей с автоматическими полями с обеих сторон. Но
+          поскольку это пост о сетке, давайте воспользуемся сеткой Моара. (К
+          тому же, как мы увидим позже, фиксированная ширина в любом случае
+          работать не будет).<br />
+          Чтобы получить центрированный элемент в 600 пикселей, мы фактически
+          сделаем элемент main контейнером сетки. Правильно, сетка внутри сетки!
+          Вложение сеток — это вполне нормальный подход, и в будущем это станет
+          еще проще, когда подсетка будет официально поддерживаться во всех
+          браузерах. В этом сценарии мы сделаем сетку main с тремя треками
+          столбцов 1fr 600px 1fr или, проще говоря, 600 пикселей посередине, а
+          оставшееся пространство равномерно разделено по сторонам.оскольку main
+          — это элемент с прокруткой, и поскольку теперь у этого элемента есть
+          футер, мы достигли желаемого результата! Таким образом, если в main
+          есть содержимое, которое превышает по длине область просмотра, все это
+          будет прокручиваться, и это прокручиваемое содержимое теперь будет
+          включать наш футер, который находится в самом низу экрана, как мы и
+          ожидали.<br />
+          Вот обновленная демонстрация. Обратите внимание, что футер будет по
+          возможности внизу экрана; в противном случае он будет прокручиваться
+          по мере необходимости.<br />
+          Я внес несколько других небольших изменений, например, небольшие
+          корректировки отступов здесь и там; у нас не может быть никаких левых
+          или правых отступов в main, потому что footer больше не будет
+          растягиваться от края до края.<br />
+          Я также внес в последний момент корректировку во время окончательного
+          редактирования элемента section — тот, который мы включили для
+          содержимого с регулируемой шириной. В частности, я установил для него
+          значение display flex, ширину 100%, а для его непосредственного
+          потомка — overflow: auto. Я сделал это для того, чтобы содержимое
+          элемента section могло прокручиваться горизонтально, если оно
+          превышает границу колонки сетки, но без вертикальной прокрутки.<br />
+          Без этого изменения проделанная нами работа сводилась бы к подходу с
+          фиксированным футером, который мы рассмотрели ранее. Создание гибкого
+          контейнера section заставляет его непосредственный дочерний элемент
+          div, содержащий контент, занимать все доступное вертикальное
+          пространство. И, конечно же, установка для этого дочернего div
+          overflow: auto для включения прокрутки. Если вам интересно, почему я
+          просто не установил для section overflow-x со значением auto и
+          overflow-y со значением visible, что ж, оказывается, что это
+          невозможно.
+        </section>
+      <footer>
+      </footer>
+    </div>
+  </body>
+</html>
