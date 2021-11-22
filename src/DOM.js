@@ -1,6 +1,6 @@
 'use strict'
 {
-  //------------------------ поиск по аттрибуту   
+  //------------------------ поиск по аттрибуту
   console.log(Object.entries(document.getElementsByTagName('*')).filter((elem) => elem[1].getAttribute('val') == 124));
   console.log(document.querySelectorAll('*[val="124"]'));
   //------------------------ быстрое добавление в дом
@@ -18,17 +18,24 @@
   console.log(fragment.html);
   document.body.appendChild(fragment);
   console.log();
+  //------------------------ событие на удаление/добавление элемента в дом
+  $('body').on('DOMNodeInserted', function (e) {
+    console.log(e.target, ' was inserted');
+  });
 
+  $('body').on('DOMNodeRemoved', function (e) {
+    console.log(e.target, ' was removed');
+  });
 
   //------------------------ работа с localStorage
   /* // Два варианта добавления данных
    localStorage.userName = "Петя";
    localStorage.setItem("favoriteColor", "чёрный");
- 
+
    // После добавления в localStorage, они будут там
    // до тех пор, пока их явно не удалить
    alert(`${localStorage.userName} предпочитает ${localStorage.favoriteColor} цвет.`);
- 
+
    // А теперь удалим данные из хранилища
    localStorage.removeItem("userName");
    localStorage.removeItem("favoriteColor");
@@ -41,7 +48,7 @@
    } finally {
      console.log('finally'); // этот код будет выполнен в любом случае
    }*/
-   
+
    //------------------------- параметры get запроса
    function getSearchParams(k) {
     var p = {};
