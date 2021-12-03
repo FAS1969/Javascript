@@ -331,6 +331,12 @@ end- необязательный параметр. Конечный индек�
   }
   let sum = 0;
   console.log('********* реализация array reduce - ', reduce([1, 2, 4, 7, 3], (sum, e) => sum + e, 0));
+  console.log('1----------');
+[1, 2, 3, 4].reduce((x, y) => console.log(x, y));
+console.log('2----------');
+[1, 2, 3, 4].reduce((x, y) => {console.log(x, y); return x+y;});
+console.log('3----------');
+[1, 2, 3, 4].reduce((x, y) => {console.log(x, y); return x+y;},0);
   // !------------------------ object in array and back
   console.group("********* object in array and back");
   let students = {
