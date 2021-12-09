@@ -1,1 +1,1 @@
-reg !== null
+import * as fs from 'fs';

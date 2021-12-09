@@ -201,7 +201,11 @@ bottom: -0.1em;
 background: #52C8E4;
 transform: rotate(45deg);
 }
-
+.zoomLupa {
+  position: relative;
+  left: -50px;
+  top: -20px;
+}
 
     </style>
   </head>
@@ -227,12 +231,45 @@ transform: rotate(45deg);
             </div>
           </div>
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="48" height="48"
-            viewBox="0 0 48 48" data-tags="zoom in,magnifier,enlarge">
-            <g fill="slategray" transform="scale(0.045 0.045)">
+            viewBox="0 0 48 48" data-tags="zoom in,magnifier,enlarge" style="display:none">
+            <g id="zoomLupa" transform="scale(0.045 0.045)">
               <path
                 d="M932.992 958.752l-22.688 22.688c-25.12 25.088-65.76 25.088-90.816 0l-181.632-181.568c-20.992-21.056-23.328-52.608-8.992-77.184l-99.328-99.264c-53.408 39.616-119.296 63.328-190.88 63.328-177.28 0-320.992-143.712-320.992-320.992 0-177.312 143.712-321.024 320.992-321.024 177.312 0 320.992 143.712 320.992 321.024 0 82.528-31.36 157.536-82.56 214.4l97.12 97.12c24.576-14.304 56.128-12 77.12 9.056l181.632 181.568c25.088 25.12 25.088 65.792 0.032 90.848zM578.816 364.448c0-132.96-107.808-240.736-240.768-240.736s-240.768 107.744-240.768 240.736 107.776 240.736 240.736 240.736 240.8-107.776 240.8-240.736zM352.064 446.688h-32.096v-62.176h-64.192v-32.096h64.192v-64.224h32.096v64.224h64.224v32.096h-64.224v62.176z" />
             </g>
           </svg>
+          <div class="form-group required  product-option-radio push-option">
+            <label class="control-label">Typ otevírání dveří</label>
+            <div id="input-option2172">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="option[2172]" value="16260">
+                  <img style="cursor: zoom-in;"
+                    data-popup="https://test.optim-door.cz/image/cache/catalog/priplatky/leve_dvere-skladem-400x400.jpg"
+                    src="https://test.optim-door.cz/image/cache/catalog/priplatky/leve_dvere-skladem-170x170.jpg" alt=".Levé"
+                    data-toggle="tooltip" data-tooltip-class="push-tooltip" data-placement="top" title=""
+                    data-original-title=".Levé " width="170" height="170">
+                    <svg class="zoomLupa">
+                    <use href="#zoomLupa" fill="slategray" stroke="red"/>
+                    </svg>
+                    <span class="option-value">
+                    .Levé
+                  </span>
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="option[2172]" value="16261">
+                  <img style="cursor: zoom-in;"
+                    data-popup="https://test.optim-door.cz/image/cache/catalog/priplatky/prave_dvere-skladem-400x400.jpg"
+                    src="https://test.optim-door.cz/image/cache/catalog/priplatky/prave_dvere-skladem-170x170.jpg" alt=".Pravé"
+                    data-toggle="tooltip" data-tooltip-class="push-tooltip" data-placement="top" title=""
+                    data-original-title=".Pravé " width="170" height="170"> <span class="option-value">
+                    .Pravé
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
         </section>
       <footer>
       </footer>
