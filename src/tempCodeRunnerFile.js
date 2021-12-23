@@ -1,1 +1,2 @@
-import * as fs from 'fs';
+      let e = await hello();
+      s = e;

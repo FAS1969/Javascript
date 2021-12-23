@@ -5,6 +5,7 @@
   "main": "my-command.js",
   "type": "module",
   "dependencies": {
+    "async_hooks": "^1.0.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-utils": "^2.0.0",
