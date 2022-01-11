@@ -206,7 +206,16 @@ transform: rotate(45deg);
   left: -50px;
   top: -20px;
 }
-
+#check2 {
+  appearance: none;
+  display: inline-block;
+vertical-align: middle;
+}
+form {
+  width: 200px;
+margin-left: 20px;
+margin-right: 20px;
+}
     </style>
   </head>
   <body>
@@ -220,6 +229,23 @@ transform: rotate(45deg);
       </div>
       <main>
         <section className="full">
+          <form action="" class="custom">
+    <p>Форма с нестандартными стилями</p>
+    <h3>Чекбокс:</h3>
+    <p>
+      <input type="checkbox" id="check2"><label for="check2">Выбери меня</label>
+      
+    </p>
+    <h3>Радио-кнопки:</h3>
+    <p>
+      <input type="radio" name="radio2" id="radio21">
+      <label for="radio21">Option A</label>
+    </p>
+    <p>
+      <input type="radio" name="radio2" id="radio22">
+      <label for="radio22">Option B</label>
+    </p>
+  </form>
           <div class="lupa">
             <div class="magnifying-glass">
               <div class="d24"></div>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Etalon html5</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Description of web page" />
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--link rel="stylesheet" href="style.css" />
+    <script-- src="script.js"></script-->
+    <style>
+      html,
+      body {
+        font-family: sans-serif;
+        font-size: 1.1em;
+        margin: 0;
+        --main-spacing: 15px 5px 10px 5px;
+        --header-footer-spacing: 10px 5px;
+      }
+
+      #app {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 'header' 'main' 'footer';
+      }
+
+      #app > header,
+      #app > footer {
+        padding: var(--header-footer-spacing);
+        background-color: lightblue;
+      }
+
+      #app > header {
+        grid-area: header;
+      }
+
+      #app > header a {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+
+      #app > header a.disabled {
+        cursor: default;
+        opacity: 0.5;
+      }
+
+      #app > main {
+        grid-area: main;
+        padding: var(--main-spacing);
+        overflow: auto;
+        display: grid;
+        grid-template-rows: 200px 1fr;
+        grid-template-columns: 1fr minmax(0, 600px) 1fr;
+      }
+
+      #app > main > section {
+        grid-area: 1 / 2 / 1 / 3;
+        margin-bottom: 5px;
+      }
+
+      #app > main > section.full {
+        grid-area: 1 / 1 / 0 / 2;
+      }
+
+      #app > footer {
+        grid-area: footer;
+      }
+
+      table th {
+        text-align: left;
+      }
+
+      table th,
+      table td {
+        padding: 5px;
+      }
+
+      input {
+        display: block;
+        height: 25px;
+        width: calc(100% - 6px);
+        border: 1px solid gray;
+        padding: 3px;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: lightskyblue;
+        border: 1px solid lightskyblue;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>header</header>
+      <main>
+        <section className="full">
+          Мы хотим, чтобы элемент main либо занимал всю ширину области
+          просмотра, либо располагался по центру в пространстве 600 пикселей. Вы
+          можете подумать, что мы могли бы просто задать main фиксированную
+          ширину 600 пикселей с автоматическими полями с обеих сторон. Но
+          поскольку это пост о сетке, давайте воспользуемся сеткой Моара. (К
+          тому же, как мы увидим позже, фиксированная ширина в любом случае
+          работать не будет).<br />
+          Чтобы получить центрированный элемент в 600 пикселей, мы фактически
+          сделаем элемент main контейнером сетки. Правильно, сетка внутри сетки!
+          Вложение сеток — это вполне нормальный подход, и в будущем это станет
+          еще проще, когда подсетка будет официально поддерживаться во всех
+          браузерах. В этом сценарии мы сделаем сетку main с тремя треками
+          столбцов 1fr 600px 1fr или, проще говоря, 600 пикселей посередине, а
+          оставшееся пространство равномерно разделено по сторонам.оскольку main
+          — это элемент с прокруткой, и поскольку теперь у этого элемента есть
+          футер, мы достигли желаемого результата! Таким образом, если в main
+          есть содержимое, которое превышает по длине область просмотра, все это
+          будет прокручиваться, и это прокручиваемое содержимое теперь будет
+          включать наш футер, который находится в самом низу экрана, как мы и
+          ожидали.<br />
+          Вот обновленная демонстрация. Обратите внимание, что футер будет по
+          возможности внизу экрана; в противном случае он будет прокручиваться
+          по мере необходимости.<br />
+          Я внес несколько других небольших изменений, например, небольшие
+          корректировки отступов здесь и там; у нас не может быть никаких левых
+          или правых отступов в main, потому что footer больше не будет
+          растягиваться от края до края.<br />
+          Я также внес в последний момент корректировку во время окончательного
+          редактирования элемента section — тот, который мы включили для
+          содержимого с регулируемой шириной. В частности, я установил для него
+          значение display flex, ширину 100%, а для его непосредственного
+          потомка — overflow: auto. Я сделал это для того, чтобы содержимое
+          элемента section могло прокручиваться горизонтально, если оно
+          превышает границу колонки сетки, но без вертикальной прокрутки.<br />
+          Без этого изменения проделанная нами работа сводилась бы к подходу с
+          фиксированным футером, который мы рассмотрели ранее. Создание гибкого
+          контейнера section заставляет его непосредственный дочерний элемент
+          div, содержащий контент, занимать все доступное вертикальное
+          пространство. И, конечно же, установка для этого дочернего div
+          overflow: auto для включения прокрутки. Если вам интересно, почему я
+          просто не установил для section overflow-x со значением auto и
+          overflow-y со значением visible, что ж, оказывается, что это
+          невозможно.
+        </section>
+        <section>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Amount Due</th>
+                <th>Date</th>
+                <th>Insurance Co</th>
+                <th>Is Copay?</th>
+                <th>Status</th>
+                <th>Is Minor?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Adam Rackis</td>
+                <td>$100</td>
+                <td>3/22/2021</td>
+                <td>Blue Cross Blue Shield</td>
+                <td>YES</td>
+                <td>APPROVED</td>
+                <td>NO</td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>$300</td>
+                <td>6/30/2021</td>
+                <td>Aetna</td>
+                <td>NO</td>
+                <td>MORE INFO NEEDED</td>
+                <td>YES</td>
+              </tr>
+              <tr>
+                <td>Jane Doe</td>
+                <td>$200</td>
+                <td>5/20/2021</td>
+                <td>Blue Cross Blue Shielf</td>
+                <td>YES</td>
+                <td>REJECTED</td>
+                <td>NO</td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>$300</td>
+                <td>6/30/2021</td>
+                <td>Aetna</td>
+                <td>NO</td>
+                <td>MORE INFO NEEDED</td>
+                <td>YES</td>
+              </tr>
+              <tr>
+                <td>Jane Doe</td>
+                <td>$200</td>
+                <td>5/20/2021</td>
+                <td>Blue Cross Blue Shielf</td>
+                <td>YES</td>
+                <td>REJECTED</td>
+                <td>NO</td>
+              </tr>
+              <tr>
+                <td>John Doe</td>
+                <td>$300</td>
+                <td>6/30/2021</td>
+                <td>Aetna</td>
+                <td>NO</td>
+                <td>MORE INFO NEEDED</td>
+                <td>YES</td>
+              </tr>
+              <tr>
+                <td>Jane Doe</td>
+                <td>$200</td>
+                <td>5/20/2021</td>
+                <td>Blue Cross Blue Shielf</td>
+                <td>YES</td>
+                <td>REJECTED</td>
+                <td>NO</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+      <footer>footer</footer>
+    </div>
+  </body>
+</html>
