@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Etalon html5</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Description of web page" />
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="https://dvere-erkado.cz/" target="_blank">
+    <!--link rel="stylesheet" href="style.css" />
+    <script-- src="script.js"></script-->
+    <style>
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header>header</header>
+      <main>
+        <section className="full">
+<div >
+	<label>firma</label>
+	<input type="text" name="firma" value="" placeholder="" class="form-control" />
+</div>
+<div >
+	<label>ICO</label>
+	<input type="text" name="ico" value="" placeholder="ICO" id="ico" class="form-control" />
+</div>
+        </section>
+      </main>
+      <footer>footer</footer>
+    </div>
+				<script type='text/javascript'>
+
+					$(document).ready(function () {
+						console.log('object');
+						$('#ico').change(function () {
+							var ico = $(this).val();
+							$.ajax({
+								url: "http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=27909590",
+								contentType: "application/json; charset=utf-8",
+								dataType: "json",
+								data: "ico=" + ico,
+								cache: false,
+								success: function (data) {
+									if (data.stav == 'ok') {
+										$('input[name=dic]').val(data.dic);
+										$('input[name=firma]').val(data.firma);
+										$('input[name=ulice]').val(data.ulice);
+										$('input[name=mesto]').val(data.mesto);
+										$('input[name=psc]').val(data.psc);
+										alert('Název a sídlo firmy bylo vyplněno z databáze ARES.');
+									} else {
+										alert(data.stav);
+									}
+								},
+							});
+						});
+					});
+				</script>
+
+  </body>
+
+</html>

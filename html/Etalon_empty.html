@@ -6,7 +6,7 @@
     <meta name="description" content="Description of web page" />
     <!--для поддержки мобильных устройств -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="https://dvere-erkado.cz/" target="_blank">
+    <!--base href="https://dvere-erkado.cz/" target="_blank"-->
     <!--link rel="stylesheet" href="style.css" />
     <script-- src="script.js"></script-->
     <style>
@@ -68,7 +68,10 @@
       #app > footer {
         grid-area: footer;
       }
-
+ article {
+   cursor: url(images/cat.png) 2 2, default;
+   background-color: lightgray;
+ }
     </style>
   </head>
   <body>
@@ -80,6 +83,16 @@
   alt="Sklopné plastové okno 50x50 cm, Bílé, Sklopné" title="Sklopné plastové okno 50x50 cm, Bílé, Sklopné" width="550"
   height="550">
         </section>
+         <details>
+   <summary>Легенда</summary>
+   <p>Раскрывающийся текст</p>
+ </details>
+  <article>
+   <h2>Какая-то статья</h2>
+     <p>
+       Многие кометы имеют два хвоста.
+     </p>
+ </article>
       </main>
       <footer>footer</footer>
     </div>

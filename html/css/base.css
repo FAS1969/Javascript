@@ -27,6 +27,7 @@ strong {
   /*bringing boldness back to headers and the strong element*/
   font-weight: bold;
 }
+
 abbr,
 acronym {
   /*indicating to users that more info is available */
