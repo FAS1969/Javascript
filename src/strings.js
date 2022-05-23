@@ -34,7 +34,11 @@
 	console.log(str.indexOf('world'));	// самый быстрый, но не понимает NaN в массивах
   console.log('myteststring'.split('', 6));  //[ 'm', 'y', 't', 'e', 's', 't' ]
   console.log('myteststring'.split(',', 6)); //[ 'myteststring' ]
-
+  const searchRegExp = /duck/gi; // без i будет работать с учетом регистра
+  const replaceWith = 'goose';
+  const result = 'duck/Duck-go'.replace(searchRegExp, replaceWith);
+  console.log('замена всех вхождений - ', result);
+  console.log('замена всех вхождений 1 - ', result.split('goose').join('hura'));
 
   console.group("------ str.localeCompare(compareString[, locales[, options]])")
   console.log('Österreich' > 'Zealand'); // true

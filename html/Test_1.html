@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		*,
+		*::before,
+		*::after {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			padding: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-family: "Roboto", sans-serif;
+		}
+		.main	{
+			background-color: #123E66;
+			height: 90px;
+			width: 200px;
+			padding: 20px;
+		}
+
+		.button {
+			box-shadow:
+				0 5px 10px gray,
+				-5px -10px 20px pink;
+		}
+
+		.btn:focus {
+			outline: none;
+		}
+
+		.btn {
+			padding: 15px 50px;
+			border: none;
+			border-radius: 25px;
+			color: #c5e3ff;
+			background-color: transparent;
+			cursor: pointer;
+			box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
+				-5px -5px 10px #3185d5, inset 5px 5px 8px -4px #3185d5;
+			font-family: inherit;
+			font-size: 20px;
+			font-weight: 300;
+			user-select: none;
+		}
+
+		.btn:active {
+			box-shadow: 5px 5px 10px #020d18, inset -5px -5px 8px -4px #020d18,
+				inset -6px -6px 8px 0 #3185d5, -5px -5px 10px #3185d5,
+				inset 5px 5px 8px -4px #3185d5, inset 6px 6px 8px 0 #020d18;
+			text-shadow: #c5e3ff 1px 0 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<button class="button">Купить немедленно!</button>
+	<div class="main">
+		<button class="btn">Зажми</button>
+	</div>
+</body>
+
+</html>
