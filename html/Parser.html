@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		function getPrice() {
+			$.get('https://crossorigin.me/' + $('#url_from').val(), function(data) {
+				alert(data);
+			});
+		}
+	</script>
+</head>
+
+<body>
+	<div class="main">
+		<input id="url_from" type="text" value="https://www.skladova-okna.cz/jednokridle-plastove-okno-premium-otviravo-sklopne-prave-12.html"></input>
+		<button class="btn" onclick="getPrice();">Получить цену</button>
+	</div>
+</body>
+
+</html>
