@@ -46,6 +46,9 @@ end- необязательный параметр. Конечный индек�
   //#endregion
   //-----------------------------
   //#region //!-------------- функции работы с массивом -----------------
+  const arrr = [1,2,3,4];
+  console.log(arrr.at(-2)); // 3
+
   const ass = [7, 8, 3, 4, 5, 6];
   console.log(typeof ass); // object
   console.log(Array.isArray(ass)); // true
