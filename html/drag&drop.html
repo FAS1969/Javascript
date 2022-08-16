@@ -1,0 +1,50 @@
+<html>
+<head>
+    <style type="text/css">
+        #drag-1 {
+              top: 300px;
+    left: 100px;
+    position: fixed;
+        width: 200px;
+    height: 50px;
+    background: silver;
+    margin-bottom: 10px;
+    padding: 10px;  
+        }
+    </style> 
+</head>
+
+<body>
+    <div id="drag-1" class="drag module" draggable="true">
+        <div class="module-header">Draggable Div</div>
+        <div class="module-content">
+            <p>This is draggable.</p>
+        </div>
+    </div>
+
+    <script>
+    var draggable_div = document.getElementById("drag-1");
+    var startPos = {};
+
+    draggable_div.ondragstart = function(e){
+        startPos = {
+            left: draggable_div.offsetLeft,
+            top: draggable_div.offsetTop,
+            offsetX: e.offsetX,
+            offsetY: e.offsetY
+        }
+    }
+
+    draggable_div.ondrag = function(e){
+    }
+
+    draggable_div.ondragend = function(e){
+        draggable_div.style.top = parseInt(startPos.top + e.offsetY - startPos.offsetY) + "px";
+        draggable_div.style.left = parseInt(startPos.left + e.offsetX - startPos.offsetX) + "px";
+    }
+
+
+    </script>
+
+</body>
+</html>
