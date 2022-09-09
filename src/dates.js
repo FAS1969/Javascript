@@ -114,5 +114,18 @@
   console.log(strDateTime.substr(0, strDateTime.indexOf(' ')));
   //Time str
   console.log(strDateTime.substr(strDateTime.indexOf(' ') + 1));
+  function formatDate(date) {
+    let dd = date.getDate();
+    if (dd < 10) dd = '0' + dd;
 
+    let mm = date.getMonth() + 1;
+    if (mm < 10) mm = '0' + mm;
+
+    const yy = date.getFullYear();
+
+    return yy + '-' + mm + '-' + dd;
+  }
+  const dt = new Date();
+  dt.setDate(dt.getDate() + 35);
+  console.log(formatDate(dt));
 }
