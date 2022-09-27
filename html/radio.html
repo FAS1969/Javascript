@@ -1,0 +1,123 @@
+              <!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS - Стилизация радиокнопки</title>
+  <style>
+    /* для элемента input c type="radio" */
+    .custom-radio>input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    /* для элемента label связанного с .custom-radio */
+    .custom-radio>span {
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    /* создание в label псевдоэлемента  before со следующими стилями */
+    .custom-radio>span::before {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
+      flex-grow: 0;
+      border: 1px solid #adb5bd;
+      border-radius: 50%;
+      margin-right: 0.5em;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 50% 50%;
+    }
+
+    /* стили при наведении курсора на радио */
+    .custom-radio>input:not(:disabled):not(:checked)+span:hover::before {
+      border-color: #b3d7ff;
+    }
+
+    /* стили для активной радиокнопки (при нажатии на неё) */
+    .custom-radio>input:not(:disabled):active+span::before {
+      background-color: #b3d7ff;
+      border-color: #b3d7ff;
+    }
+
+    /* стили для радиокнопки, находящейся в фокусе */
+    .custom-radio>input:focus+span::before {
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+    .custom-radio>input:focus:not(:checked)+span::before {
+      border-color: #80bdff;
+    }
+
+    /* стили для радиокнопки, находящейся в состоянии checked */
+    .custom-radio>input:checked+span::before {
+      border-color: #0b76ef;
+      background-color: #0b76ef;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    }
+
+    /* стили для радиокнопки, находящейся в состоянии disabled */
+    .custom-radio>input:disabled+span::before {
+      background-color: #e9ecef;
+    }
+
+    body {
+      padding: 20px 50px;
+    }
+
+    .radio {
+      margin-bottom: 0.2em;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="radio">
+    <label class="custom-radio">
+      <input type="radio" name="color" value="indigo">
+      <span>Indigo</span>
+    </label>
+  </div>
+
+  <div class="radio">
+    <label class="custom-radio">
+      <input type="radio" name="color" value="red">
+      <span>Red</span>
+    </label>
+  </div>
+
+  <div class="radio">
+    <label class="custom-radio">
+      <input type="radio" name="color" value="brown" disabled="disabled">
+      <span>Brown</span>
+    </label>
+  </div>
+
+  <div class="radio">
+    <label class="custom-radio">
+      <input type="radio" name="color" value="yellow">
+      <span>Yellow</span>
+    </label>
+  </div>
+
+  <div class="radio">
+    <label class="custom-radio">
+      <input type="radio" name="color" value="green">
+      <span>Green</span>
+    </label>
+  </div>
+
+</body>
+
+</html>
