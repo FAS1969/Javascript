@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pouzdro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .container * {
+        vertical-align: baseline;
+        font-weight: inherit;
+        font-family: inherit;
+        font-style: inherit;
+        font-size: 100%;
+        border: 0 none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        background: url('./pouzdro.jpg') center/cover no-repeat;
+        width: 1240px;
+        height: 469px;
+        font-size: 1rem;
+        color: #ca0505;
+      }
+      #textA,
+      #textB {
+        position: relative;
+        width: 2.6em;
+        height: 20px;
+        border: 0 none;
+        border: 1px solid #a94442;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 1.9em 0 0.3em;
+        vertical-align: middle;
+      }
+      #textA {
+        left: 264px;
+        top: 124px;
+      }
+      #textB {
+        left: 145px;
+        top: 329px;
+      }
+      #textA:focus,
+      #textB:focus,
+      #textA:hover,
+      #textB:hover {
+        border: 1px solid rgb(202, 5, 5);
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      #textA[required] + label:before,
+      #textB[required] + label:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: 'mm';
+        position: relative;
+        font-size: 18px;
+        color: #ca0505;
+      }
+      #textA[required] + label:before {
+        left: 231px;
+        top: 122px;
+      }
+      #textB[required] + label:before {
+        left: 112px;
+        top: 327px;
+      }
+      .radio input[type='radio'] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      .radio {
+        position: relative;
+        left: 520px;
+        top: 170px;
+      }
+      .radio label {
+        display: inline-flex;
+        align-items: center;
+        user-select: none;
+        cursor: pointer;
+        vertical-align: baseline;
+        margin-bottom: 35px;
+      }
+      .radio label::before {
+        content: '';
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+        flex-grow: 0;
+        border: 1px solid #ca0505;
+        border-radius: 50%;
+        margin-right: 0.3em;
+        margin-left: 1em;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 50% 50%;
+      }
+      .radio input[type='radio']:checked + label::before {
+        border-color: #a94442;
+        background-color: #a94442;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+      }
+      .radio input[type='radio'] + label:hover::before,
+      .radio input[type='radio']:focus + label::before {
+        border-color: #ca0505;
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      .calc {
+        display: flex;
+        justify-content: center;
+        top: 310px;
+        position: relative;
+      }
+      #btn-calc {
+        cursor: pointer;
+        width: 100px;
+        margin: auto 0;
+        border: none;
+        background: #4aa34e;
+        color: #fff;
+        padding: 8px 0;
+        border-radius: 0;
+      }
+      #btn-calc:hover {
+        background: rgb(60, 118, 61);
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        pouzdroChange();
+      });
+      function calculate() {
+        const sizeA = +$('#textA').val();
+        const sizeB = +$('#textB').val();
+        const sizeP = +$('.radio input:checked').val();
+        const sizePHalf = Math.trunc(sizeP / 2);
+        const ZN1 = sizeA - sizePHalf;
+        const ZN2 = sizeB - sizePHalf;
+        return { ZN1, ZN2 };
+      }
+      function pouzdroChange() {
+        const sizeP = +$('.radio input:checked').val();
+        const sizePHalf = Math.trunc(sizeP / 2);
+        const sizeA = +$('#textA').val();
+        const sizeB = +$('#textB').val();
+        $('#textA').val(Math.max(sizeA, sizePHalf));
+        $('#textB').val(Math.max(sizeB, sizePHalf));
+        IMask($('#textA')[0], {
+          mask: Number,
+          scale: 0,
+          signed: false,
+          thousandsSeparator: '',
+          padFractionalZeros: false,
+          normalizeZeros: true,
+          radix: ',',
+          mapToRadix: ['.'],
+          min: sizePHalf,
+          max: 9999,
+        });
+        IMask($('#textB')[0], {
+          mask: Number,
+          scale: 0,
+          signed: false,
+          thousandsSeparator: '',
+          padFractionalZeros: false,
+          normalizeZeros: true,
+          radix: ',',
+          mapToRadix: ['.'],
+          min: sizePHalf,
+          max: 9999,
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" name="textA" id="textA" required value="50" />
+      <label for="textA">&nbsp;</label>
+      <input type="text" name="textB" id="textB" required value="50" />
+      <label for="textB">&nbsp;</label>
+      <fieldset>
+        <div class="radio">
+          <input
+            type="radio"
+            name="pouzdro"
+            id="radio100"
+            checked
+            value="100"
+            onchange="pouzdroChange()"
+          />
+          <label for="radio100">&nbsp;</label>
+        </div>
+        <div class="radio">
+          <input type="radio" name="pouzdro" id="radio125" value="125" onchange="pouzdroChange()"/>
+          <label for="radio125">&nbsp;</label>
+        </div>
+      </fieldset>
+      <div class="calc">
+        <button type="button" id="btn-calc" onclick="const res=calculate(); alert(`ZN1 - ${res.ZN1} ZN2 - ${res.ZN2}`);">
+          Vypočítat
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
