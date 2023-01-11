@@ -160,7 +160,12 @@ end- необязательный параметр. Конечный индек�
     [...new Set([...array.filter(item => !array2.includes(item)), ...array2.filter(item => !array.includes(item))])]);
   console.log('********* найти разность массивов',
     [...array.filter(item => !array2.includes(item)), ...array2.filter(item => !array.includes(item))]);
-
+  const arrA = [1,2,'a'];
+  const arrB = [1,2,3,4,'b'];
+  console.log('пересечение - ', arrA.filter((x) => arrB.includes(x)));
+  console.log('разность - ', arrA.filter(x => !arrB.includes(x)));
+  console.log('симмертичная разность - ', arrA.filter(x => !arrB.includes(x)).concat(arrB.filter(x => !arrA.includes(x))));
+  console.log('объединение - ', [...new Set([...arrA, ...arrB])]);
   //----------------------------------------------------------
   const dogs = [
     {
