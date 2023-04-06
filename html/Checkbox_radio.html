@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Etalon html5</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Description of web page" />
+    <!--для поддержки мобильных устройств -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--base href="https://dvere-erkado.cz/" target="_blank"-->
+    <!--link rel="stylesheet" href="style.css" />
+    <script-- src="script.js"></script-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      #app {
+        display: flex;
+        margin: 0 auto;
+        width: 90%;
+        box-shadow: rgb(0 0 0 / 19%) 0px 10px 20px, rgb(0 0 0 / 23%) 0px 6px 6px;
+        border-radius: 12px 12px 12px 12px;
+      }
+      /*----------------Контрол---------------------*/
+      .header_cookies {
+        background-color: #eeeeee;
+        padding: 10px 10px 10px 20px;
+        width: 590px;
+      }
+      .header_cookies label::after {
+        content: '\f107';
+        font-family: 'FontAwesome';
+        float: right;
+        margin-left: 15px;
+      }
+      .text_cookies {
+        display: none;
+      }
+      .fas-switch .checkbox {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        margin: 10px 0 0 20px;
+      }
+      .fas-switch .checkbox + .slider {
+        position: relative;
+        padding: 0 0 0 60px;
+        cursor: pointer;
+      }
+      .fas-switch {
+        opacity: 1;
+        float: right;
+      }
+      .fas-switch .slider_text {
+        left: 26px;
+        color: #07ac1d;
+      }
+      .fas-switch .checkbox:checked + .slider:before {
+        background-color: rgba(115, 179, 65, 0.7);
+      }
+      .fas-switch .checkbox + .slider:before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        width: 35px;
+        height: 14px;
+        border-radius: 14px;
+        background-color: #6d767d;
+        transition: 0.2s;
+      }
+      .fas-switch .checkbox:checked + .slider:after {
+        left: 26px;
+        background-color: #73b341;
+      }
+      .fas-switch .checkbox + .slider:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 2px;
+        width: 22px;
+        height: 22px;
+        border-radius: 10px;
+        background-color: #f5f5f5;
+        transition: 0.2s;
+      }
+      @media only screen and (max-width: 700px) {
+        .header_cookies {
+          width: 90%;
+        }
+        .header_cookies > span {
+          display: inline-block;
+          max-width: calc(95% - 120px);
+        }
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('.header_cookies label').on('click', function (e) {
+          if (e.clientX > $(this).find('span').offset().left + $(this).find('span').outerWidth()) {
+            const text = $(this).parent().next('p.text_cookies');
+            if (text.is(':visible')) {
+              text.hide();
+            } else {
+              text.show();
+            }
+            e.stopPropagation();
+            e.preventDefault();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="cc-settings-dialog">
+        <span class="cookie_settings_header"
+          >Zde si můžete upravit nastavení cookies a personalizace</span
+        ><br /><br />
+        <p class="header_cookies">
+          <span>Cookies nezbytné pro fungování webu</span
+          ><label class="fas-switch"
+            ><input
+              type="checkbox"
+              checked="checked"
+              disabled="disabled"
+              class="checkbox"
+              value="functional"
+            /><span class="slider_text">Always active</span></label
+          >
+        </p>
+        <p class="text_cookies">
+          Tyto cookies jsou nezbytné pro fungování našeho webu a nelze je deaktivovat. Tyto soubory
+          navíc přispívají k bezpečnému a řádnému využívání našich služeb.<br />
+        </p>
+        <p class="header_cookies">
+          <span>Analytické a výkonnostní cookies</span
+          ><label class="fas-switch"
+            ><input
+              type="checkbox"
+              name="cookie_isl_analytics"
+              class="checkbox"
+              value="analytics"
+            /><span class="slider"></span>
+          </label>
+        </p>
+        <p class="text_cookies">
+          Tyto soubory se používají k měření a analýze návštěvnosti našich webových stránek
+          (množství návštěvníků, zobrazené stránky, průměrná doba prohlížení atd.), což nám pomáhá
+          vylepšovat jejich fungování a vyvíjet pro vás nové služby. Souhlasem nám pomáháte získat
+          cenná data o tom, jak naše stránky užíváte. Díky tomu náš web funguje lépe a vy si můžete
+          užít pohodlnější nákupy.<br />
+        </p>
+        <p class="header_cookies">
+          <span>Reklamní soubory cookies a soubory cookies sociálních sítí</span
+          ><label class="fas-switch"
+            ><input
+              type="checkbox"
+              name="cookie_isl_marketing"
+              class="checkbox"
+              value="marketing"
+            />
+            <span class="slider"></span>
+          </label>
+        </p>
+        <p class="text_cookies">
+          Tyto soubory se používají pro účely reklam zobrazovaných na webových stránkách třetích
+          stran, včetně sociálních sítí a kontextové reklamy. Jsou přizpůsobeny vašim preferencím na
+          základě prohlíženého zboží a pomáhají nám měřit účinnost našich reklamních kampaní. Pokud
+          tyto soubory deaktivujete, bude se vám při procházení internetu i nadále zobrazovat
+          reklama (včetně té naší), ale nebude vám přizpůsobená na míru a bude pro vás méně
+          relevantní.<br />
+        </p>
+        <div class="cc-compliance cc-highlight">
+          <a class="cc-btn cc-btn-close-settings">Zrušiť</a>&nbsp;&nbsp;<a
+            class="cc-btn cc-btn-save-settings"
+            >Súhlasím</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
