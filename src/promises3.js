@@ -108,3 +108,13 @@ const timer1 = setTimeout(() => {
 }, 0);
 
 console.log('end');
+
+let promise = new Promise(function (resolve, reject) {
+  resolve(5);
+});
+promise.then((v) => console.log(v));
+let something;
+(async () => {
+  something = await promise;
+  console.log('promise -', something);
+})();
