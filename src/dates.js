@@ -1,26 +1,31 @@
-'use strict'
+'use strict';
 {
   console.clear();
-  console.log((new Date()).toDateString())
+  console.log(new Date().toDateString());
   //! Угол между стрелками часов
-  console.group("****** Угол между стрелками часов 24:05")
+  console.group('****** Угол между стрелками часов 24:05');
   const hour = 24;
   const min = 5;
   const angleMin = 6 * min; // 360 * min / 60;
   const angleHour = 0.5 * (15 * (hour % 12) + min); // 360 * (hour % 12) / 12 + min / 2;
-  console.log('angleMin - ', angleMin)
-  console.log('angleHour - ', angleHour)
+  console.log('angleMin - ', angleMin);
+  console.log('angleHour - ', angleHour);
   const angleDiff = Math.abs(angleHour - angleMin);
-  console.log('Разница - ', Math.min(angleDiff, 360 - angleDiff))
+  console.log('Разница - ', Math.min(angleDiff, 360 - angleDiff));
   console.groupEnd();
 
-  console.log('День недели - ', ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][(new Date('10/11/2019')).getDay()]);
-  const myDate = "26-02-2012".split("-");
-  const newDate = myDate[1] + "/" + myDate[0] + "/" + myDate[2];
-  console.log((new Date(newDate).getTime())); //will alert 1330210800000
-  console.log(new Date("2012-03-08").getTime() == new Date("2012-03-08").getTime());
+  console.log(
+    'День недели - ',
+    ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][
+      new Date('10/11/2019').getDay()
+    ],
+  );
+  const myDate = '26-02-2012'.split('-');
+  const newDate = myDate[1] + '/' + myDate[0] + '/' + myDate[2];
+  console.log(new Date(newDate).getTime()); //will alert 1330210800000
+  console.log(new Date('2012-03-08').getTime() == new Date('2012-03-08').getTime());
 
-  console.group("****** Добавить к дате часы")
+  console.group('****** Добавить к дате часы');
   let endDate = new Date();
   console.log(endDate);
   endDate.setHours(endDate.getHours() + 6);
@@ -41,14 +46,19 @@
   const t1 = performance.now();
   console.log(t1 - t0, 'milliseconds');
   //второй вариант
-  console.time()
+  console.time();
   for (let i = 0; i < 10000; i++) {
     // какой-то код
   }
   console.timeEnd();
 
   // ! ********************* сортировка массива дат
-  let arr = [{ date: '23.01.2015' }, { date: '10.01.2017' }, { date: '05.11.2016' }, { date: '21.13.2002' }];
+  let arr = [
+    { date: '23.01.2015' },
+    { date: '10.01.2017' },
+    { date: '05.11.2016' },
+    { date: '21.13.2002' },
+  ];
 
   arr.forEach(function (item) {
     let arrDate = item.date.split('.');
@@ -73,10 +83,10 @@
   console.log(JSON.stringify(dt_tm));
   console.log(dt_tm.toISOString());
   console.log('Дата без времени -', new Date(dt_tm.toJSON().substring(0, 9))); // Дата без времени
-  console.log('toDateString -', dt_tm.toDateString())
-  console.log('toLocaleDateString -', dt_tm.toLocaleDateString('cs-CZ'))
-  console.log('toLocaleString -', dt_tm.toLocaleString('cs-CZ'))
-  console.log('toLocaleTimeString -', dt_tm.toLocaleTimeString('cs-CZ'))
+  console.log('toDateString -', dt_tm.toDateString());
+  console.log('toLocaleDateString -', dt_tm.toLocaleDateString('cs-CZ'));
+  console.log('toLocaleString -', dt_tm.toLocaleString('cs-CZ'));
+  console.log('toLocaleTimeString -', dt_tm.toLocaleTimeString('cs-CZ'));
 
   String.prototype.toDate = function (format) {
     var normalized = this.replace(/[^a-zA-Z0-9]/g, '-');
@@ -84,12 +94,12 @@
     var formatItems = normalizedFormat.split('-');
     var dateItems = normalized.split('-');
 
-    var monthIndex = formatItems.indexOf("mm");
-    var dayIndex = formatItems.indexOf("dd");
-    var yearIndex = formatItems.indexOf("yyyy");
-    var hourIndex = formatItems.indexOf("hh");
-    var minutesIndex = formatItems.indexOf("ii");
-    var secondsIndex = formatItems.indexOf("ss");
+    var monthIndex = formatItems.indexOf('mm');
+    var dayIndex = formatItems.indexOf('dd');
+    var yearIndex = formatItems.indexOf('yyyy');
+    var hourIndex = formatItems.indexOf('hh');
+    var minutesIndex = formatItems.indexOf('ii');
+    var secondsIndex = formatItems.indexOf('ss');
 
     var today = new Date();
 
@@ -108,8 +118,8 @@
   let dtDate = new Date(strDateTime1);
   console.log('***********', strDateTime);
   console.log(dtDate);
-  console.log(strDateTime.toDate("dd/mm/yyyy hh:ii:ss").toLocaleDateString('cs-CZ'));
-  console.log(strDateTime.toDate("dd/mm/yyyy hh:ii:ss").toLocaleTimeString('cs-CZ'));
+  console.log(strDateTime.toDate('dd/mm/yyyy hh:ii:ss').toLocaleDateString('cs-CZ'));
+  console.log(strDateTime.toDate('dd/mm/yyyy hh:ii:ss').toLocaleTimeString('cs-CZ'));
   //Date str
   console.log(strDateTime.substr(0, strDateTime.indexOf(' ')));
   //Time str
@@ -128,4 +138,37 @@
   const dt = new Date();
   dt.setDate(dt.getDate() + 35);
   console.log(formatDate(dt));
+  //! ******* использование встроенного объекта Intl
+  const date = new Date(Date.UTC(2020, 11, 20, 3, 23, 16, 738));
+  console.log(new Intl.DateTimeFormat('en-US').format(date));
+  console.log(
+    new Intl.DateTimeFormat('ru', {
+      weekday: 'short',
+      year: '2-digit',
+      month: 'long',
+      day: 'numeric',
+    }).format(date),
+  );
+  console.log(
+    new Intl.DateTimeFormat('en-GB', {
+      dateStyle: 'full',
+      timeStyle: 'long',
+      timeZone: 'Australia/Sydney',
+    }).format(date),
+  );
+
+  const formatter = new Intl.DateTimeFormat('ru', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+    timeZone: 'UTC',
+  });
+
+  console.log(formatter.format(date));
+  // суббота, 27.05.2023 г., 10:55:18 PM
 }
