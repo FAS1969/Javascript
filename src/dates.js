@@ -150,10 +150,26 @@
     }).format(date),
   );
   console.log(
+    new Intl.DateTimeFormat('ru', {
+      weekday: 'long',
+      year: '2-digit',
+      month: 'long',
+      day: 'numeric',
+    }).format(date),
+  );
+  console.log(
     new Intl.DateTimeFormat('en-GB', {
-      dateStyle: 'full',
+      dateStyle: 'long',
       timeStyle: 'long',
       timeZone: 'Australia/Sydney',
+    }).format(date),
+  );
+  console.log(
+    new Intl.DateTimeFormat('en-GB', {
+      dateStyle: 'long',
+    }).format(date) + ',',
+    new Intl.DateTimeFormat('en-GB', {
+      weekday: 'long',
     }).format(date),
   );
 

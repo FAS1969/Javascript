@@ -1,17 +1,16 @@
-'use strict'
+'use strict';
 {
   //факториал
   function factorial(n) {
     let x = 1;
-    for (let i = 2; i <= n; i++)
-      x = x * i;
+    for (let i = 2; i <= n; i++) x = x * i;
     return x;
   }
   console.log('факториал 20 - ', factorial(20));
   //самое длинное члово - длина
   function findLongestWordLength(str) {
     const arrOfWords = str.split(' ');
-    const arrOfLengths = arrOfWords.map(item => item.length);
+    const arrOfLengths = arrOfWords.map((item) => item.length);
 
     return Math.max(...arrOfLengths);
   }
@@ -23,7 +22,7 @@
 
     const wordArr = str.split(' ');
 
-    wordArr.forEach(word => {
+    wordArr.forEach((word) => {
       if (word.length > maxVal) {
         maxVal = word.length;
         maxWord = word;
@@ -74,10 +73,7 @@
       iterations++;
       const complement = total - nums[i];
       if (previousValues[complement]) {
-        console.log(
-          `Iterations: ${iterations}`,
-          `Time: ${new Date() - startTime}ms`
-        );
+        console.log(`Iterations: ${iterations}`, `Time: ${new Date() - startTime}ms`);
         resArray.push([complement, nums[i]]);
       }
       previousValues[nums[i]] = true;
@@ -91,33 +87,33 @@
   //************** Число Пи
   const startDate = new Date();
   let i = 1n;
-  let x = 3n * (10n ** 120n);
+  let x = 3n * 10n ** 120n;
   let pi = x;
   while (x > 0) {
-    x = x * i / ((i + 1n) * 4n);
+    x = (x * i) / ((i + 1n) * 4n);
     pi += x / (i + 2n);
     i += 2n;
   }
-  console.log(Number(pi / (10n ** 20n)));
+  console.log(Number(pi / 10n ** 20n));
   //31415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679n
   console.log(Math.PI);
   console.log(`Time: ${new Date() - startDate} ms`);
 
   // ! **********************************************************
   // ! ******************** Простые числа
-  console.group("************* Простые числа")
+  console.group('************* Простые числа');
   function isPrime(n) {
     if (n % 2n == 0) return n == 2n;
     let d = 3n;
-    while (d * d <= n && n % d != 0n)
-      d += 2n
-    return d * d > n
+    while (d * d <= n && n % d != 0n) d += 2n;
+    return d * d > n;
   }
   console.log(isPrime(27644437n)); //true 18014398241046527n
 
   //*----------------------------
-  function isPrimeReg(n) { // ! долгий алгоритм
-    return !('1'.repeat(n).match(/^1?$|^(11+?)\1+$/));
+  function isPrimeReg(n) {
+    // ! долгий алгоритм
+    return !'1'.repeat(n).match(/^1?$|^(11+?)\1+$/);
   }
   console.log(isPrimeReg(3571));
 
@@ -129,12 +125,10 @@
       if (n % divisor == 0) {
         n = Math.trunc(n / divisor);
         dividers.push(divisor);
-      }
-      else divisor += 1;
+      } else divisor += 1;
     }
-    if (n != 1)
-      dividers.push(n);
-    return dividers
+    if (n != 1) dividers.push(n);
+    return dividers;
   }
   console.log('70 = ', factorize(70)); // [ 2, 5, 7 ]
   console.log('120 = ', factorize(120)); // [ 2, 2, 2, 3, 5 ]
@@ -163,31 +157,33 @@
   }
   var tree = {
     valueNode: 3,
-    next: [{
-      valueNode: 1,
-      next: null
-    },
-    {
-      valueNode: 3,
-      next: null
-    },
-    {
-      valueNode: 2,
-      next: null
-    },
-    {
-      valueNode: 2,
-      next: [
-        {
-          valueNode: 1,
-          next: null
-        },
-        {
-          valueNode: 5,
-          next: null
-        }
-      ]
-    }]
+    next: [
+      {
+        valueNode: 1,
+        next: null,
+      },
+      {
+        valueNode: 3,
+        next: null,
+      },
+      {
+        valueNode: 2,
+        next: null,
+      },
+      {
+        valueNode: 2,
+        next: [
+          {
+            valueNode: 1,
+            next: null,
+          },
+          {
+            valueNode: 5,
+            next: null,
+          },
+        ],
+      },
+    ],
   };
   console.log('************* Сумма всех valueNode - ', getSum(tree));
 
@@ -196,17 +192,15 @@
   // ! ********************  алгоритм Евклида => НОД(a, b) = НОД(a - b, b)
   function gcd(a, b) {
     while (b != 0 && a != 0) {
-      if (a > b)
-        a = a % b;
-      else
-        b = b % a;
+      if (a > b) a = a % b;
+      else b = b % a;
     }
     return Math.max(a, b);
   }
   console.log('************* НОД(72, 80) = ', gcd(72, 80));
   // ! **********************************************************
   // ! *******************  Тасование Фишера — Йетса (метода Дуршенфельда)
-  console.group("************** Тасование Фишера — Йетса");
+  console.group('************** Тасование Фишера — Йетса');
   let arrShuffle = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -221,12 +215,12 @@
   console.log(shuffle(arrShuffle));
   // ! подсчёт вероятности для всех возможных вариантов
   let count = {
-    '123': 0,
-    '132': 0,
-    '213': 0,
-    '231': 0,
-    '321': 0,
-    '312': 0
+    123: 0,
+    132: 0,
+    213: 0,
+    231: 0,
+    321: 0,
+    312: 0,
   };
   for (let i = 0; i < 1000000; i++) {
     let array = [1, 2, 3];
@@ -303,17 +297,18 @@
   function solution1(arr) {
     let sums = {};
 
-    arr.forEach(num => {
-      let sum = String(num).split('').reduce((a, b) => Number(a) + Number(b));
+    arr.forEach((num) => {
+      let sum = String(num)
+        .split('')
+        .reduce((a, b) => Number(a) + Number(b));
 
-      sums[sum] ? sums[sum].push(num) : sums[sum] = [num];
+      sums[sum] ? sums[sum].push(num) : (sums[sum] = [num]);
     });
 
     let result = Object.values(sums)
-      .filter(nums => nums.length >= 2)
-      .map(nums => nums.sort((a, b) => b - a).slice(0, 2))
-      .map(nums => nums.reduce((a, b) => a + b))
-    [0]
+      .filter((nums) => nums.length >= 2)
+      .map((nums) => nums.sort((a, b) => b - a).slice(0, 2))
+      .map((nums) => nums.reduce((a, b) => a + b))[0];
 
     console.log(result || -1);
     return result || -1;
@@ -366,15 +361,15 @@
       streaks.push(temp);
     }
 
-    console.log(streaks.map(numberOfMovesForStreak).reduce(((a, b) => a + b), 0));
-    return streaks.map(numberOfMovesForStreak).reduce(((a, b) => a + b), 0);
+    console.log(streaks.map(numberOfMovesForStreak).reduce((a, b) => a + b, 0));
+    return streaks.map(numberOfMovesForStreak).reduce((a, b) => a + b, 0);
   }
   solution2('baaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'); // 1
   solution2('baaabbaabbba'); // 2
   solution2('baabab'); // 0
   //! ******************* Получаем массив чисел и находим минимальное неотрицательное число,
   //! ******************* которого нет в этом массиве.  *********************
-  console.group("***********находим минимальное неотрицательное число");
+  console.group('***********находим минимальное неотрицательное число');
   function nextId(ids) {
     /*
     const used = new Set(ids);
@@ -385,19 +380,18 @@
     /*    let x = 0;
         while (ids.includes(x)) x++;
         return x;
-     */   // @ мое решение
+     */ // @ мое решение
     if (!ids.length) return 0;
-    ids = [...new Set(ids.filter(a => a > -1).sort((a, b) => a - b))];
+    ids = [...new Set(ids.filter((a) => a > -1).sort((a, b) => a - b))];
     let minVal = -1;
     for (let i = 0; i < ids.length; i++) {
       minVal++;
       if (minVal < ids[i]) return minVal;
     }
     return ids[ids.length - 1] + 1;
-
   }
   //
-  let nextId1 = (ids) => ids.sort((a, b) => a - b).reduce((a, b) => a + (a === b), 0)
+  let nextId1 = (ids) => ids.sort((a, b) => a - b).reduce((a, b) => a + (a === b), 0);
   console.log(nextId([0, 2, 1, 3, 5]));
   console.log(nextId([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
   console.log(nextId1([0, 1, 1, 2, 3, 5, -2, 7]));
@@ -405,8 +399,8 @@
   console.log(nextId([-1, 3, 0, 1]));
   console.groupEnd();
   //! ******************* Какое самое маленькое число делится нацело на все числа от 1 до 20  *********************
-  console.group("***********находим Наименьшее кратное для 1-20");
-  console.time('time')
+  console.group('***********находим Наименьшее кратное для 1-20');
+  console.time('time');
   let start = 2520; // 2520 - самое маленькое число, которое делится без остатка на все числа от 1 до 10.
   let isFound = false;
   while (!isFound) {
@@ -425,10 +419,55 @@
   const bar = () => console.log('bar');
   const baz = () => console.log('baz');
   const foo = () => {
-    console.log("foo");
+    console.log('foo');
     setTimeout(bar, 0);
-    new Promise((resolve, reject) => resolve('should be right after baz, before bar')).then(console.log);
+    new Promise((resolve, reject) => resolve('should be right after baz, before bar')).then(
+      console.log,
+    );
     baz();
-  }
+  };
   foo();
+
+  //! ****************************************************
+  //! ******************* Сортировка *********************
+  //! https://habr.com/ru/companies/simbirsoft/articles/769312/
+  //! ****************************************************
+  const users = [
+    { number: 4, name: 'Николай' },
+    { number: 2, name: 'Анастасия' },
+    { number: 1, name: 'Тимур' },
+    { number: 2, name: 'Евгений' },
+    { number: 3, name: 'Катерина' },
+  ];
+  // Сортировка пузырьком
+  const bubbleSort = (param) => {
+    const arr = [...param];
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr.length - i; j++) {
+        if (arr[j].number > arr[j + 1]?.number) {
+          [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        }
+      }
+    }
+    return arr;
+  };
+  console.log(bubbleSort(users));
+
+  // Сортировка выбором
+  const selectedSort = (param) => {
+    const arr = [...param];
+    for (let i = 0; i < arr.length; i++) {
+      let min = i;
+
+      for (let j = i + 1; j < arr.length; j++) {
+        if (arr[min].number > arr[j].number) {
+          min = j; // Меняем значение переменной на наибольшее значение
+        }
+      }
+
+      [arr[i], arr[min]] = [arr[min], arr[i]]; // Меняем значения переменных
+    }
+    return arr;
+  };
+  console.log(selectedSort(users));
 }
