@@ -1,0 +1,92 @@
+<html>
+    <head>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: #0093E9;
+                background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+                font-family: Helvetica, sans-serif;
+                padding: 5%;
+                text-align: center;
+            }
+
+            header {
+                position: relative;
+            }
+
+            header .emoji {
+                position: absolute;
+                top: -10px;
+                left: 0;
+                transform: rotate(20deg);
+                font-size: 3rem;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            h1 {
+                text-transform: uppercase;
+                font-size: 3rem;
+                background: -webkit-linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .wrapper {
+                display: flex;
+                padding-top: 2rem;
+            }
+
+            .avatar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .avatar img {
+                width: 140px;
+                height: 140px;
+                border-radius: 100px;
+                border: 5px solid rgba(255,255,255, 0.5);
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+                object-fit: cover;
+            }
+
+            .content {
+                padding: 1rem 2rem;
+            }
+
+            .content .text {
+                font-size: 1.5rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; /* number of lines to show */
+                        line-clamp: 3; 
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                color: rgba(255,255,255, 0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <header>
+                <h1>Hello, Javascript</h1>
+                <div class="emoji">🤖</div>
+            <header>
+            <div class="wrapper">
+                <div class="avatar">
+                    <img src="https://sun9-57.userapi.com/impg/O3egMIWPZjhcKSThZ2hn7ByaQmET8ySOq5e4ww/O_ngP3qqEd8.jpg?size=1178x1789&quality=95&sign=71fcbf49ffff80fad9f0ef39f598cf69&type=album" alt=""/>
+                </div>
+                <div class="content">
+                    <div class="text"><strong>Lorem Ipsum</strong>  is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

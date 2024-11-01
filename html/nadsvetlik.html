@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pouzdro</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.4.3/imask.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .container * {
+        vertical-align: baseline;
+        font-weight: inherit;
+        font-family: inherit;
+        font-style: inherit;
+        font-size: 100%;
+        border: 0 none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+      }
+      .container {
+        background: url('./nadsvetlik.jpg') center/cover no-repeat;
+        width: 694px;
+        height: 964px;
+        font-size: 1rem;
+        color: #ca0505;
+      }
+      #textA {
+        position: relative;
+        width: 2.6em;
+        height: 26px;
+        border: 0 none;
+        border: 1px solid #ca0505;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0 1.9em 0 0.3em;
+        vertical-align: middle;
+      }
+      #textA {
+        left: 94px;
+        top: 434px;
+      }
+      #textA:focus,
+      #textA:hover {
+        border: 1px solid #ca0505;
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      #textA[required] + label:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: 'mm';
+        position: relative;
+        font-size: 18px;
+        color: #ca0505;
+      }
+      #textA[required] + label:before {
+        left: 59px;
+        top: 434px;
+      }
+      .presahBox {
+        position: relative;
+        top: -33px;
+        left: 486px;
+        width: 180px;
+        height: 55px;
+        background-color: #fff;
+        border: 1px solid #ca0505;
+      }
+      .presahBox:has(input[type='radio']:focus),
+      .presahBox:hover {
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      .radio input[type='radio'] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      .radio {
+        position: relative;
+        padding: 4px;
+      }
+      .radio input[type='radio']:checked + label {
+        display: inline-block;
+        color: #fff;
+        background-color: #ca0505;
+        width: 100%;
+        height: 18px;
+      }
+      .sirkaBox {
+        position: relative;
+        top: 345px;
+        left: 303px;
+        width: 55px;
+        height: 130px;
+        background-color: #fff;
+        border: 1px solid #ca0505;
+      }
+      .sirkaBox:has(input[type='radio']:focus),
+      .sirkaBox:hover {
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      .sirka input[type='radio'] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      .sirka {
+        position: relative;
+        padding: 4px;
+      }
+      .sirka input[type='radio']:checked + label {
+        display: inline-block;
+        color: #fff;
+        background-color: #ca0505;
+        width: 100%;
+        height: 18px;
+        padding-top: 2px;
+      }
+      .normaBox {
+        position: relative;
+        top: 78px;
+        left: 480px;
+        width: 80px;
+        height: 80px;
+        background-color: #fff;
+        border: 1px solid #ca0505;
+      }
+      .normaBox:has(input[type='radio']:focus),
+      .normaBox:hover {
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      .norma input[type='radio'] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      .norma {
+        position: relative;
+        padding: 4px;
+      }
+      .norma input[type='radio']:checked + label {
+        display: inline-block;
+        color: #fff;
+        background-color: #ca0505;
+        width: 100%;
+        height: 20px;
+        padding-top: 2px;
+      }
+      .zaklopBox {
+        position: relative;
+        top: 115px;
+        left: 480px;
+        width: 66px;
+        height: 60px;
+        background-color: #fff;
+        border: 1px solid #ca0505;
+      }
+      .zaklopBox:has(input[type='radio']:focus),
+      .zaklopBox:hover {
+        box-shadow: 0 0 0 0.2rem rgba(202, 5, 5, 0.25);
+      }
+      .zaklop input[type='radio'] {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+      }
+      .zaklop {
+        position: relative;
+        padding: 4px;
+      }
+      .zaklop input[type='radio']:checked + label {
+        display: inline-block;
+        color: #fff;
+        background-color: #ca0505;
+        width: 100%;
+        height: 20px;
+        padding-top: 2px;
+      }
+      .calc {
+        display: flex;
+        justify-content: center;
+        top: 430px;
+        position: relative;
+      }
+      #btn-calc {
+        cursor: pointer;
+        width: 100px;
+        margin: auto 0;
+        border: none;
+        background: #4aa34e;
+        color: #fff;
+        padding: 8px 0;
+        border-radius: 0;
+      }
+      #btn-calc:hover,
+      #btn-calc:focus {
+        background: rgb(60, 118, 61);
+      }
+      #resultX {
+        position: absolute;
+        color: #ca0505;
+        top: 175px;
+        left: 300px;
+        font-weight: 700;
+        font-size: 22px;
+      }
+      #resultH {
+        position: absolute;
+        color: #ca0505;
+        top: 175px;
+        left: 400px;
+        font-weight: 700;
+        font-size: 22px;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        IMask($('#textA')[0], {
+          mask: Number,
+          scale: 0,
+          signed: false,
+          thousandsSeparator: '',
+          padFractionalZeros: false,
+          normalizeZeros: true,
+          radix: ',',
+          mapToRadix: ['.'],
+          min: 0,
+          max: 9999,
+        });
+      });
+      function calculate() {
+        const SO = +$('#textA').val();
+        const Presah = $(".radio input[type='radio']:checked").val() == 1 ? 20 : 0;
+        const Sirka = +$(".sirka input[type='radio']:checked").val();
+        const Norma = +$(".norma input[type='radio']:checked").val();
+        const Zaklop = $(".zaklop input[type='radio']:checked").val() == 8 ? 20 : 0;
+        const ZaklopX = $(".zaklop input[type='radio']:checked").val() == 8 ? 91 : 71;
+        const H = SO - Norma - Zaklop + Presah;
+        const X = H - 2 * ZaklopX;
+        return { H, X };
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <label id="resultX">?</label>
+      <label id="resultH">?</label>
+      <input type="text" name="textA" id="textA" required value="2500" />
+      <label for="textA">&nbsp;</label>
+      <fieldset class="sirkaBox">
+        <div class="sirka">
+          <input type="radio" name="sirka" id="sirka60" checked value="60" />
+          <label for="sirka60">60</label>
+        </div>
+        <div class="sirka">
+          <input type="radio" name="sirka" id="sirka70" value="70" />
+          <label for="sirka70">70</label>
+        </div>
+        <div class="sirka">
+          <input type="radio" name="sirka" id="sirka80" value="80" />
+          <label for="sirka80">80</label>
+        </div>
+        <div class="sirka">
+          <input type="radio" name="sirka" id="sirka90" value="90" />
+          <label for="sirka90">90</label>
+        </div>
+        <div class="sirka">
+          <input type="radio" name="sirka" id="sirka100" value="100" />
+          <label for="sirka100">100</label>
+        </div>
+      </fieldset>
+      <fieldset class="presahBox">
+        <div class="radio">
+          <input type="radio" name="presah" id="presahAno" checked value="1" />
+          <label for="presahAno">Přesah přičky - ano, 2cm</label>
+        </div>
+        <div class="radio">
+          <input type="radio" name="presah" id="presahNe" value="0" />
+          <label for="presahNe">Ne, zároveň se stropem</label>
+        </div>
+      </fieldset>
+      <fieldset class="normaBox">
+        <div class="norma">
+          <input type="radio" name="norma" id="norma197" checked value="2042" />
+          <label for="norma197">CZ 197</label>
+        </div>
+        <div class="norma">
+          <input type="radio" name="norma" id="norma210" value="2171" />
+          <label for="norma210">CZ 210</label>
+        </div>
+        <div class="norma">
+          <input type="radio" name="norma" id="norma201" value="2089" />
+          <label for="norma201">PL 201</label>
+        </div>
+      </fieldset>
+      <fieldset class="zaklopBox">
+        <div class="zaklop">
+          <input type="radio" name="zaklop" id="zaklop6" checked value="6" />
+          <label for="zaklop6">6cm</label>
+        </div>
+        <div class="zaklop">
+          <input type="radio" name="zaklop" id="zaklop8" value="8" />
+          <label for="zaklop8">8cm</label>
+        </div>
+      </fieldset>
+
+      <div class="calc">
+        <button
+          type="button"
+          id="btn-calc"
+          onclick="const res=calculate(); $('#resultH').text(res.H); $('#resultX').text(res.X);"
+        >
+          Vypočítat
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
