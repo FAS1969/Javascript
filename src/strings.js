@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 {
   console.clear();
   const testStr = 'MyTestingString';
@@ -150,16 +150,17 @@
   console.group('********** Теговые шаблоны');
   function template(strings, ...keys) {
     return function (...values) {
-      var dict = values[values.length - 1] || {};
       var result = [strings[0]];
       keys.forEach(function (key, i) {
-        var value = Number.isInteger(key) ? values[key] : dict[key];
-        result.push(value, strings[i + 1]);
+        var value = values[key];
+        result.push(value);
+        console.log(result);
       });
       return result.join('');
     };
   }
 
+  console.log(template`${0}${1}${2}!`('A', 'd', 'F'));
   var t1Closure = template`${0}${1}${0}!`;
   console.log(t1Closure('Y', 'A')); // "YAY!"
   var t2Closure = template`${0} ${'foo'}!`;
@@ -169,7 +170,7 @@
   }
 
   console.log(latex`Первый
-   \unicode  yes`); // { cooked: undefined, raw: "\unicode" }
+   \unicode  yes`); // { cooked: undefined, raw: "Первый\n   \\unicode  yes" }
   console.groupEnd();
 
   function tag(strings) {

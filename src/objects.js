@@ -467,4 +467,19 @@
   coffeeMachine.run();
   //Останавливает машину рашьше времени
   //coffeeMachine.stop();
+
+  //Сортировка объекта по заданному ключу
+  function sortByKey(array, key) {
+    return [...array].sort((a, b) => a[key] - b[key]);
+  }
+
+  // Пример использования:
+  const data = [
+    { name: 'Alice', age: 25 },
+    { name: 'Bob', age: 22 },
+    { name: 'Charlie', age: 30 },
+  ];
+
+  const sorted = sortByKey(data, 'age');
+  console.log(sorted);
 }
