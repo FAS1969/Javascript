@@ -187,4 +187,7 @@
 
   console.log(formatter.format(date));
   // суббота, 27.05.2023 г., 10:55:18 PM
+
+  //! ********** НОВЫЙ МЕТОДЫ ДЛЯ РАБОТЫ С ДАТОЙ (Temporal) **********
+  //console.log(Temporal.Now.plainDateISO());
 }
